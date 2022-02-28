@@ -23,8 +23,8 @@ public class MemberVO {
 	private String member_phone;
 	private String member_email;
 	private String member_address;
-	private String member_company;
-	
+	private String member_company;	
 	
 	private List<NBoardVO> boardList;
+	
 }
