@@ -15,7 +15,7 @@ public class AuthVO {
 	//private String username;
 	//private String authority;	
 	
-	private int authority_id; //seq
+	private int authority_id;
 	private String authority_name;//authority
-	private String member_number;
+	
 }
