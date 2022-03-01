@@ -5,8 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-import edu.kosmo.kbat.service.MemberService;
+import edu.kosmo.kbat.service.SecurityService;
 import edu.kosmo.kbat.vo.MemberVO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,7 @@ public class MemberController {
 
    //private UserService userService =  new UserService();
    @Autowired	
-   private MemberService userService;
+   private SecurityService securityService;
 
  
 	@GetMapping("/admin/adminHome")
@@ -39,10 +40,10 @@ public class MemberController {
    }
 
    @PostMapping("/add/addUser")
-   public String addUser(MemberVO membervo) {
+   public String addUser(MemberVO memberVO) {
       log.info("post resister");
       System.out.println("----- addUser ");
-      userService.addMember(membervo);
+      //securityService.addMember(memberVO);
 
       return "redirect:/";
    }
@@ -53,11 +54,19 @@ public class MemberController {
       System.out.println("----- userForm ");
    }
    @PostMapping("/add/addAdmin")
-   public String addAdmin(MemberVO membervo) {
+   public String addAdmin(MemberVO memberVO) {
       log.info("post resister");
       System.out.println("----- addUser ");
-      userService.addAdmin(membervo);
+      //securityServiceService.addAdmin(memberVO);
 
       return "redirect:/";
    }
+   
+   @PostMapping("/passwordChange/change")
+	public ModelAndView passwordChangeChange(String member_id, String password, ModelAndView mav) throws Exception {
+		log.info("/login/passwordChangeChange");
+		securityService.updatePassword(member_id, password);
+		mav.setViewName("/login/login");
+		return mav;
+	}
 }

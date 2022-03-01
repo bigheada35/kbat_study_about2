@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.pet.ex.mapper.LoginMapper">
+
+	<resultMap id="authMap" type="edu.kosmo.kbat.vo.AuthVO">
+		<result property="authority_id" column="authority_id"/>
+		<result property="authority_name" column="authority_name"/>
+		<result property="member_number" column="member_number"/>
+	</resultMap>
+	
+	<resultMap type="LoginTypeMap" id="edu.kosmo.kbat.vo.LogintypeVO">
+		<result  property="logintype_id" column="logintype_id" />
+		<result  property="logintype_name" column="logintype_name" />
+	</resultMap>
+
+
+	<resultMap type="edu.kosmo.kbat.vo.MemberVO" id="memberMap">
+  		<result property="member_number" column="member_number"/>
+	    <result property="member_id" column="member_id"/>
+	    <result property="password" column="password"/>
+	    <result property="member_name" column="member_name"/>
+	    <result property="member_phone" column="member_phone"/>
+	    <result property="member_email" column="member_email"/>
+	    <result property="member_address" column="member_address"/>
+	    <result property="member_company" column="member_company"/>
+		
+		<collection property="authList" resultMap="authMap"></collection>
+		<collection property="authVO" resultMap="authMap"></collection>
+		
+		<collection property="logintypeVO" resultMap="logintypeMap"></collection>
+		
+	</resultMap>
+
+
+
+	<!-- 회원정보조회 -->
+	<select id="getMember" parameterType="String"
+		resultMap="membervo">
+		<![CDATA[
+		SELECT
+		member_id
+		, member_id as username
+		, password
+		, member_name
+		,m.authority_id
+		, authority_name
+		,m.logintype_id
+		, logintype_name
+		FROM
+		MEMBER
+		m, authority a , logintype l 
+		WHERE m.member_id = #{member_id} and
+		m.authority_id=a.authority_id and
+		m.logintype_id=l.logintype_id and
+		
+		]]>
+	</select>
+
+
+	<!-- 회원가입 insert -->
+	<insert id="insertMember" parameterType="MemberVO">
+		<![CDATA[
+		
+		insert into member
+		(
+		member_id
+		, password
+		, name
+		
+		, authority_id
+		,logintype_id
+		)
+		VALUES
+		(
+		#{member_id}
+		, #{password}
+		, #{member_name}
+		,#{AuthVO.authority_id}
+		,#{logintypeVO.logintype_id}
+		)
+			]]>
+	</insert>
+
+
+	<update id="updatePassword">
+		<![CDATA[
+		update member set password=#{password} where member_id=#{member_id}
+		]]>
+	</update>
+</mapper>
