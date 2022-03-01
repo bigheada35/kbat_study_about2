@@ -6,19 +6,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import edu.kosmo.kbat.service.MemberService;
-import edu.kosmo.kbat.vo.MemberVO;
+import edu.kosmo.kbat.service.UserService;
+import edu.kosmo.kbat.vo.UserVO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @AllArgsConstructor
 @Controller
-public class MemberController {
+public class UserController {
 
    //private UserService userService =  new UserService();
    @Autowired	
-   private MemberService userService;
+   private UserService userService;
 
  
 	@GetMapping("/admin/adminHome")
@@ -39,10 +39,10 @@ public class MemberController {
    }
 
    @PostMapping("/add/addUser")
-   public String addUser(MemberVO membervo) {
+   public String addUser(UserVO uservo) {
       log.info("post resister");
       System.out.println("----- addUser ");
-      userService.addMember(membervo);
+      userService.addUser(uservo);
 
       return "redirect:/";
    }
@@ -53,10 +53,10 @@ public class MemberController {
       System.out.println("----- userForm ");
    }
    @PostMapping("/add/addAdmin")
-   public String addAdmin(MemberVO membervo) {
+   public String addAdmin(UserVO uservo) {
       log.info("post resister");
       System.out.println("----- addUser ");
-      userService.addAdmin(membervo);
+      userService.addAdmin(uservo);
 
       return "redirect:/";
    }

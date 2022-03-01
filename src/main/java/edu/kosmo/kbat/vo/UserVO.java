@@ -3,7 +3,6 @@ package edu.kosmo.kbat.vo;
 import java.util.List;
 
 
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class MemberVO {
+public class UserVO {
 
    //private String username;
    //private String password;
@@ -34,15 +33,6 @@ public class MemberVO {
 	private String member_address;
 	private String member_company;
 	
-	//외부 테이블
 	private List<AuthVO> authList;
-	
-	private AuthVO authVO;
-	private LogintypeVO logintypeVO;
-	
-	//시큐리티
-	private String username;
-	private String provider;
-	private String providerId;
-	
+
 }

@@ -7,8 +7,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import edu.kosmo.kbat.mapper.MemberMapper;
-import edu.kosmo.kbat.vo.MemberVO;
+import edu.kosmo.kbat.mapper.UserMapper;
+import edu.kosmo.kbat.vo.UserVO;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 //@Slf4j
 @NoArgsConstructor
 @Service
-public class MemberService {
+public class UserService {
 
 	//에러나서 --> 
 	//@Autowired
@@ -25,35 +25,35 @@ public class MemberService {
 	BCryptPasswordEncoder passEncoder = new BCryptPasswordEncoder();
 	
 	@Autowired
-   private MemberMapper memberMapper;
+   private UserMapper userMapper;
 
    // caution:  must use @Transactional
    //@Transactional(rollbackFor = Exception.class)
-   public void addMember(MemberVO memberVO) {
+   public void addUser(UserVO userVO) {
 	   
 	  //System.out.println("==========addUser:"+userVO.getUsername() +","+userVO.getPassword());
-	   System.out.println("==========addUser:" + memberVO.getMember_id() + "," +memberVO.getPassword());
+	   System.out.println("==========addUser:"+userVO.getMember_id() +","+userVO.getPassword());
 	   
-      String password = memberVO.getPassword();
+      String password = userVO.getPassword();
       String encode = passEncoder.encode(password);
 
-      memberVO.setPassword(encode);
+      userVO.setPassword(encode);
 
-      memberMapper.insertUser(memberVO);
-      memberMapper.insertAuthorities(memberVO);
+      userMapper.insertUser(userVO);
+      userMapper.insertAuthorities(userVO);
    }
-   public void addAdmin(MemberVO memberVO) {
+   public void addAdmin(UserVO userVO) {
 	   
 	  //System.out.println("==========addUser:"+userVO.getUsername() +","+userVO.getPassword());
-	   System.out.println("==========addUser:" + memberVO.getMember_id() + "," + memberVO.getPassword());
+	   System.out.println("==========addUser:"+userVO.getMember_id() +","+userVO.getPassword());
 	   
-      String password = memberVO.getPassword();
+      String password = userVO.getPassword();
       String encode = passEncoder.encode(password);
 
-      memberVO.setPassword(encode);
+      userVO.setPassword(encode);
 
-      memberMapper.insertUser(memberVO);
-      memberMapper.insertAuthoritiesAdmin(memberVO);
+      userMapper.insertUser(userVO);
+      userMapper.insertAuthoritiesAdmin(userVO);
    }
    
 }
