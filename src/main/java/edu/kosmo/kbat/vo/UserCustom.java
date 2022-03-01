@@ -19,16 +19,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Getter
 @Setter
-public class MemberCustom extends User {
+public class UserCustom extends User {
 	
 	@Setter(onMethod_ = @Autowired)
-	private MemberVO user;
+	private UserVO user;
 	   
-	public MemberCustom(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+	public UserCustom(String username, String password, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
 	}
 
-	public MemberCustom(MemberVO user) {
+	public UserCustom(UserVO user) {
 		
 		//super(user.getUsername(), user.getPassword(), getAuth(user));
 		super(user.getMember_id(), user.getPassword(), getAuth(user));
@@ -37,7 +37,7 @@ System.out.println("==========UserCustom");
 		this.user = user;
 	}
 
-	public static Collection<? extends GrantedAuthority> getAuth(MemberVO memberVO) {
+	public static Collection<? extends GrantedAuthority> getAuth(UserVO memberVO) {
 
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 

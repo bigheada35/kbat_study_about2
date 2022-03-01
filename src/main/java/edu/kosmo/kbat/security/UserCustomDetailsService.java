@@ -8,9 +8,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import edu.kosmo.kbat.mapper.MemberMapper;
-import edu.kosmo.kbat.vo.MemberCustom;
-import edu.kosmo.kbat.vo.MemberVO;
+import edu.kosmo.kbat.mapper.UserMapper;
+import edu.kosmo.kbat.vo.UserCustom;
+import edu.kosmo.kbat.vo.UserVO;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -25,16 +25,16 @@ import lombok.extern.slf4j.Slf4j;
 public class UserCustomDetailsService implements UserDetailsService  {
     
    @Setter(onMethod_ = @Autowired)
-   private MemberMapper memberMapper;
+   private UserMapper userMapper;
 
    @Override
-   public UserDetails loadUserByUsername(String member_number) throws UsernameNotFoundException {
+   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
       
-      log.warn("==========Load User By UserVO number: " + member_number);
-      MemberVO vo = memberMapper.getMember(member_number);
+      log.warn("==========Load User By UserVO number: " + username);
+      UserVO vo = userMapper.getUser(username);
 
-      log.warn("queried by MemberVO mapper: " + vo);
+      log.warn("queried by UserVO mapper: " + vo);
 
-      return vo == null ? null : new MemberCustom(vo);
+      return vo == null ? null : new UserCustom(vo);
    }
 }

@@ -14,7 +14,7 @@
 
 
 <c:url value="/add/addAdmin" var="addAdminUrl" />
-<p>${addAdminUrl}</p> 
+<p>${addAdminUrl}</p>
 
 <form:form name="frmMember" action="${addAdminUrl}" method="POST">
     <p>
