@@ -1,8 +1,11 @@
 package edu.kosmo.kbat.controller;
 
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -30,12 +33,11 @@ public class UserController {
 	public void userHome() {
 		System.out.println("----userHome");
 	}
- 
-   
+    
    @GetMapping("/add/addForm")
-   public void userForm() {
-      log.info("Welcome userForm");
-      System.out.println("----- userForm ");
+   public void addForm() {
+      log.info("Welcome addForm");
+      System.out.println("----- addForm ");
    }
 
    @PostMapping("/add/addUser")
@@ -49,13 +51,13 @@ public class UserController {
    
    @GetMapping("/add/addFormAdmin")
    public void addFormAdmin() {
-      log.info("Welcome userForm");
-      System.out.println("----- userForm ");
+      log.info("Welcome addFormAdmin");
+      System.out.println("----- addFormAdmin ");
    }
    @PostMapping("/add/addAdmin")
    public String addAdmin(UserVO uservo) {
       log.info("post resister");
-      System.out.println("----- addUser ");
+      System.out.println("----- addAdmin ");
       userService.addAdmin(uservo);
 
       return "redirect:/";
