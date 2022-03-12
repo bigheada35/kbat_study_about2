@@ -11,18 +11,13 @@
 <body>
 <table width="500" cellpadding="0" cellspacing="0" border="1">
       <form action="nwrite" method="post">
-      <input type="hidden" name="bid" value="${write_view.board_id}">
-          <tr>
-            <td> 작성자 </td>
-            <td> <input type="text" name="bname"> </td>
-         </tr> 
          <tr>
             <td> 제목 </td>
-            <td> <input type="text" name="btitle" size = "50"> </td>
+            <td> <input type="text" name="board_title" size = "50"> </td>
          </tr>
          <tr> 
             <td> 내용 </td>
-            <td> <textarea name="bcontent" rows="10" ></textarea> </td>
+            <td> <textarea name="board_content" rows="10" ></textarea> </td>
          </tr>
          <tr>
             <td colspan="2"> <input type="submit" value="입력"> &nbsp;&nbsp; 

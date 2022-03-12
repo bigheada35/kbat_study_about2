@@ -12,7 +12,7 @@
       <tr>
          <td>번호</td>
          <td>제목</td>
-         <td>작성자22</td>
+         <td>작성자</td>
          <td>작성일자</td>
          <td>조회수</td>
       </tr>
@@ -22,7 +22,7 @@
          <td>
             <a href="ncontent_view?board_id=${board.board_id}">${board.board_title}</a></td>
          <%-- <td>${board.boardtype_id}</td>  --%>
-         <td>${board.member_name}</td>
+         <td>${board.member_id}</td>
          <td>${board.board_date}</td>
          <td>${board.board_hit}</td>
       </tr>
@@ -31,8 +31,6 @@
          <td colspan="5"> <a href="nwrite_view">글작성</a> </td>
       </tr>                
    </table>
-   
-   <a href="social/login">소셜로그인</a>
    
    <c:if test="${pageMaker.pre}">
          <a href="nlist${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
@@ -45,6 +43,8 @@
 	      
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 		<a href="nlist${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
-	</c:if>
+	</c:if> <br>
+	
+	<a href="/login">소셜로그인</a>
 </body>
 </html>

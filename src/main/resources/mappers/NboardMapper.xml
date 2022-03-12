@@ -2,18 +2,22 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.kbat.ex.mapper.NBoardMapper">
+<mapper namespace="edu.kosmo.kbat.mapper.NBoardMapper">
 	
-	<resultMap id="nBoardMap" type="edu.kbat.ex.vo.NBoardVO">
+	<resultMap id="nBoardMap" type="edu.kosmo.kbat.vo.NBoardVO">
 		<result property="board_id" column="board_id" />
 		<result property="board_title" column="board_title" />
 		<result property="board_content" column="board_content" />
 		<result property="board_date" column="board_date" />
 		<result property="board_hit" column="board_hit" />
+		<result property="boardtype_id" column="boardtype_id" />
+		<result property="member_number" column="member_number" />
+		<result property="member_id" column="member_id" />
+		<result property="member_name" column="member_name" />
 		<collection property="boardtypeList" resultMap="boardtypeMap"></collection>
 	</resultMap>
 
-	<resultMap id="memberMap" type="edu.kbat.ex.vo.MemberVO">
+	<resultMap id="memberMap" type="edu.kosmo.kbat.vo.MemberVO">
 		<result property="member_number" column="member_number" />
 		<result property="member_id" column="member_id" />
 		<result property="password" column="password" />
@@ -23,7 +27,7 @@
 	</resultMap>
 
 	<resultMap id="boardtypeMap"
-		type="edu.kbat.ex.vo.BoardtypeVO">
+		type="edu.kosmo.kbat.vo.BoardtypeVO">
 		<result property="boardtype_id" column="boardtype_id" />
 		<result property="boardtype_name" column="boardtype_name" />
 
@@ -38,16 +42,16 @@
    		
    	</select>
    	
-   	<select id="read" resultType="edu.kbat.ex.vo.NBoardVO">
+   	<select id="read" resultMap = "nBoardMap">
    		<![CDATA[
-      		select * from board where board_id = #{board_id}
+      		select * from board,member where member.member_number =board.member_number and board_id = #{board_id}
    		]]>
    	</select>
    	
     <insert id="write" >
    		<![CDATA[
-     		insert into board (board_id, board_title, board_content) 
-      		values (board_seq.nextval, #{board_title}, #{board_content}) 
+     		insert into board (board_id, member_number, board_title, board_content, boardtype_id) 
+      		values (board_seq.nextval, #{member_number}, #{board_title}, #{board_content}, 0) 
   		]]>
     </insert>  
     
@@ -65,7 +69,7 @@
     
     <delete id="delete">
    		<![CDATA[
-      		delete from board where board_id = #{board_id}
+      		delete from reply where board_id = #{board_id}
    		]]>
     </delete>
     
@@ -76,7 +80,7 @@
 	</select>
 	
 	<!-- 	열개씩 뽑아내는거 한페이지에 출력해주는 역할 -->
-	<select id="getListWithPaging" resultType = "edu.kbat.ex.vo.NBoardVO">
+	<select id="getListWithPaging" resultType = "edu.kosmo.kbat.vo.NBoardVO">
 	<![CDATA[
 		         SELECT * FROM (
               SELECT ROWNUM AS RNUM, A.* FROM (

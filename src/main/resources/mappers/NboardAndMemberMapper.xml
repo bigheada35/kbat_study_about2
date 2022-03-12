@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.kbat.ex.mapper.NBoardAndMemberMapper">
+<mapper namespace="edu.kosmo.kbat.mapper.NBoardAndMemberMapper">
 	
-	<resultMap id="nBoardMap" type="edu.kbat.ex.vo.NBoardAndMemberVO">
+	<resultMap id="nBoardMap" type="edu.kosmo.kbat.vo.NBoardAndMemberVO">
 		<result property="board_id" column="board_id" />
 		<result property="board_title" column="board_title" />
 		<result property="board_content" column="board_content" />
@@ -17,7 +17,7 @@
 		<collection property="boardtypeList" resultMap="boardtypeMap"></collection>
 	</resultMap>
 
-	<resultMap id="memberMap" type="edu.kbat.ex.vo.MemberVO">
+	<resultMap id="memberMap" type="edu.kosmo.kbat.vo.MemberVO">
 		<result property="member_number" column="member_number" />
 		<result property="member_id" column="member_id" />
 		<result property="password" column="password" />

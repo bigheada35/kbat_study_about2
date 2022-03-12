@@ -1,34 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE>
+<%@ page language="java" contentType="text/html;charset=utf-8" pageEncoding="utf-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var="principal" />
+</sec:authorize>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>  
-   <table width="500" cellpadding="0" cellspacing="0" border="1">
+<body>     	 
+   <table width="500" cellpadding="0" cellspacing="0" border="1">  
       <tr>
          <td>번호</td>
          <td>제목</td>
-         <td>날짜</td>
          <td>작성자</td>
+         <td>작성일자</td>
          <td>조회수</td>
       </tr>
-      <c:forEach items="${list}" var="board">
+      <c:forEach items="${qlist}" var="board">
       <tr>
+       	 <input type="hidden" name="reply_group" value="${board.reply_group}">
          <td>${board.board_id}</td>
-         <td>
-            <a href="qcontent_view?board_id=${board.board_id}">${board.board_title}</a></td>
+         <td>        
+	        <c:if test="${board.board_enable == 0}" >
+	            <img src="${pageContext.request.contextPath}/resources/img/starrate.png" alt="비밀글" />
+	            <c:choose>
+	                <c:when test="${board.member_id == 'admin'}">	                	
+	                    <c:out value="${board_board_title}"/>
+	                </c:when>
+	                <c:otherwise>비밀글은 작성자와 관리자만 볼 수 있습니다.</c:otherwise>
+	            </c:choose>
+	       	 </c:if>
+	        <c:if test="${board.board_enable == 1}" >
+	        	<c:forEach begin="1" end="${board.reply_indent}">-</c:forEach>
+	        	<a href="qcontent_view?board_id=${board.board_id}&reply_group=${board.reply_group}"><c:out value="${board.board_title}"/></a>
+	           <%--  <c:out value="${board.board_title}"/> --%>
+	        </c:if>	
+         	<%-- <c:forEach begin="1" end="${board.reply_indent}">-</c:forEach> --%>
+         	</td>
+              <%-- <a href="qcontent_view?board_id=${board.board_id}">${board.board_title}</a></td> --%>
+         <%-- <td>${board.boardtype_id}</td>  --%>
+         <td><sec:authentication property="principal.user.member_id"/></td>
          <td>${board.board_date}</td>
-         <td>${board.member_id}</td>
          <td>${board.board_hit}</td>
       </tr>
       </c:forEach>
       <tr>
-         <td colspan="5"> <a href="write_view">글작성</a> </td>
+         <td colspan="5"> <a href="qwrite_view">글작성</a> </td>
       </tr>                
-   </table>
+   </table>  
    <c:if test="${pageMaker.pre}">
          <a href="qlist${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
    </c:if>
@@ -40,6 +63,8 @@
 	      
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 		<a href="qlist${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
-	</c:if>
+	</c:if> <br>
+	
+	<a href="/login">소셜로그인</a>
 </body>
 </html>

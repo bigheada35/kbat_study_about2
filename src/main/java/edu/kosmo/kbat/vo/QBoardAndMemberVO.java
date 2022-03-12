@@ -3,6 +3,7 @@ package edu.kosmo.kbat.vo;
 import java.sql.Timestamp;
 import java.util.List;
 
+import edu.kosmo.kbat.page.Criteria;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,9 +15,8 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class NBoardVO {
+public class QBoardAndMemberVO {
 
-	private int board_id;
 	private String board_title;
 	private String board_content;
 	private Timestamp board_date;
@@ -24,11 +24,16 @@ public class NBoardVO {
 	private int boardtype_id;
 	private int member_number;
 	private String member_id;
-	
+	private int reply_id;
+	private int reply_group;
+	private int reply_step;
+	private int reply_indent;
+	private int board_id;
 	private String member_name;
+	private String board_enable; //공개비공개
 	
-	//조인할거. 외래키 가져올것	
 	private List<BoardtypeVO> boardtypeList;
-
+	
+	private List<QBoardAndMemberVO> qgetListWithPaging;
 	
 }

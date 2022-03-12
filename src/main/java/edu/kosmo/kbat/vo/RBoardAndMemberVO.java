@@ -14,9 +14,10 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class NBoardVO {
+public class RBoardAndMemberVO {
 
-	private int board_id;
+	private int review_id;
+	private int order_detail_id;
 	private String board_title;
 	private String board_content;
 	private Timestamp board_date;
@@ -24,11 +25,10 @@ public class NBoardVO {
 	private int boardtype_id;
 	private int member_number;
 	private String member_id;
-	
+	private int board_id;
 	private String member_name;
+	private int rating_id;
 	
-	//조인할거. 외래키 가져올것	
 	private List<BoardtypeVO> boardtypeList;
-
 	
 }
