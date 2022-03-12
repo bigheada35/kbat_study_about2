@@ -35,6 +35,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	.antMatchers("/login/**").permitAll() //추가
     	.antMatchers("/oauth2/**").permitAll()
     	.antMatchers("/add/**").permitAll() 	
+    	.antMatchers("/upload/**").permitAll()
+    	.antMatchers("/videos/**").permitAll()
+    	.antMatchers("/pay/**").permitAll()
     	.antMatchers("/user/**").hasRole("USER")
     	.antMatchers("/admin/**").hasRole("ADMIN")
     	.antMatchers("/**").permitAll()    	

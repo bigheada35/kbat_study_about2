@@ -76,6 +76,7 @@ public class UserController {
       return "redirect:/";
    }
    
+
    @GetMapping("/test/login")
    public @ResponseBody String testLogin(Authentication authentication, @AuthenticationPrincipal UserDetails userDetails) {	  
 	   System.out.println("/test/login===============");
@@ -100,4 +101,11 @@ public class UserController {
    
   
    
+
+	@GetMapping("/pay/import")
+	public void import2() {
+		System.out.println("----import--1--");
+		//return "/pay/import"
+	}
+	
 }
