@@ -9,6 +9,7 @@ import edu.kosmo.kbat.mapper.NBoardAndMemberMapper;
 import edu.kosmo.kbat.mapper.NBoardMapper;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.BoardtypeVO;
+import edu.kosmo.kbat.vo.MemberVO;
 import edu.kosmo.kbat.vo.NBoardAndMemberVO;
 import edu.kosmo.kbat.vo.NBoardVO;
 import lombok.extern.slf4j.Slf4j;
@@ -51,8 +52,9 @@ public class NBoardServiceImpl implements NBoardService{
 
 	@Override
 	public void modify(NBoardVO board) {
-		log.info("modify()...");	
-		boardMapper.modify(board);		
+		log.info("modify()service...");	
+		boardMapper.modify(board);	
+		log.info("modify()service2...");
 	}
 
 	@Override
@@ -74,16 +76,14 @@ public class NBoardServiceImpl implements NBoardService{
 	}
 
 	@Override
-	public List<NBoardVO> getList(Criteria criteria) {
+	public List<NBoardAndMemberVO> getList(Criteria criteria) {
 		log.info("getList() ..");
 		//return boardMapper.getListWithPaging(criteria);
 		return boardAndMemberMapper.getListWithPaging(criteria);//ssj3
 	}
 
 	@Override
-	public List<BoardtypeVO> getboardtypeList() {
-		// TODO Auto-generated method stub
-		
+	public List<BoardtypeVO> getboardtypeList() {		
 		//return boardMapper.getboardtypeList();
 		return boardAndMemberMapper.getboardtypeList();//ssj
 	}
