@@ -32,7 +32,8 @@
         <label for="product_description">상품설명</label>
         <input type="text"  name=product_description placeholder="글자로 입력하세요" size="100"/><br/>
              		
-		<input type="file" name="file" />
+		<input type="file" name="fileVideo" />
+		<input type="file" name="fileImage" />
 		<button type="submit" class="btn">파일업로드 및 상품등록</button>
 	</form:form>
 	
@@ -55,7 +56,9 @@
 					<td>${prod.product_enable} </td>
 					<td>${prod.product_date} </td>
 					<td>${prod.product_description} </td>
-					<td>${prod.image_name} </td>
+					<td>
+					<img src="<c:url value="${prod.image_name}"/>"/>
+					${prod.image_name} </td>
 					<td>
 						<a href="/upload/delete?product_id=${prod.product_id}">삭제</a> 
 					</td>
