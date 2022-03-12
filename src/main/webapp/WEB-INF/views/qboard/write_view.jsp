@@ -13,28 +13,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <title>Home</title>
 <script type="text/javascript">
-	$(document).ready(function(){
-	    
-	    $("#secret").submit(                
-	        function(event){
-	            if($("#board_enable").val() == "0"){
-	                alert("0임");	               
-	                board_enable.val() == '1';
-	            }else if($("#uPw").val() == ""){
-	                alert("user pw blank!!");
-	                event.preventDefault();
-	            }else{
-	                alert("login ok!!");
-	            }  
-	        }
-	    );
-	
-	    $("#resBtn").click(function(){
-	        alert("reset ok!!");
-	        $("#loginForm")[0].reset();
-	    });
-	
-	 });	 	
+	 	
 </script>
 </head>
 <body>
@@ -42,12 +21,12 @@
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 
 		<form action="qwrite" method="post">
-	<tr>
-		<td class="form-inline">
+		<tr>
+			<td class="form-inline">
 			    <input type="radio" name="board_enable" id="board_enable" value="Y" class="radio" /><span class="ml_10">공개</span>
 			    <input type="radio" name="board_enable" id="board_enable" value="N" class="radio" /><span class="ml_10">비공개</span>
-		</td>
-	</tr>	
+			</td>
+		</tr>	
 		<tr>
 			<td>제목</td>
 			<td><input type="text" name="board_title" size="50"></td>
@@ -62,7 +41,5 @@
 		</tr>
 		</form>
 	</table>
-
-
 </body>
 </html>

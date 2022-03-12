@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -25,7 +24,7 @@ ratingToPercent() {
       </tr>
       <c:forEach items="${rlist}" var="board">
       <tr>
-         <td>${board.board_id}</td>
+         <td>${board.board_id}</td>       
          <td>
             <a href="rcontent_view?board_id=${board.board_id}">${board.board_title}</a></td>
          <%-- <td>${board.boardtype_id}</td>  --%>

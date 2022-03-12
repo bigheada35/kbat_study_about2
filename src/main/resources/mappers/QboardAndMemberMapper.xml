@@ -160,7 +160,7 @@
 													and board.boardtype_id = 1 
 													and board.board_id = reply.board_id
 													and member.member_number =board.member_number
-												order by reply_group asc, reply_step asc								
+												order by reply_group asc, reply_step asc, reply_indent asc								
              ) A WHERE ROWNUM <= #{pageNum} * #{amount}
          ) WHERE RNUM > (#{pageNum}-1) * #{amount}		
 	]]>

@@ -5,7 +5,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -36,19 +35,18 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 		
 		OAuth2UserInfo oAuth2UserInfo = null;
 				
-		if(userRequest.getClientRegistration().getRegistrationId().equals("google")) {
-			System.out.println("구글 로그인 요청");
+		if (userRequest.getClientRegistration().getRegistrationId().equals("google")) {
 			oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
-		} else if(userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
-			System.out.println("네이버 로그인 요청");
-			oAuth2UserInfo = new NaverUserInfo((Map)oAuth2User.getAttributes().get("response"));
+			// 네이버 소셜 로그인
+		} else if (userRequest.getClientRegistration().getClientName().equals("naver")) {
+			oAuth2UserInfo = new NaverUserInfo((Map) oAuth2User.getAttributes().get("response"));
+			// 카카오 소셜 로그인
 		} else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
-			System.out.println("카카오 로그인 요청");
 			oAuth2UserInfo = new KakaoUserInfo((Map)oAuth2User.getAttributes());
 		} else {
-			System.out.println("구글, 네이버, 카카오만 지원");
-		}		
-		
+		System.out.println("구글,네이버,카카오 로그인 지원");
+		}
+	
 		UserVO user = null;
 		
 		String authority_name = "ROLE_USER";

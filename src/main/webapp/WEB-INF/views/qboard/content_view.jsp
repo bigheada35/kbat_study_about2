@@ -14,6 +14,8 @@
 		<form:form action="qmodify_view" method="post">
 			<input type="hidden" name="board_id" value="${qcontent_view.board_id}">
 			<input type="hidden" name="reply_group" value="${qcontent_view.reply_group}"> 
+			<input type="hidden" name="reply_step" value="${qcontent_view.reply_step}"> 
+			<input type="hidden" name="reply_indent" value="${qcontent_view.reply_indent}"> 
 			<input type="hidden" name="board_enable" value="${qcontent_view.board_enable}">
 			<tr>
 				<td>번호</td>
@@ -38,7 +40,8 @@
 			<tr>				
 				<td colspan="2"><a href="qlist">목록</a> &nbsp;&nbsp; 
 				<a href="qmodify_view?board_id=${qcontent_view.board_id}">수정</a>
-				<a href="qreply_view?board_id=${qcontent_view.board_id}&reply_group=${qcontent_view.reply_group}">답변</a>
+				<a href="qreply_view?board_id=${qcontent_view.board_id}&reply_group=${qcontent_view.reply_group}
+				&reply_step=${qcontent_view.reply_step}&reply_indent=${qcontent_view.reply_indent}">답변</a>
 				<a href="qdelete?board_id=${qcontent_view.board_id}">삭제</a>
 			</tr>
 		</form:form>

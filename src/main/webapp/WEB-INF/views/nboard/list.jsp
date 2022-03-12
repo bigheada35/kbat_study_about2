@@ -27,9 +27,15 @@
          <td>${board.board_hit}</td>
       </tr>
       </c:forEach>
+      
+      <%-- <c:if test="${sessionScope.member_id != null}">
+         <td><a href="nwrite_view}">글작성11</a><td>
+   	  </c:if> --%>
+      
+      
       <tr>
          <td colspan="5"> <a href="nwrite_view">글작성</a> </td>
-      </tr>                
+      </tr>             
    </table>
    
    <c:if test="${pageMaker.pre}">

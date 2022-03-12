@@ -23,8 +23,7 @@ public class UserVO {
    //private String username;
    //private String password;
    //private int enabled;
-   
-	
+   	
 	private int member_number;	//seq
 	private String member_id;	//username
 	private String password;	//password

@@ -89,10 +89,10 @@ public class QBoardServiceImpl implements QBoardService{
 
 
 	@Override
-	public void qregisterReply(QBoardAndMemberVO board) {					
-		boardAndMemberMapper.qregisterBoard(board);
+	public void qregisterReply(QBoardAndMemberVO board) {
 		boardAndMemberMapper.qupdateShape(board.getReply_group(), board.getReply_step());
-		boardAndMemberMapper.qregisterReply(board);		
+		boardAndMemberMapper.qregisterBoard(board);
+		boardAndMemberMapper.qregisterReply(board);				
 	}
 
 

@@ -34,7 +34,7 @@
     position: relative;
     z-index: 10;
     height: 40px;
-    background: url("${pageContext.request.contextPath}/resources/img/star.png");
+    background: url('${pageContext.request.contextPath}/resources/img/star.png');
     background-size: contain;
     pointer-events: none;
   }
