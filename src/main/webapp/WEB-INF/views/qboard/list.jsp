@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <sec:authorize access="isAuthenticated()">
-	<sec:authentication property="principal" var="principal" />
+<sec:authentication property="principal" var="principal" />
 </sec:authorize>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,27 +23,26 @@
       <c:forEach items="${qlist}" var="board">
       <tr>
        	 <input type="hidden" name="reply_group" value="${board.reply_group}">
-         <td>${board.board_id}</td>
-         <td>        
-	        <c:if test="${board.board_enable == 0}" >
-	            <img src="${pageContext.request.contextPath}/resources/img/starrate.png" alt="비밀글" />
+       	 <input type="hidden" name="board_enable" value="${board.board_enable}">
+         <td>${board.board_id}</td>           
+         <td>                 	
+	        <c:if test="${board.board_enable=='N'}">
+	            <img src="${pageContext.request.contextPath}/resources/img/starrate.png"/>
 	            <c:choose>
-	                <c:when test="${board.member_id == 'admin'}">	                	
-	                    <c:out value="${board_board_title}"/>
+	                <c:when test="${board.member_id eq principal.user.member_id || principal.user.member_number == '38'}">	
+	                	<c:forEach begin="1" end="${board.reply_indent}">[답변]</c:forEach>
+	        			<a href="qcontent_view?board_id=${board.board_id}&reply_group=${board.reply_group}"><c:out value="${board.board_title}"/></a>	          
 	                </c:when>
 	                <c:otherwise>비밀글은 작성자와 관리자만 볼 수 있습니다.</c:otherwise>
 	            </c:choose>
 	       	 </c:if>
-	        <c:if test="${board.board_enable == 1}" >
-	        	<c:forEach begin="1" end="${board.reply_indent}">-</c:forEach>
-	        	<a href="qcontent_view?board_id=${board.board_id}&reply_group=${board.reply_group}"><c:out value="${board.board_title}"/></a>
-	           <%--  <c:out value="${board.board_title}"/> --%>
+	        <c:if test="${board.board_enable == 'Y'}" >
+	        	<c:forEach begin="1" end="${board.reply_indent}">--[답변]</c:forEach>
+	        	<a href="qcontent_view?board_id=${board.board_id}&reply_group=${board.reply_group}">
+	        	<c:out value="${board.board_title}"/></a>
 	        </c:if>	
-         	<%-- <c:forEach begin="1" end="${board.reply_indent}">-</c:forEach> --%>
          	</td>
-              <%-- <a href="qcontent_view?board_id=${board.board_id}">${board.board_title}</a></td> --%>
-         <%-- <td>${board.boardtype_id}</td>  --%>
-         <td><sec:authentication property="principal.user.member_id"/></td>
+         <td>${board.member_id} </td>      
          <td>${board.board_date}</td>
          <td>${board.board_hit}</td>
       </tr>
@@ -64,7 +63,5 @@
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 		<a href="qlist${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
 	</c:if> <br>
-	
-	<a href="/login">소셜로그인</a>
 </body>
 </html>

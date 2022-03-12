@@ -2,6 +2,8 @@ package edu.kosmo.kbat.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
@@ -30,6 +32,7 @@ public interface QBoardService {
 	public List<QBoardAndMemberVO> qgetList(Criteria criteria);
 	
 	List<BoardtypeVO> qgetboardtypeList();
+
 	
 
 

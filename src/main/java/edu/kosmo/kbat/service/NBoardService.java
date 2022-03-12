@@ -6,7 +6,7 @@ import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
 import edu.kosmo.kbat.vo.NBoardAndMemberVO;
-import edu.kosmo.kbat.vo.NBoardVO;
+
 
 
 public interface NBoardService {
@@ -16,10 +16,10 @@ public interface NBoardService {
 	//List<NBoardVO> getList();
 	List<NBoardAndMemberVO> getList();//ssj2
 	
-	NBoardVO read(int board_id); //esh
-	void write(NBoardVO board);
+	NBoardAndMemberVO read(int board_id); //esh ㅁㅁㅁㅁㅁ
+	void write(NBoardAndMemberVO board); //ㅁㅁㅁㅁㅁㅁ
 	//void write(NBoardVO board); esh
-	void modify(NBoardVO board);
+	void modify(NBoardAndMemberVO board); //ㅁㅁㅁㅁㅁㅁ
 	void hit(int board_id);
 	void delete(int board_id);
 	

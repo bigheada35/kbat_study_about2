@@ -2,6 +2,8 @@ package edu.kosmo.kbat.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import edu.kosmo.kbat.mapper.QBoardAndMemberMapper;
@@ -35,6 +37,7 @@ public class QBoardServiceImpl implements QBoardService{
 	public void qwrite(QBoardAndMemberVO board) {
 		log.info("write()..");
 		boardAndMemberMapper.qwrite(board);
+		System.out.println("member=======" + board.getMember_number());
 		log.info("write()1..");
 		//boardAndMemberMapper.qrepwrite(board);
 		log.info("write2()..");
@@ -73,20 +76,10 @@ public class QBoardServiceImpl implements QBoardService{
 	@Override
 	public List<QBoardAndMemberVO> qgetList(Criteria criteria) {
 		log.info("getList() ..");
-		//return boardMapper.getListWithPaging(criteria);
-		
-		
+		//return boardMapper.getListWithPaging(criteria);		
 		//return boardAndMemberMapper.qgetListWithPaging(criteria);//ssj3
-		List<QBoardAndMemberVO> lst = boardAndMemberMapper.qgetListWithPaging(criteria);
-		for (QBoardAndMemberVO vo : lst) {
-					//System.out.println("qgetList : " + vo.getReply_id());
-					System.out.println("qgetList : " + vo.getReply_group());
-		}
-
-		//System.out.println("qgetList : " + vo.getReply_step());
-		//System.out.println("qgetList : " + vo.getReply_indent());
-		return lst;
-		
+		List<QBoardAndMemberVO> lst = boardAndMemberMapper.qgetListWithPaging(criteria);		
+		return lst;		
 	}
 
 	@Override
@@ -96,18 +89,10 @@ public class QBoardServiceImpl implements QBoardService{
 
 
 	@Override
-	public void qregisterReply(QBoardAndMemberVO board) {
-		System.out.println("------------------2-----------");
-	
+	public void qregisterReply(QBoardAndMemberVO board) {					
 		boardAndMemberMapper.qregisterBoard(board);
 		boardAndMemberMapper.qupdateShape(board.getReply_group(), board.getReply_step());
-		boardAndMemberMapper.qregisterReply(board);
-				
-		System.out.println("reply1 : " + board.getReply_id());
-		System.out.println("reply1 : " + board.getReply_group());
-		System.out.println("reply2 : " + board.getReply_step());
-		System.out.println("reply2 : " + board.getReply_indent());
-		System.out.println("------------------3-----------");
+		boardAndMemberMapper.qregisterReply(board);		
 	}
 
 
@@ -116,9 +101,6 @@ public class QBoardServiceImpl implements QBoardService{
 		log.info("getTotal() ..");
 		return boardAndMemberMapper.qgetTotalCount();
 	}
-
-
-
 
 
 }

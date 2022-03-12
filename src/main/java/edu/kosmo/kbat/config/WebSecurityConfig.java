@@ -11,9 +11,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import edu.kosmo.kbat.security.UserCustomDetailsService;
-
 import edu.kosmo.kbat.principal.PrincipalOauth2UserService;
 import edu.kosmo.kbat.principal.UserCustomDetailsService;
 
@@ -32,21 +29,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+    	http.csrf().disable();
     	http.httpBasic().and().authorizeRequests()
     	.antMatchers("/").permitAll()
     	.antMatchers("/login/**").permitAll() //추가
     	.antMatchers("/oauth2/**").permitAll()
-    	.antMatchers("/add/**").permitAll()
+    	.antMatchers("/add/**").permitAll() 	
     	.antMatchers("/upload/**").permitAll()
-    	.antMatchers("/videos/**").permitAll()
     	.antMatchers("/user/**").hasRole("USER")
     	.antMatchers("/admin/**").hasRole("ADMIN")
-    	.anyRequest().authenticated()
-    	.and().logout().permitAll()
-    	.and().formLogin()
-    	.and().csrf().disable()
     	.antMatchers("/**").permitAll()    	
-    	//.antMatchers("/kakao").hasAuthority(KAKAO.getRoleType())
+    	//.antMatchers("/kakao").hasAuthority(KAKAO.getRoleType())    	
     	.anyRequest().permitAll() //.anyRequest().authenticated() 에서 변경 .permitAll()
     	//.and().logout().logoutUrl("/logout").logoutSuccessUrl("/")
     	.and().logout().permitAll().logoutSuccessUrl("/")
@@ -77,11 +70,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }    
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-    	System.out.println("-----------web security config , passwordEncoder");
-        return new BCryptPasswordEncoder();
-    }
 
     @Override
     public void configure(WebSecurity web) throws Exception {

@@ -24,7 +24,7 @@ public class MemberVO {
 	private String member_email;
 	private String member_address;
 	private String member_company;
+		
+	private List<NBoardAndMemberVO> boardList;
 	
-	
-	private List<NBoardVO> boardList;
 }

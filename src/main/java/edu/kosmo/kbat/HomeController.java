@@ -1,3 +1,4 @@
+/*
 package edu.kosmo.kbat;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,4 +14,4 @@ public class HomeController {
 	public String hello() {
 		return "<h1> programmer </h1>";
 	}
-}
+}*/

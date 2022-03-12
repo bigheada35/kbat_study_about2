@@ -24,10 +24,11 @@ import edu.kosmo.kbat.page.PageVO;
 import edu.kosmo.kbat.service.NBoardService;
 import edu.kosmo.kbat.service.QBoardService;
 import edu.kosmo.kbat.service.RBoardService;
+import edu.kosmo.kbat.service.UserService;
 import edu.kosmo.kbat.vo.NBoardAndMemberVO;
-import edu.kosmo.kbat.vo.NBoardVO;
 import edu.kosmo.kbat.vo.QBoardAndMemberVO;
 import edu.kosmo.kbat.vo.RBoardAndMemberVO;
+import edu.kosmo.kbat.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -43,6 +44,9 @@ public class BoardController {
 	
 	@Autowired
 	private RBoardService rboardService;
+	
+	@Autowired
+	private UserService userService;
 		
 	@GetMapping("/nlist")//ssj3
 	public String list(Criteria cri, Model model) {
@@ -54,8 +58,8 @@ public class BoardController {
 		return "nboard/list";
 	}
 	
-	@GetMapping("/ncontent_view")
-	public String content_view(NBoardVO boardVO, Model model) {
+	@GetMapping("/ncontent_view") //
+	public String content_view(NBoardAndMemberVO boardVO, Model model) {
 		log.info("content_view()..");
 		int board_id = boardVO.getBoard_id();
 		model.addAttribute("content_view", nboardService.read(board_id));
@@ -69,30 +73,43 @@ public class BoardController {
 		
 	}
 	
-	@PostMapping("/nwrite")
-	public String write(NBoardVO boardVO) {		
+	@PostMapping("/nwrite")//
+	public String write(NBoardAndMemberVO boardVO) {	
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String user_id = auth.getName();
+        
+        System.out.println("유저 아이디 : " + user_id);
+        
+        boardVO.setMember_id(user_id);
+        
+        UserVO uservo = userService.getUser(user_id);
+        
+        boardVO.setMember_number(uservo.getMember_number());
+
+        System.out.println("멤버 아이디1 : " +  uservo.getMember_number());
+        System.out.println("멤버 아이디2 : " +  userService.getUser(user_id));
 		log.info("write()...");	
 		nboardService.write(boardVO);
 		return "redirect:nlist";		
 	}
 	
-	@PostMapping("/nmodify")
-	public String modify(NBoardVO boardVO, Model model) {
+	@PostMapping("/nmodify")//
+	public String modify(NBoardAndMemberVO boardVO, Model model) {
 		log.info("modify()...");
 		nboardService.modify(boardVO);		
 		return "redirect:nlist";		
 	}	
 
-	@GetMapping("/nmodify_view")
-	public String modify_view(NBoardVO boardVO, Model model) {//ssj
+	@GetMapping("/nmodify_view")//
+	public String modify_view(NBoardAndMemberVO boardVO, Model model) {//ssj
 		log.info("modify_view()...");
 		int board_id = boardVO.getBoard_id();	
 		model.addAttribute("modify_view", nboardService.read(board_id));
 		return "nboard/modify_view";		
 	}	
 	
-	@GetMapping("/ndelete")
-	public String delete(NBoardVO boardVO, Model model) {		
+	@GetMapping("/ndelete")//
+	public String delete(NBoardAndMemberVO boardVO, Model model) {		
 		log.info("delete()...");	
 		nboardService.delete(boardVO.getBoard_id());				
 		return "redirect:nlist";		
@@ -102,9 +119,12 @@ public class BoardController {
 	public String qlist(Criteria cri, Model model, QBoardAndMemberVO boardVO) {
 		log.info("qlist()..");				
 		model.addAttribute("qlist", qboardService.qgetList(cri));
+		System.out.println("member+id : " + qboardService.qgetList(cri));
 		int total = qboardService.qgetTotalCount();
 		log.info("total : " + total);
 		model.addAttribute("pageMaker", new PageVO(cri, total));	
+		
+		System.out.println("테스트" +  qboardService.qgetList(cri));
 		return "qboard/list";
 	}
 	
@@ -120,21 +140,41 @@ public class BoardController {
 	}
 	
 	@GetMapping("/qwrite_view")
-	public String qwrite_view(Model model) {		
-		log.info("qwrite_view()...");		
+	public String qwrite_view(QBoardAndMemberVO boardVO, Model model) {		
+		log.info("qwrite_view()...");	
+		int board_id = boardVO.getBoard_id();	
+		
+		model.addAttribute("qwirte_view", qboardService.qread(board_id));
+		
 		return "qboard/write_view";		
 	}
 	
 	@PostMapping("/qwrite")
-	public String qwrite(QBoardAndMemberVO boardVO) {		
+	public String qwrite(QBoardAndMemberVO boardVO, Model model) {		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String user_id = auth.getName();
+        
         System.out.println("유저 아이디 : " + user_id);
         
         boardVO.setMember_id(user_id);
         
-		qboardService.qwrite(boardVO);
+        UserVO uservo = userService.getUser(user_id);
+        
+        System.out.println("==================board_enable1 : " +  boardVO.getBoard_enable());
+        
+        boardVO.setMember_number(uservo.getMember_number());
+        System.out.println("양세윤 바보ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ" + uservo.getMember_number());
+        
+        String board_enable = boardVO.getBoard_enable();
+        
+        model.addAttribute(board_enable);
+        
+        System.out.println("==================board_enable2333333333333 : " +  boardVO.getBoard_enable());
+        
 
+        System.out.println("멤버 아이디1 : " +  uservo.getMember_number());
+        System.out.println("멤버 아이디2 : " +  userService.getUser(user_id));
+        
 		log.info("qwrite0()...");	
 		qboardService.qwrite(boardVO);
 		log.info("qwrite1()...");	
@@ -158,7 +198,7 @@ public class BoardController {
 	public String qmodify_view(QBoardAndMemberVO boardVO, Model model) {//ssj
 		log.info("qmodify_view()...");
 		int board_id = boardVO.getBoard_id();	
-		model.addAttribute("modify_view", qboardService.qread(board_id));
+		model.addAttribute("qmodify_view", qboardService.qread(board_id));
 		return "qboard/modify_view";		
 	}	
 	
@@ -181,6 +221,19 @@ public class BoardController {
 	@PostMapping("/qreply")
 	public String qreply(QBoardAndMemberVO boardVO, Model model) {
 		System.out.println("----------qreply-----");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String user_id = auth.getName();
+        
+        System.out.println("유저 아이디 : " + user_id);
+        
+        boardVO.setMember_id(user_id);
+        
+        UserVO uservo = userService.getUser(user_id);
+        
+        boardVO.setMember_number(uservo.getMember_number());
+
+        System.out.println("멤버 아이디1 : " +  uservo.getMember_number());
+        System.out.println("멤버 아이디2 : " +  userService.getUser(user_id));
 		log.info("reply()...");
 		System.out.println("---333--------group : " + boardVO.getReply_group());
 		//boardVO.setReply_group(boardVO.getReply_group()); 
@@ -198,7 +251,9 @@ public class BoardController {
 		model.addAttribute("rlist", rboardService.rgetList(cri));
 		int total = rboardService.rgetTotalCount();
 		log.info("total" + total);
+		
 		model.addAttribute("pageMaker", new PageVO(cri, total));		
+		
 		return "rboard/list";
 	}
 	
@@ -220,6 +275,19 @@ public class BoardController {
 	@PostMapping("/rwrite")
 	public String rwrite(RBoardAndMemberVO boardVO) {		
 		log.info("write()...");	
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String user_id = auth.getName();
+        
+        System.out.println("유저 아이디 : " + user_id);
+        
+        boardVO.setMember_id(user_id);
+        
+        UserVO uservo = userService.getUser(user_id);
+        
+        boardVO.setMember_number(uservo.getMember_number());
+
+        System.out.println("멤버 아이디1 : " +  uservo.getMember_number());
+        System.out.println("멤버 아이디2 : " +  userService.getUser(user_id));
 		rboardService.rwrite(boardVO);
 		return "redirect:rlist";		
 	}

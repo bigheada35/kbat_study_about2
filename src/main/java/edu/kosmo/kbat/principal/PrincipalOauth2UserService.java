@@ -1,5 +1,7 @@
 package edu.kosmo.kbat.principal;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,9 +18,6 @@ import lombok.Setter;
 
 @Service
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
-
-	//@Autowired
-	//private UserRepository userReposiroty;
 	
 	@Autowired
 	private @Lazy BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -29,30 +28,41 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 	@Override
 	public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
 		System.out.println("getClientRegistration : " + userRequest.getClientRegistration());
-		System.out.println("getAccessToken : " + userRequest.getAccessToken().getTokenValue());
-		System.out.println("getAuthorities : " + super.loadUser(userRequest).getAttributes());
+		System.out.println("getAccessToken : " + userRequest.getAccessToken().getTokenValue());	
 		
 		OAuth2User oAuth2User = super.loadUser(userRequest);
 		
-		/*
-		String provider = userRequest.getClientRegistration().getClientId(); //google
-		String providerId = oAuth2User.getAttribute("sub");
-		String username = provider + "_" + providerId;
-		String password = bCryptPasswordEncoder.encode("겟인데어");
-		String email = oAuth2User.getAttribute("email");
-		String role = "ROLE_USER";
-		*/
-	
+		System.out.println("getAttributes : " + oAuth2User.getAttributes());
+		
+		OAuth2UserInfo oAuth2UserInfo = null;
+				
+		if(userRequest.getClientRegistration().getRegistrationId().equals("google")) {
+			System.out.println("구글 로그인 요청");
+			oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
+		} else if(userRequest.getClientRegistration().getRegistrationId().equals("naver")) {
+			System.out.println("네이버 로그인 요청");
+			oAuth2UserInfo = new NaverUserInfo((Map)oAuth2User.getAttributes().get("response"));
+		} else if (userRequest.getClientRegistration().getRegistrationId().equals("kakao")) {
+			System.out.println("카카오 로그인 요청");
+			oAuth2UserInfo = new KakaoUserInfo((Map)oAuth2User.getAttributes());
+		} else {
+			System.out.println("구글, 네이버, 카카오만 지원");
+		}		
+		
 		UserVO user = null;
-		UserVO user2 = null;
 		
 		String authority_name = "ROLE_USER";
-		String provider = userRequest.getClientRegistration().getClientId(); //google
-		String providerId = oAuth2User.getAttribute("sub");
-		String member_id = oAuth2User.getAttribute("email");
+		//String provider = userRequest.getClientRegistration().getClientId(); //google
+		String provider = userRequest.getClientRegistration().getRegistrationId();
+		System.out.println("provider : " + provider);
+		//String provider = oAuth2UserInfo.getProvider();
+		String providerId = oAuth2UserInfo.getProviderId();
+		String member_id = oAuth2UserInfo.getEmail();
+		//String member_id = oAuth2User.getAttribute("email");
+		System.out.println("email : " + member_id);
 		String password = bCryptPasswordEncoder.encode("1");
-		String member_email = oAuth2User.getAttribute("email");
-		String member_name = oAuth2User.getAttribute("name");
+		String member_email = oAuth2UserInfo.getEmail();
+		String member_name = oAuth2UserInfo.getName();
 		
 		user = userMapper.getUser(member_id);		
 		if(user == null) {
@@ -71,6 +81,8 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService{
 			userMapper.insertUser(user);
 			userMapper.insertAuthorities(user);
 			user = userMapper.getUser(member_id);
+		}else {
+			System.out.println("로그인 했음");
 		}
 				 				
 		return new PrincipalDetails(user, oAuth2User.getAttributes());

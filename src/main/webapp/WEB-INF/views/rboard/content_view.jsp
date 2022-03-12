@@ -38,15 +38,11 @@
            <%--  <td> <input type="text" name="board_title" value="${content_view.board_title}"></td> --%>
          </tr>         
          <tr>
-            <td> 사진 </td>
-            <div class="ex_file" name="ex_file"></div>
-         </tr>
-         <tr>
             <td> 내용 </td>
             <td> <textarea rows="10" name="board_content" >${rcontent_view.board_content}</textarea></td>
          </tr>
          	<td>사진</td>
-         	<td><img src="${pageContext.request.contextPath}/resources/img/starrate.png"/></td>
+         	<td></td>
          <tr>
 <!--             <td colspan="2"> <input type="submit" value="수정"> &nbsp;&nbsp;  -->
            <td colspan="2"> <a href="rlist">목록</a> &nbsp;&nbsp;             

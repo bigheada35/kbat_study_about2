@@ -8,17 +8,17 @@ import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
 import edu.kosmo.kbat.vo.NBoardAndMemberVO;
-import edu.kosmo.kbat.vo.NBoardVO;
+
 
 @Mapper
 public interface NBoardAndMemberMapper {
 
 	//List<NBoardVO> getList();	
 	List<NBoardAndMemberVO> getList();//ssj2	
-	NBoardVO read(int board_id); //esh
-	void write(NBoardVO board);
-	//void write(NBoardVO board); esh
-	void modify(NBoardVO board);
+	NBoardAndMemberVO read(int board_id); //esh ///ㅁㅁㅁㅁ
+	void write(NBoardAndMemberVO board); //ㅁㅁㅁㅁ
+	//void write(NBoardVO board); esh //ㅁㅁㅁㅁ
+	//void modify(NBoardAndMemberVO board); //ㅁㅁㅁㅁ
 	void hit(int board_id);
 	void delete(int board_id);
 
@@ -27,5 +27,6 @@ public interface NBoardAndMemberMapper {
 	List<NBoardAndMemberVO> getListWithPaging(Criteria criteria);
 	
 	List<BoardtypeVO> getboardtypeList();
+	void modify(NBoardAndMemberVO board);
 
 }

@@ -83,7 +83,7 @@
     
     <delete id="rdelete">
    		<![CDATA[
-      		delete from reply where board_id = #{board_id}
+      		delete from board where board_id = #{board_id}
    		]]>
     </delete>
     

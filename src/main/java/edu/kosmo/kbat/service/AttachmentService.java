@@ -9,7 +9,6 @@ import edu.kosmo.kbat.vo.AttachmentVO;
 import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
 import edu.kosmo.kbat.vo.NBoardAndMemberVO;
-import edu.kosmo.kbat.vo.NBoardVO;
 import edu.kosmo.kbat.vo.QBoardAndMemberVO;
 
 public interface AttachmentService {

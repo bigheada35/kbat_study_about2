@@ -22,45 +22,57 @@
 		<result property="member_id" column="member_id" />
 		<result property="password" column="password" />
 		<result property="member_phone" column="member_phone" />
-
-
 	</resultMap>
 
 	<resultMap id="boardtypeMap"
-		type="edu.kbat.ex.vo.BoardtypeVO">
+		type="edu.kosmo.kbat.vo.BoardtypeVO">
 		<result property="boardtype_id" column="boardtype_id" />
 		<result property="boardtype_name" column="boardtype_name" />
-
-
 	</resultMap>
 	
-	<select id="getList" resultMap = "nBoardMap">
-   				
-   		<![CDATA[ select * from boardtype,board,member where board.boardtype_id = boardtype.boardtype_id and board.boardtype_id = 0 and member.member_number =board.member_number order by board_id
-   		]]>
-   		
+	<select id="getList" resultMap = "nBoardMap">   				
+   		<![CDATA[ 
+   			select * from boardtype,board,member where board.boardtype_id = boardtype.boardtype_id and board.boardtype_id = 0 and member.member_number =board.member_number order by board_id
+   		]]>  		
    	</select>
    	
-	<select id="getboardtypeList" resultMap = "nBoardMap">
-   				
-   				
-   		<![CDATA[ select * from boardtype,board,member where board.boardtype_id = boardtype.boardtype_id and board.boardtype_id = 0 and member.member_number =board.member_number order by board_id
-   		]]>
-   		
+	<select id="getboardtypeList" resultMap = "nBoardMap">   				
+   		<![CDATA[ 
+   			select * from boardtype,board,member where board.boardtype_id = boardtype.boardtype_id and board.boardtype_id = 0 and member.member_number =board.member_number order by board_id   		
+   		]]>   		
    	</select>
    	
-   	<select id="read" resultType="edu.kbat.ex.vo.NBoardVO">
+   	<select id="read" resultMap = "nBoardMap">
+   		<![CDATA[
+      		select * from board,member where member.member_number =board.member_number and board_id = #{board_id}
+   		]]>
+   	</select>
+   	
+   	<!-- <select id="read" resultMap = "nBoardMap">
+   		<![CDATA[
+      		select * from boardtype,board,member where board.boardtype_id = boardtype.boardtype_id and board.boardtype_id = 0 and member.member_number =board.member_number
+   		]]>
+   	</select> -->
+   	
+   	<!-- <select id="read" resultType="edu.kosmo.kbat.vo.NBoardVO">
    		<![CDATA[
       		select * from board where board_id = #{board_id}
    		]]>
-   	</select>
+   	</select> -->
    	
-    <insert id="write" >
+   	<insert id="write">
+   		<![CDATA[
+     		insert into board (board_id, member_number, board_title, board_content, boardtype_id) 
+      		values (board_seq.nextval, #{member_number}, #{board_title}, #{board_content}, 0) 
+  		]]>
+    </insert>  
+   	
+    <!-- <insert id="write" >
    		<![CDATA[
      		insert into board (board_id, board_title, board_content) 
       		values (board_seq.nextval, #{board_title}, #{board_content}) 
   		]]>
-    </insert>  
+    </insert>  --> 
     
     <update id="modify">
    		<![CDATA[
@@ -81,9 +93,9 @@
     </delete>
     
     <select id="getTotalCount" resultType = "int">
-	<![CDATA[
-		select count(*) from board where boardtype_id = '0'
-	]]>
+		<![CDATA[
+			select count(*) from board where boardtype_id = '0'
+		]]>
 	</select>
 	
 	<!-- 	열개씩 뽑아내는거 한페이지에 출력해주는 역할 -->

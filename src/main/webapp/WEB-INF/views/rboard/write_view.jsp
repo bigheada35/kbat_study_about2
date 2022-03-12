@@ -13,14 +13,105 @@
 
 </script>
 <style>
+.blind {
+  position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  border: none;
+  clip: rect(0, 0, 0, 0);
+}
 
+.startRadio {
+  display: inline-block;
+  overflow: hidden;
+  height: 40px;
+  &:after {
+    content: "";
+    display: block;
+    position: relative;
+    z-index: 10;
+    height: 40px;
+    background: url("${pageContext.request.contextPath}/resources/img/star.png");
+    background-size: contain;
+    pointer-events: none;
+  }
+  &__box {
+    position: relative;
+    z-index: 1;
+    float: left;
+    width: 20px;
+    height: 40px;
+    cursor: pointer;
+    input {
+      opacity: 0 !important;
+      height: 0 !important;
+      width: 0 !important;
+      position: absolute !important;
+
+      &:checked + .startRadio__img {
+        background-color: #0084ff;
+      }
+    }
+  }
+  &__img {
+    display: block;
+    position: absolute;
+    right: 0;
+    width: 500px;
+    height: 40px;
+    pointer-events: none;
+  }
+}
 </style>
 </head>
 <body>
-
-
 <table width="500" cellpadding="0" cellspacing="0" border="1">	
      <form:form action="rwrite" method="post">               
+         <div class="startRadio">
+			<label class="startRadio__box">
+			<input type="radio" name="star" id="">
+			<span class="startRadio__img"><span class="blind">별 1개</span></span>
+			</label>
+			<label class="startRadio__box">
+			<input type="radio" name="star" id="">
+			<span class="startRadio__img"><span class="blind">별 1.5개</span></span>
+			</label>
+			<label class="startRadio__box">
+			<input type="radio" name="star" id="">
+			<span class="startRadio__img"><span class="blind">별 2개</span></span>
+			</label>
+			<label class="startRadio__box">
+			<input type="radio" name="star" id="">
+			<span class="startRadio__img"><span class="blind">별 2.5개</span></span>
+			</label>
+			<label class="startRadio__box">
+			<input type="radio" name="star" id="">
+			<span class="startRadio__img"><span class="blind">별 3개</span></span>
+			</label>
+			<label class="startRadio__box">
+			<input type="radio" name="star" id="">
+			<span class="startRadio__img"><span class="blind">별 3.5개</span></span>
+			</label>
+			<label class="startRadio__box">
+			<input type="radio" name="star" id="">
+			<span class="startRadio__img"><span class="blind">별 4개</span></span>
+			</label>
+			<label class="startRadio__box">
+			<input type="radio" name="star" id="">
+			<span class="startRadio__img"><span class="blind">별 4.5개</span></span>
+			</label>
+			<label class="startRadio__box">
+			<input type="radio" name="star" id="">
+			<span class="startRadio__img"><span class="blind">별 5개</span></span>
+			</label>
+			<label class="startRadio__box">
+			<input type="radio" name="star" id="">
+			<span class="startRadio__img"><span class="blind">별 5.5개</span></span>
+			</label>
+		</div>
          <tr>
             <td> 제목 </td>
             <td> <input type="text" name="board_title" size = "50"> </td>
@@ -39,7 +130,7 @@
                                 </div>
 
 
-                       <script>
+                       <!-- <script>
                             // 이미지 업로드
                             $('#img').on('change', function() {
                             ext = $(this).val().split('.').pop().toLowerCase(); //확장자
@@ -55,13 +146,12 @@
                                 $(this).slideUp(); //파일 양식 감춤
                             }
                             });
- </script>
+ 						</script> -->
          <tr>             
             <td colspan="2"> <input type="submit" value="입력"> &nbsp;&nbsp; 
             <a href="rlist">목록보기</a></td>
          </tr>                 
-      </form:form>
-     
+      </form:form>     
    </table>  
 </body>
 </html>

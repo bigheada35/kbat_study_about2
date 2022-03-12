@@ -24,10 +24,12 @@
 
 <h3>
     [<a href="<c:url value="/add/addForm" />">회원가입</a>]
+    [<a href="<c:url value="/add/addFormAdmin" />">크리에이터 회원가입</a>]
     [<a href="<c:url value="/user/userHome" />">유저 홈</a>]
     [<a href="<c:url value="/admin/adminHome" />">관리자 홈</a>]
 </h3>
-<a href="/oauth2/authorization/google">구글로그인</a>
+<a href="/oauth2/authorization/google">구글 로그인</a>
+<a href="/oauth2/authorization/naver">네이버 로그인</a>
 <a href="/oauth2/authorization/kakao">카카오 로그인</a>
 </body>
 </html>
