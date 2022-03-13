@@ -32,7 +32,9 @@
         <label for="product_description">상품설명</label>
         <input type="text"  name=product_description placeholder="글자로 입력하세요" size="100"/><br/>
              		
-		<input type="file" name="fileVideo" />
+        <label for="fileVideo">동영상</label>
+		<input type="file" name="fileVideo"/>
+		<label for="fileImage">사진</label>
 		<input type="file" name="fileImage" />
 		<button type="submit" class="btn">파일업로드 및 상품등록</button>
 	</form:form>
@@ -48,16 +50,17 @@
 			          		<%-- <source src="<c:url value="${file}"/>" type="video/mp4"> --%>
 			          		<source src="<c:url value="${prod.video_name}"/>" type="video/mp4">
 					    </video>
+					    ${prod.video_name}
 					<td/>
 					<%-- <td>${file} </td> --%>
-					<td>${prod.video_name} </td>
+					<%-- <td>${prod.video_name} </td> --%>
 					<td>${prod.product_name} </td>
 					<td>${prod.product_price} </td>
 					<td>${prod.product_enable} </td>
 					<td>${prod.product_date} </td>
-					<td>${prod.product_description} </td>
+					<td style="min-width:200px;">${prod.product_description} </td>
 					<td>
-					<img src="<c:url value="${prod.image_name}"/>"/>
+						<img src="<c:url value="${prod.image_name}"/>" style="max-width:250px;"/>
 					${prod.image_name} </td>
 					<td>
 						<a href="/upload/delete?product_id=${prod.product_id}">삭제</a> 
