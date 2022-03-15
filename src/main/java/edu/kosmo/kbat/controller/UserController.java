@@ -101,11 +101,11 @@ public class UserController {
    
   
    
-
+/*
 	@GetMapping("/pay/import")
 	public void import2() {
 		System.out.println("----import--1--");
 		//return "/pay/import"
-	}
+	}*/
 	
 }
