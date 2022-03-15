@@ -16,6 +16,9 @@ public interface ProductMapper {
 	// 상품 리스트 읽어 오기  - 
 	List<ProductVO> getList();
 	
+	//상품 읽어 오기
+	ProductVO get(int product_id);
+	
 	@Select("select category_id from category where category_name = #{category_name}")
 	int readCategory_id(String category_name);
 	
