@@ -29,6 +29,10 @@ public interface RBoardAndMemberMapper {
 	List<RBoardAndMemberVO> rgetListWithPaging(Criteria criteria);
 	
 	List<BoardtypeVO> rgetboardtypeList();
-
+	
+	//사진첨부
+	@Insert("insert into attachment(attachment_id, attachment_name, board_id)"
+	+ "values(attachment_seq.nextval, #{attachment_name}, #{board_id}")
+	void rwrite_img(RBoardAndMemberVO board);
 	
 }

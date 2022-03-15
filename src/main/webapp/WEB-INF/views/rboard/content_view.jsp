@@ -42,7 +42,7 @@
             <td> <textarea rows="10" name="board_content" >${rcontent_view.board_content}</textarea></td>
          </tr>
          	<td>사진</td>
-         	<td></td>
+         	<td>${rcontent_view.attachment_name}</td>
          <tr>
 <!--             <td colspan="2"> <input type="submit" value="수정"> &nbsp;&nbsp;  -->
            <td colspan="2"> <a href="rlist">목록</a> &nbsp;&nbsp;             

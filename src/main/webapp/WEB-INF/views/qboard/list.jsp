@@ -33,11 +33,11 @@
 	                	<c:forEach begin="1" end="${board.reply_indent}">[답변]</c:forEach>
 	        			<a href="qcontent_view?board_id=${board.board_id}&reply_group=${board.reply_group}"><c:out value="${board.board_title}"/></a>	          
 	                </c:when>
-	                <c:otherwise>비밀글은 작성자와 관리자만 볼 수 있습니다.</c:otherwise>
+	                <c:otherwise>비밀글은 작성자와 크리에이터만 볼 수 있습니다.</c:otherwise>
 	            </c:choose>
 	       	 </c:if>
 	        <c:if test="${board.board_enable == 'Y'}" >
-	        	<c:forEach begin="1" end="${board.reply_indent}">--[답변]</c:forEach>
+	        	<c:forEach begin="1" end="${board.reply_indent}">[답변]</c:forEach>
 	        	<a href="qcontent_view?board_id=${board.board_id}&reply_group=${board.reply_group}">
 	        	<c:out value="${board.board_title}"/></a>
 	        </c:if>	
