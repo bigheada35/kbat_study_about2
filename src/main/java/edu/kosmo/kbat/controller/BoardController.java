@@ -294,8 +294,8 @@ public class BoardController {
         System.out.println("멤버 아이디1 : " +  uservo.getMember_number());
         System.out.println("멤버 아이디2 : " +  userService.getUser(user_id));
 		rboardService.rwrite(boardVO);
-		rboardService.rwrite_review(boardVO);
-		rboardService.rwrite_rating(boardVO);	
+		//rboardService.rwrite_review(boardVO);
+		//rboardService.rwrite_rating(boardVO);	
 		
 		System.out.println("별점 =================== : " + boardVO.getRating_check());
 		

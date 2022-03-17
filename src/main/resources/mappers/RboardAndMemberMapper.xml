@@ -18,6 +18,8 @@
 		<result property="rating_check" column="rating_check" />
 		<result property="order_detail_id" column="order_detail_id" />
 		<result property="review_id" column="review_id" />
+		<result property="attachment_id" column="attachment_id" />
+		<result property="attachment_name" column="attachment_name" />
 		<collection property="boardtypeList" resultMap="boardtypeMap"></collection>
 	</resultMap>
 

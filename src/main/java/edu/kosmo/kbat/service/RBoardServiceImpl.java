@@ -40,6 +40,7 @@ public class RBoardServiceImpl implements RBoardService{
 		boardAndMemberMapper.rwrite(board);
 		boardAndMemberMapper.rwrite_review(board);
 		boardAndMemberMapper.rwrite_rating(board);
+		//boardAndMemberMapper.rwrite_img(board.getAttachment_name());
 		
 		//boardAndMemberMapper.rwrite_img(board);
 	}
@@ -80,20 +81,7 @@ public class RBoardServiceImpl implements RBoardService{
 		return boardAndMemberMapper.rgetboardtypeList();
 	}
 
-	@Override
-	public void rwrite_review(RBoardAndMemberVO board) {
-		//System.out.println("====================rwrite_review===================");
-		//boardAndMemberMapper.rwrite_rating(board);
-		
-	}
-
-	@Override
-	public void rwrite_rating(RBoardAndMemberVO board) {
-		//System.out.println("====================rwrite_rating===================");
-		//boardAndMemberMapper.rwrite_review(board);
-		
-	}
-
+	
 	
 	
 }
