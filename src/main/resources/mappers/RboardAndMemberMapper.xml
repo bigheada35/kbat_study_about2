@@ -14,6 +14,10 @@
 		<result property="member_number" column="member_number" />
 		<result property="member_id" column="member_id" />
 		<result property="member_name" column="member_name" />
+		<result property="rating_id" column="rating_id" />
+		<result property="rating_check" column="rating_check" />
+		<result property="order_detail_id" column="order_detail_id" />
+		<result property="review_id" column="review_id" />
 		<collection property="boardtypeList" resultMap="boardtypeMap"></collection>
 	</resultMap>
 
@@ -61,6 +65,20 @@
       		values (board_seq.nextval, #{member_number}, #{board_title}, #{board_content}, '2') 
   		]]>
     </insert>  
+         
+    <insert id="rwrite_review" >
+   		<![CDATA[
+     		insert into review(board_id, review_id, order_detail_id)
+			values(board_seq.currval, review_seq.nextval, '1')
+  		]]>
+    </insert>  
+    
+    <insert id="rwrite_rating" >
+   		<![CDATA[
+     		insert into rating(review_id, rating_id, rating_check)
+			values(review_seq.currval, rating_seq.nextval, #{rating_check})
+  		]]>
+    </insert>  
    	
     <!-- <insert id="write" >
    		<![CDATA[
@@ -97,7 +115,7 @@
 	<!-- <select id="getListWithPaging" resultType = "edu.kbat.ex.vo.NBoardVO"> -->
 	<select id="rgetListWithPaging" resultMap = "rBoardMap">
 	<![CDATA[
-		         SELECT * FROM (
+		          SELECT * FROM (
               SELECT ROWNUM AS RNUM, A.* FROM (
 												select
 													boardtype.boardtype_id,
@@ -114,16 +132,19 @@
 													board.board_title,
 													board.board_content,
 													board.board_date,
-													board.board_hit
-												from boardtype, board, member
+													board.board_hit,
+													rating.rating_check											
+												from boardtype, board, member, rating, review
 												where 
 													board.boardtype_id = boardtype.boardtype_id 
 													and board.boardtype_id = 2 
 													and member.member_number =board.member_number 
+													and review.board_id = board.board_id
+													and review.review_id = rating.review_id
 												order by board_id
 												
              ) A WHERE ROWNUM <= #{pageNum} * #{amount}
-         ) WHERE RNUM > (#{pageNum}-1) * #{amount}		
+         ) WHERE RNUM > (#{pageNum}-1) * #{amount}				
 	]]>
 	</select>
 	 

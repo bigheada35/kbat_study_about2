@@ -30,9 +30,13 @@ public interface RBoardAndMemberMapper {
 	
 	List<BoardtypeVO> rgetboardtypeList();
 	
+	//후기
+	void rwrite_review(RBoardAndMemberVO board);
+	void rwrite_rating(RBoardAndMemberVO board);
+	
 	//사진첨부
-	@Insert("insert into attachment(attachment_id, attachment_name, board_id)"
-	+ "values(attachment_seq.nextval, #{attachment_name}, #{board_id}")
-	void rwrite_img(RBoardAndMemberVO board);
+	//@Insert("insert into attachment(attachment_id, attachment_name, board_id)"
+	//+ "values(attachment_seq.nextval, #{attachment_name}, #{board_id}")
+	//void rwrite_img(RBoardAndMemberVO board);
 	
 }

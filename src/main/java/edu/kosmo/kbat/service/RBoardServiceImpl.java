@@ -20,6 +20,7 @@ public class RBoardServiceImpl implements RBoardService{
 	@Autowired
 	private RBoardAndMemberMapper boardAndMemberMapper;//ssj
 
+	
 	@Override
 	public List<RBoardAndMemberVO> rgetList() {
 		log.info("getList()..");
@@ -37,6 +38,9 @@ public class RBoardServiceImpl implements RBoardService{
 	public void rwrite(RBoardAndMemberVO board) {
 		log.info("write()..");
 		boardAndMemberMapper.rwrite(board);
+		boardAndMemberMapper.rwrite_review(board);
+		boardAndMemberMapper.rwrite_rating(board);
+		
 		//boardAndMemberMapper.rwrite_img(board);
 	}
 
@@ -76,5 +80,20 @@ public class RBoardServiceImpl implements RBoardService{
 		return boardAndMemberMapper.rgetboardtypeList();
 	}
 
+	@Override
+	public void rwrite_review(RBoardAndMemberVO board) {
+		//System.out.println("====================rwrite_review===================");
+		//boardAndMemberMapper.rwrite_rating(board);
+		
+	}
 
+	@Override
+	public void rwrite_rating(RBoardAndMemberVO board) {
+		//System.out.println("====================rwrite_rating===================");
+		//boardAndMemberMapper.rwrite_review(board);
+		
+	}
+
+	
+	
 }
