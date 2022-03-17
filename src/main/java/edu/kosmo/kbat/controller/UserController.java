@@ -107,5 +107,22 @@ public class UserController {
 		System.out.println("----import--1--");
 		//return "/pay/import"
 	}*/
+
+
+   @ResponseBody
+   @PostMapping("/add/idCheck")
+   public Map<String,Object> idCheck(@RequestBody UserVO userVO) {
+	   log.info("idCheck 컨트롤러 도착 " + userVO);
+       int count = 0;
+       Map<String, Object> map = new HashMap<String, Object>();
+
+       String member_id = userVO.getMember_id();
+       count = userService.idCheck(member_id);
+       map.put("idCount", count);
+
+       return map;
+   }
+
+
 	
 }
