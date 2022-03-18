@@ -13,7 +13,7 @@
 
 </script>
 <style>
-.blind {
+/* .blind {
   position: absolute;
   overflow: hidden;
   margin: -1px;
@@ -64,13 +64,13 @@
     height: 40px;
     pointer-events: none;
   }
-}
+} */
 </style>
 </head>
 <body>
 <table width="500" cellpadding="0" cellspacing="0" border="1">	
      <form:form action="rwrite" method="post">               
-         <div class="startRadio">
+         <!-- <div class="startRadio">
 			<label class="startRadio__box">
 			<input type="radio" name="star" id="">
 			<span class="startRadio__img"><span class="blind">별 1개</span></span>
@@ -111,7 +111,18 @@
 			<input type="radio" name="star" id="">
 			<span class="startRadio__img"><span class="blind">별 5.5개</span></span>
 			</label>
-		</div>
+		</div> -->
+		
+		<tr>
+			<!-- <td class="form-inline">  -->
+			    <input type="radio" name="rating_check" id="rating_check" value="1" class="radio" /><span class="ml_10">1점</span>
+			    <input type="radio" name="rating_check" id="rating_check" value="2" class="radio" /><span class="ml_10">2점</span>
+			    <input type="radio" name="rating_check" id="rating_check" value="3" class="radio" /><span class="ml_10">3점</span>
+			    <input type="radio" name="rating_check" id="rating_check" value="4" class="radio" /><span class="ml_10">4점</span>
+			    <input type="radio" name="rating_check" id="rating_check" value="5" class="radio" /><span class="ml_10">5점</span>
+			<!-- </td> --> 
+		</tr>
+		
          <tr>
             <td> 제목 </td>
             <td> <input type="text" name="board_title" size = "50"> </td>

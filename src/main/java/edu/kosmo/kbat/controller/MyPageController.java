@@ -83,8 +83,7 @@ public class MyPageController {
 		return "/add/addUser";
 	}
 
-	
-	//주문 목록 
+	// 주문 목록
 	@GetMapping("/myOrderList")
 	public ModelAndView myOrderList(@AuthenticationPrincipal PrincipalDetails principalDetails, MemberOrderCriteria cri,
 			ModelAndView mav) throws Exception {

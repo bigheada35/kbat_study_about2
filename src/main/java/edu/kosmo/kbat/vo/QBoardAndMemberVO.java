@@ -30,6 +30,9 @@ public class QBoardAndMemberVO {
 	private int board_id;
 	private String member_name;
 	private String board_enable; // 공개비공개
+	
+	private int attachment_id;
+	private String attachment_name;
 
 	private List<BoardtypeVO> boardtypeList;
 

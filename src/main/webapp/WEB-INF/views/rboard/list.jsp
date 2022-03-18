@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <script type="text/javascript">
-ratingToPercent() {
+/* ratingToPercent() {
     const score = +this.restaurant.averageScore * 20;
     return score + 1.5;
-}
+} */
 </script>
 <body>  
    <table width="500" cellpadding="0" cellspacing="0" border="1">
@@ -23,6 +23,7 @@ ratingToPercent() {
          <td>조회수</td>
       </tr>
       <c:forEach items="${rlist}" var="board">
+       <input type="hidden" name="rating_check" value="${board.rating_check}">
       <tr>
          <td>${board.board_id}</td>       
          <td>
@@ -30,7 +31,7 @@ ratingToPercent() {
          <%-- <td>${board.boardtype_id}</td>  --%>
          <td>${board.member_id}</td>
          <td>${board.board_date}</td>
-         <td></td>
+         <td>${board.rating_check}</td>
          <td>${board.board_hit}</td>
       </tr>
       </c:forEach>
@@ -51,11 +52,6 @@ ratingToPercent() {
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 		<a href="rlist${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
 	</c:if> <br>
-	
-	<a href="/login">소셜로그인</a>
-	<a href="/oauth2/authorization/google">구글 아이디로 로그인</a> 
-	<a href="/oauth2/authorization/naver">네이버 아이디로 로그인</a> 
-	<a href="/oauth2/authorization/kakao">카카오 아이디로 로그인</a>
 
 
 </body>

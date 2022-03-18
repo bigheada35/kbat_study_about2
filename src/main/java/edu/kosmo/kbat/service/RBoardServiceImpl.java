@@ -35,6 +35,10 @@ public class RBoardServiceImpl implements RBoardService {
 	public void rwrite(RBoardAndMemberVO board) {
 		log.info("write()..");
 		boardAndMemberMapper.rwrite(board);
+		boardAndMemberMapper.rwrite_review(board);
+		boardAndMemberMapper.rwrite_rating(board);
+		// boardAndMemberMapper.rwrite_img(board.getAttachment_name());
+
 		// boardAndMemberMapper.rwrite_img(board);
 	}
 

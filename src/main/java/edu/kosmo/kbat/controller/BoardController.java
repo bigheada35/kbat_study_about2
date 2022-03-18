@@ -234,7 +234,7 @@ public class BoardController {
 	}
 
 	@GetMapping("/rlist") // ssj3
-	public String rlist(Criteria cri, Model model) {
+	public String rlist(Criteria cri, Model model, RBoardAndMemberVO boardVO) {
 		log.info("list()..");
 		model.addAttribute("rlist", rboardService.rgetList(cri));
 		int total = rboardService.rgetTotalCount();
@@ -261,7 +261,7 @@ public class BoardController {
 	}
 
 	@PostMapping("/rwrite")
-	public String rwrite(RBoardAndMemberVO boardVO) {
+	public String rwrite(RBoardAndMemberVO boardVO, Model model) {
 		log.info("write()...");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String user_id = auth.getName();
@@ -274,9 +274,18 @@ public class BoardController {
 
 		boardVO.setMember_number(uservo.getMember_number());
 
+		Integer rating_check = boardVO.getRating_check();
+
+		model.addAttribute(rating_check);
+
 		System.out.println("멤버 아이디1 : " + uservo.getMember_number());
 		System.out.println("멤버 아이디2 : " + userService.getUser(user_id));
 		rboardService.rwrite(boardVO);
+		// rboardService.rwrite_review(boardVO);
+		// rboardService.rwrite_rating(boardVO);
+
+		System.out.println("별점 =================== : " + boardVO.getRating_check());
+
 		return "redirect:rlist";
 	}
 

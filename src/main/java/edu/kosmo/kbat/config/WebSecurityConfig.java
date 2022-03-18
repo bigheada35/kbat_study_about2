@@ -13,8 +13,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import edu.kosmo.kbat.principal.PrincipalOauth2UserService;
 import edu.kosmo.kbat.principal.UserCustomDetailsService;
 
-@Configuration
-@EnableWebSecurity
+@Configuration		
+@EnableWebSecurity 
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired

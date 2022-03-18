@@ -114,14 +114,14 @@
 		) WHERE RNUM > (#{cri.pageNum}-1) * #{cri.amount}
 	]]>
 	</select>
-	
-	
-<!-- 페이징 단위에 적용되는 최대 주문내역 단위 -->
+
+
+	<!-- 페이징 단위에 적용되는 최대 주문내역 단위 -->
 	<select id="getOrderMyTotalCount" resultType="int">
 		<![CDATA[
 			SELECT COUNT(*) 
 			FROM order_detail
-		]]>	
+		]]>
 	</select>
 
 

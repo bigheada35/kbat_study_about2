@@ -31,8 +31,8 @@ public class ProductOrderDetailOrderVO { // 상품, 상품카테고리, 주문, 
 	private int orders_price; // 총 가격
 	private Date orders_date; // 상품주문일자
 
-	private int member_number; //회원번호 fk
-	private String member_id;	//회원 ID
+	private int member_number; // 회원번호 fk
+	private String member_id; // 회원 ID
 
 	private int order_detail_id; // 주문상세번호
 	private int order_detail_count; // 수량

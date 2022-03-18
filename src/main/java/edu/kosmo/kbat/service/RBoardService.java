@@ -25,6 +25,10 @@ public interface RBoardService {
 
 	public List<RBoardAndMemberVO> rgetList(Criteria criteria);
 
+	// void rwrite_review(RBoardAndMemberVO board);
+	// void rwrite_rating(RBoardAndMemberVO board);
+	// void rwrite_img(RBoardAndMemberVO board);
+
 	List<BoardtypeVO> qgetboardtypeList();
 
 }

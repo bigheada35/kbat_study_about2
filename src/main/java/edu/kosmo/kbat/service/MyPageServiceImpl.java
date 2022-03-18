@@ -77,7 +77,7 @@ public class MyPageServiceImpl implements MyPageService {
 		log.info("getOrderMyList WITH criteria: " + cri);
 		return myPageMapper.getOrderMyListPaging(member_id, cri);
 	}
-	
+
 	// 주문내역 리스트 페이징 갯수
 	@Override
 	public int getOrderMyTotal(MemberOrderCriteria cri) {
