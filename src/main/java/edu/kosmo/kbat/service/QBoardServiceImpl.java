@@ -41,7 +41,7 @@ public class QBoardServiceImpl implements QBoardService{
 		log.info("write()1..");
 		//boardAndMemberMapper.qrepwrite(board);
 		log.info("write2()..");
-		boardAndMemberMapper.qwriteimg(board);
+		
 	}
 	
 	@Override

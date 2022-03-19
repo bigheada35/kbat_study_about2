@@ -81,7 +81,14 @@
 			values(review_seq.currval, rating_seq.nextval, #{rating_check})
   		]]>
     </insert>  
-   	
+    
+    <insert id="rwrite_img" >
+   		<![CDATA[
+     		insert into attachment(board_id, attachment_id, attachment_name)
+			values (board_seq.currval, attachment_seq.nextval, 'aa')
+  		]]>
+    </insert> 
+   	 
     <!-- <insert id="write" >
    		<![CDATA[
      		insert into board (board_id, board_title, board_content) 
@@ -149,5 +156,7 @@
          ) WHERE RNUM > (#{pageNum}-1) * #{amount}				
 	]]>
 	</select>
+	
+
 	 
 </mapper>

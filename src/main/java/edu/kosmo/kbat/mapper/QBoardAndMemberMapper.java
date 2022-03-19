@@ -29,10 +29,6 @@ public interface QBoardAndMemberMapper {
 	void qregisterReply(QBoardAndMemberVO board);
 	//댓글글쓰기
 	void qrepwrite(QBoardAndMemberVO board);
-	//사진첨부
-	@Insert("insert into attachment(attachment_id, attachment_name, board_id)"
-			+ "values(attachment_seq.nextval, #{attachment_name}, #{board_id}")
-	void qwriteimg(QBoardAndMemberVO board);
 	
 
 	//페이징

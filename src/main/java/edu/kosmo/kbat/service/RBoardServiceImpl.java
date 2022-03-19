@@ -42,7 +42,9 @@ public class RBoardServiceImpl implements RBoardService{
 		boardAndMemberMapper.rwrite_rating(board);
 		//boardAndMemberMapper.rwrite_img(board.getAttachment_name());
 		
-		//boardAndMemberMapper.rwrite_img(board);
+		//productMapper.writeVideo(product.getVideo_name());
+		
+		boardAndMemberMapper.rwrite_img(board.getAttachment_name());
 	}
 
 	@Override

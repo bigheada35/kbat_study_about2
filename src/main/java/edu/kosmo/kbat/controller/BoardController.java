@@ -13,10 +13,13 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kosmo.kbat.mapper.QBoardAndMemberMapper;
 import edu.kosmo.kbat.page.Criteria;
@@ -24,8 +27,10 @@ import edu.kosmo.kbat.page.PageVO;
 import edu.kosmo.kbat.service.NBoardService;
 import edu.kosmo.kbat.service.QBoardService;
 import edu.kosmo.kbat.service.RBoardService;
+import edu.kosmo.kbat.service.StorageService;
 import edu.kosmo.kbat.service.UserService;
 import edu.kosmo.kbat.vo.NBoardAndMemberVO;
+import edu.kosmo.kbat.vo.ProductVO;
 import edu.kosmo.kbat.vo.QBoardAndMemberVO;
 import edu.kosmo.kbat.vo.RBoardAndMemberVO;
 import edu.kosmo.kbat.vo.UserVO;
@@ -47,6 +52,9 @@ public class BoardController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private StorageService storageService;
 		
 	@GetMapping("/nlist")//ssj3
 	public String list(Criteria cri, Model model) {
@@ -274,7 +282,8 @@ public class BoardController {
 	}
 	
 	@PostMapping("/rwrite")
-	public String rwrite(RBoardAndMemberVO boardVO, Model model) {		
+	public String rwrite(RBoardAndMemberVO boardVO, Model model, @RequestParam("fileImage") MultipartFile file,
+			RedirectAttributes redirectAttributes) {		
 		log.info("write()...");	
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String user_id = auth.getName();
@@ -299,10 +308,27 @@ public class BoardController {
 		
 		System.out.println("별점 =================== : " + boardVO.getRating_check());
 		
+		storageService.store(file);
+		String uri1 = MvcUriComponentsBuilder.fromMethodName(
+				FileUploadController.class,
+				"serveFile", 
+				file.getOriginalFilename())
+		.build()
+		.toUri()
+		.toString();
+		
+		boardVO.setAttachment_name(file.getOriginalFilename());
+		//boardVO.setAttachment_id();
+		
+		rboardService.rwrite(boardVO);
+		
+		redirectAttributes.addFlashAttribute("message",
+				"You successfully uploaded " + file.getOriginalFilename() + "!");
 		
 		
 		return "redirect:rlist";		
 	}
+	
 	
 	@PostMapping("/rmodify")
 	public String rmodify(RBoardAndMemberVO boardVO, Model model) {
