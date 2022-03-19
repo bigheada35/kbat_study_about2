@@ -19,6 +19,7 @@
 		<input type="hidden" name="board_id" value="${rcontent_view.board_id}">
 		<input type="hidden" name="board_hit" value="${rcontent_view.board_hit}">
         <input type="hidden" name="board_title" value="${rcontent_view.board_title}">
+        <input type="hidden" name="attachment_name" value="${rcontent_view.attachment_name}">
 
 
          
@@ -46,7 +47,7 @@
             <td> <textarea rows="10" name="board_content" >${rcontent_view.board_content}</textarea></td>
          </tr>
          	<td>사진</td>
-         	<td>${rcontent_view.attachment_name}</td>
+         	<td><img src="${rcontent_view.attachment_name}"></td>
          	
          <tr>
 <!--             <td colspan="2"> <input type="submit" value="수정"> &nbsp;&nbsp;  -->

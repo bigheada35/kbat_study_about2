@@ -123,8 +123,12 @@
 		</tr> 
 		
 
-			<label for="fileImage"/>
-			<input type="file" name="fileImage" />
+			<!-- <label for="fileImg"/>
+			<input type="file" name="fileImg" /> -->
+			
+			<label for="img">파일 업로드</label> 
+						<img src="<c:url value="${rwrite_view.attachment_name}"/>" />
+						<input type="file" name="file" >
 
 		
          <tr>

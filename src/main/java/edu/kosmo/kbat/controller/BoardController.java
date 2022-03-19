@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -283,7 +284,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/rwrite")
-	public String rwrite(RBoardAndMemberVO boardVO, Model model, @RequestParam("fileImage") MultipartFile file,
+	public String rwrite(RBoardAndMemberVO boardVO, Model model, @RequestPart(required = false) MultipartFile file,
 			RedirectAttributes redirectAttributes) {		
 		log.info("write()...");	
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -303,25 +304,18 @@ public class BoardController {
 
         System.out.println("멤버 아이디1 : " +  uservo.getMember_number());
         System.out.println("멤버 아이디2 : " +  userService.getUser(user_id));
-		rboardService.rwrite(boardVO);
+		
+        //rboardService.rwrite(boardVO);
 		//rboardService.rwrite_review(boardVO);
 		//rboardService.rwrite_rating(boardVO);	
+        
+        boardVO.setAttachment_name(user_id);
+        
+        rboardService.rwrite(boardVO);
 		
 		System.out.println("별점 =================== : " + boardVO.getRating_check());
+
 		
-		storageService.store(file);
-		String uri1 = MvcUriComponentsBuilder.fromMethodName(
-				FileUploadController.class,
-				"serveFile", 
-				file.getOriginalFilename())
-		.build()
-		.toUri()
-		.toString();
-		
-		boardVO.setAttachment_name(file.getOriginalFilename());
-		//boardVO.setAttachment_id();
-		
-		rboardService.rwrite(boardVO);
 		
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");

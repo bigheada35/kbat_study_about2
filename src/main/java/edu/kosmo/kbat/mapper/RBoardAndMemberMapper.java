@@ -37,6 +37,6 @@ public interface RBoardAndMemberMapper {
 	//사진첨부
 	//@Insert("insert into attachment(attachment_id, attachment_name, board_id)"
 	//+ "values(attachment_seq.nextval, #{attachment_name}, #{board_id}")
-	void rwrite_img(String string);
+	void rwrite_img(String attachment_name);
 	
 }
