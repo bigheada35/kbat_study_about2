@@ -85,7 +85,7 @@
     <insert id="rwrite_img" >
    		<![CDATA[
      		insert into attachment(board_id, attachment_id, attachment_name)
-			values (board_seq.currval, attachment_seq.nextval, 'aa')
+			values (board_seq.currval, attachment_seq.nextval, '1234s')
   		]]>
     </insert> 
    	 

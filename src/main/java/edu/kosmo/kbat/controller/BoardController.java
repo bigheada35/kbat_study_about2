@@ -271,6 +271,7 @@ public class BoardController {
 		log.info("content_view()..");
 		int board_id = boardVO.getBoard_id();
 		model.addAttribute("rcontent_view", rboardService.rread(board_id));
+		//model.addAttribute("rcontent_view", boardVO);
 		return "rboard/content_view";
 	}
 	

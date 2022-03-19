@@ -14,10 +14,14 @@
 </script>
 <body>
    <table width="500" cellpadding="0" cellspacing="0" border="1">
-      <form:form action="rmodify_view" method="post">
-         <input type="hidden" name="board_id" value="${rcontent_view.board_id}">
-         <input type="hidden" name="board_hit" value="${rcontent_view.board_hit}">
-         <input type="hidden" name="board_title" value="${rcontent_view.board_title}">
+	
+	<form:form action="rmodify_view" method="post">
+		<input type="hidden" name="board_id" value="${rcontent_view.board_id}">
+		<input type="hidden" name="board_hit" value="${rcontent_view.board_hit}">
+        <input type="hidden" name="board_title" value="${rcontent_view.board_title}">
+
+
+         
          
          <tr>
             <td> 번호 </td>
@@ -43,13 +47,15 @@
          </tr>
          	<td>사진</td>
          	<td>${rcontent_view.attachment_name}</td>
+         	
          <tr>
 <!--             <td colspan="2"> <input type="submit" value="수정"> &nbsp;&nbsp;  -->
            <td colspan="2"> <a href="rlist">목록</a> &nbsp;&nbsp;             
             <a href="rmodify_view?board_id=${rcontent_view.board_id}">수정</a> &nbsp;&nbsp;
             <a href="rdelete?board_id=${rcontent_view.board_id}">삭제</a> &nbsp;&nbsp; 
          </tr>
-      </form:form>
+        </form:form>
+
    </table>
    
 </body>
