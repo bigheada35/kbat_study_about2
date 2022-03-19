@@ -28,6 +28,10 @@ public interface RBoardAndMemberMapper {
 	int rgetTotalCount();
 	List<RBoardAndMemberVO> rgetListWithPaging(Criteria criteria);
 	
+	void rwrite_review(RBoardAndMemberVO board);
+	void rwrite_rating(RBoardAndMemberVO board);
+	
+	
 	List<BoardtypeVO> rgetboardtypeList();
 
 	

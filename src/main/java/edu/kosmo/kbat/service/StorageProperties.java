@@ -3,7 +3,6 @@ package edu.kosmo.kbat.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
-
 @Service
 @ConfigurationProperties("storage")
 public class StorageProperties {

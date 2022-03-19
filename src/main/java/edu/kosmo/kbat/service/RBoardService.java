@@ -22,6 +22,9 @@ public interface RBoardService {
 	int rgetTotalCount();
 	public List<RBoardAndMemberVO> rgetList(Criteria criteria);
 	
+	void rwrite_review(RBoardAndMemberVO board);
+	void rwrite_rating(RBoardAndMemberVO board);
+	
 	List<BoardtypeVO> qgetboardtypeList();
 	
 }

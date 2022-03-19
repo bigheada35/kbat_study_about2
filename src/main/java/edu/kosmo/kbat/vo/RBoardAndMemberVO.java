@@ -28,6 +28,7 @@ public class RBoardAndMemberVO {
 	private int board_id;
 	private String member_name;
 	private int rating_id;
+	private int rating_check;
 	
 	private List<BoardtypeVO> boardtypeList;
 	

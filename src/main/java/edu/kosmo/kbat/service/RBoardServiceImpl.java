@@ -37,6 +37,8 @@ public class RBoardServiceImpl implements RBoardService{
 	public void rwrite(RBoardAndMemberVO board) {
 		log.info("write()..");
 		boardAndMemberMapper.rwrite(board);
+		//boardAndMemberMapper.rwrite_rating(board);
+		//boardAndMemberMapper.rwrite_review(board);
 	}
 
 	@Override
@@ -74,6 +76,19 @@ public class RBoardServiceImpl implements RBoardService{
 	public List<BoardtypeVO> qgetboardtypeList() {
 		return boardAndMemberMapper.rgetboardtypeList();
 	}
+
+	@Override
+	public void rwrite_review(RBoardAndMemberVO board) {
+		boardAndMemberMapper.rwrite_rating(board);
+		
+	}
+
+	@Override
+	public void rwrite_rating(RBoardAndMemberVO board) {
+		boardAndMemberMapper.rwrite_review(board);
+		
+	}
+
 
 
 }

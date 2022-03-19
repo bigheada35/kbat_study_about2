@@ -76,32 +76,6 @@ public class UserController {
       return "redirect:/";
    }
    
-
-   @GetMapping("/test/login")
-   public @ResponseBody String testLogin(Authentication authentication, @AuthenticationPrincipal UserDetails userDetails) {	  
-	   System.out.println("/test/login===============");
-	   
-	   PrincipalDetails principalDetails = (PrincipalDetails)authentication.getPrincipal();
-	   
-	   System.out.println("authentication : " + principalDetails.getUser());
-	   System.out.println("userDetails : " + userDetails.getUsername());
-	   return "세션 정보 확인하기";
-   }
-   
-   @GetMapping("/test/oauth/login")
-   public @ResponseBody String testOAuthLogin(Authentication authentication, @AuthenticationPrincipal OAuth2User oauth) {	  
-	   System.out.println("/test/oauth/login===============");
-	   
-	   OAuth2User oAuth2User = (OAuth2User)authentication.getPrincipal();
-
-	   System.out.println("authentication : " + oAuth2User.getAttributes());
-	   System.out.println("OAuth2User : " + oauth.getAttributes());
-	   return "OAuth 세션 정보 확인하기";
-   }
-   
-  
-   
-
 	@GetMapping("/pay/import")
 	public void import2() {
 		System.out.println("----import--1--");
