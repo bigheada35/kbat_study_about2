@@ -2,16 +2,17 @@ package edu.kosmo.kbat.principal;
 
 import java.util.Map;
 
+
+
 public class KakaoUserInfo implements OAuth2UserInfo {
-
+		
 	private Map<String, Object> attributes;
-
-	public KakaoUserInfo(Map<String, Object> attributes) {
+		
+	public KakaoUserInfo(Map<String, Object> attributes) {	
 		this.attributes = attributes;
 	}
-
 	// 카카오에선 회원 id가 Int값으로 들어오기 때문에 이에 대한 형변환이 필요하다
-	// (출처: 3조. 스프링 시큐리티)
+	// (출처: 3조. 스프링 시큐리티)	
 	@Override
 	public String getProviderId() {
 		return String.valueOf(attributes.get("id"));

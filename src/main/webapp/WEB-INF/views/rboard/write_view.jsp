@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -69,7 +68,7 @@
 </head>
 <body>
 <table width="500" cellpadding="0" cellspacing="0" border="1">	
-     <form:form action="rwrite" method="post">               
+     <form:form action="rwrite" method="post" enctype="multipart/form-data">               
          <!-- <div class="startRadio">
 			<label class="startRadio__box">
 			<input type="radio" name="star" id="">
@@ -114,14 +113,19 @@
 		</div> -->
 		
 		<tr>
-			<!-- <td class="form-inline">  -->
+			<td class="form-inline"> 
 			    <input type="radio" name="rating_check" id="rating_check" value="1" class="radio" /><span class="ml_10">1점</span>
 			    <input type="radio" name="rating_check" id="rating_check" value="2" class="radio" /><span class="ml_10">2점</span>
 			    <input type="radio" name="rating_check" id="rating_check" value="3" class="radio" /><span class="ml_10">3점</span>
 			    <input type="radio" name="rating_check" id="rating_check" value="4" class="radio" /><span class="ml_10">4점</span>
 			    <input type="radio" name="rating_check" id="rating_check" value="5" class="radio" /><span class="ml_10">5점</span>
-			<!-- </td> --> 
-		</tr>
+			</td> 
+		</tr> 
+		
+
+			<label for="fileImage"/>
+			<input type="file" name="fileImage" />
+
 		
          <tr>
             <td> 제목 </td>
@@ -132,13 +136,13 @@
             <td> <textarea name="board_content" rows="10" ></textarea> </td>
          </tr>
 
-                                <div class="f_box">
-                                        <!-- <label for="img">사진첨부</label>
-                                        <input type="file" id="img"  name="bf_file[]"> -->
+                                <!-- <div class="f_box">
+                                        <label for="img">사진첨부</label>
+                                        <input type="file" id="img"  name="bf_file[]">
                                         
                                         <label for="myfile">파일 첨부</label>
     									<input type="file" name="myfile">
-                                </div>
+                                </div> -->
 
 
                        <!-- <script>

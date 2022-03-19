@@ -18,19 +18,19 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class UserCustomDetailsService implements UserDetailsService {
+public class UserCustomDetailsService implements UserDetailsService  {
+    
+   @Setter(onMethod_ = @Autowired)
+   private UserMapper userMapper;
 
-	@Setter(onMethod_ = @Autowired)
-	private UserMapper userMapper;
+   @Override
+   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+      
+      log.warn("==========Load User By UserVO number: " + username);
+      UserVO vo = userMapper.getUser(username);
 
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+      log.warn("queried by UserVO mapper: " + vo);
 
-		log.warn("==========Load User By UserVO number: " + username);
-		UserVO vo = userMapper.getUser(username);
-
-		log.warn("queried by UserVO mapper: " + vo);
-
-		return vo == null ? null : new PrincipalDetails(vo);
-	}
+      return vo == null ? null : new PrincipalDetails(vo);
+   }
 }

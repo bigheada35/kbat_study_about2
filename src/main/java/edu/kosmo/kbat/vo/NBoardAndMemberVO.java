@@ -24,10 +24,11 @@ public class NBoardAndMemberVO {
 	private int boardtype_id;
 	private int member_number;
 	private String member_id;
-
+	
 	private String member_name;
-
-	// 조인할거. 외래키 가져올것
+	
+	//조인할거. 외래키 가져올것	
 	private List<BoardtypeVO> boardtypeList;
 
+	
 }

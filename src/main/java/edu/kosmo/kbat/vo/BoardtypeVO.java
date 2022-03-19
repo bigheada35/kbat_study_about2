@@ -1,5 +1,9 @@
 package edu.kosmo.kbat.vo;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,5 +19,6 @@ public class BoardtypeVO {
 
 	private int boardtype_id;
 	private String boardtype_name;
+
 
 }

@@ -29,10 +29,10 @@ public class RBoardAndMemberVO {
 	private String member_name;
 	private int rating_id;
 	private int rating_check;
-
+	
 	private int attachment_id;
 	private String attachment_name;
-
+		
 	private List<BoardtypeVO> boardtypeList;
-
+	
 }
