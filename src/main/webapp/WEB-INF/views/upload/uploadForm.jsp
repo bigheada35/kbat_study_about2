@@ -11,7 +11,7 @@
 <body>
 		<p>"${message}"</p>
 	
-	<form:form enctype="multipart/form-data" action="upload/fileUpload" method="POST">
+	<form:form enctype="multipart/form-data" action="fileUpload" method="POST">
 	
 	    <input type="radio" id="contactChoice1" name=category_name value="음악" checked>
     	<label for="contactChoice1">음악</label>

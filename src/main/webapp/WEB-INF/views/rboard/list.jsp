@@ -13,7 +13,7 @@
 } */
 </script>
 <body>  
-   <table width="500" cellpadding="0" cellspacing="0" border="1">
+   <table width="800" cellpadding="0" cellspacing="0" border="1">
       <tr>
          <td>번호</td>
          <td>제목</td>
@@ -31,7 +31,9 @@
          <%-- <td>${board.boardtype_id}</td>  --%>
          <td>${board.member_id}</td>
          <td>${board.board_date}</td>
-         <td>${board.rating_check}</td>
+         <td>
+		 	<img src="<c:url value="/resources/img/${board.rating_check}.png"/>" style="width:100px;"/>
+		 </td>
          <td>${board.board_hit}</td>
       </tr>
       </c:forEach>

@@ -75,7 +75,10 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 
 	@Override
 	public boolean isEnabled() {
-		// TODO Auto-generated method stub
+		System.out.println("boolean isEnabled() " + "값은 PrincipalDetails?");
+		if (user.getEnabled() == 0)
+			return false;
+		else
 		return true;
 	}
 
@@ -90,6 +93,10 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
+
+	public String getUserID() {
+		// TODO Auto-generated method stub
+		return user.getMember_id();
+	}
+
 }

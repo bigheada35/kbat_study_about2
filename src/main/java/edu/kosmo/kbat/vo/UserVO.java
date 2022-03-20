@@ -32,6 +32,7 @@ public class UserVO {
 	private String member_email;
 	private String member_address;
 	private String member_company;
+	private int enabled; // 시큐리티
 	
 	//4개 추가
 	//private String username;

@@ -49,4 +49,14 @@ System.out.println("==========UserCustom");
 
 		return authorities;
 	}
+
+	// 회원 탈퇴 처리
+	@Override
+	public boolean isEnabled() {
+		System.out.println("boolean isEnabled() " + "값을 가져 가나?");
+		if (user.getEnabled() == 0)
+			return false;
+		else
+			return true;
+	}
 }

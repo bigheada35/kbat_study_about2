@@ -47,11 +47,11 @@ public class RBoardServiceImpl implements RBoardService{
 		
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$" + board.getAttachment_name());
 		
-		boardAndMemberMapper.rwrite_img("attachment1");
+		boardAndMemberMapper.rwrite_img(attachment_name);
 		
 		//boardAndMemberMapper.rwrite_img(board.getAttachment_name());
 		
-		System.out.println("=====================" + board.getAttachment_name());
+		System.out.println("=====================" + attachment_name);
 	}
 
 	@Override

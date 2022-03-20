@@ -298,7 +298,7 @@ public class BoardController {
         
         boardVO.setMember_number(uservo.getMember_number());
         
-        Integer rating_check = boardVO.getRating_check();
+        String rating_check = boardVO.getRating_check();
         
         model.addAttribute(rating_check);
 
@@ -309,13 +309,26 @@ public class BoardController {
 		//rboardService.rwrite_review(boardVO);
 		//rboardService.rwrite_rating(boardVO);	
         
-        boardVO.setAttachment_name(user_id);
+        //boardVO.setAttachment_name(user_id);
         
-        rboardService.rwrite(boardVO);
+        
+        //rboardService.rwrite(boardVO);
 		
 		System.out.println("별점 =================== : " + boardVO.getRating_check());
 
+		storageService.store(file);		
+
+		String uri1 = MvcUriComponentsBuilder.fromMethodName(
+				FileUploadController.class,
+				"serveFile", 
+				file.getOriginalFilename())
+		.build()
+		.toUri()
+		.toString();
 		
+		boardVO.setAttachment_name(uri1);
+		
+		rboardService.rwrite(boardVO);
 		
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
