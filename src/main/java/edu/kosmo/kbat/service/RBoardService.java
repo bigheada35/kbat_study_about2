@@ -13,6 +13,7 @@ public interface RBoardService {
 	
 	List<RBoardAndMemberVO> rgetList();
 	RBoardAndMemberVO rread(int board_id); 
+	RBoardAndMemberVO rread(int board_id, int review_id); 
 	void rwrite(RBoardAndMemberVO board);
 	void rmodify(RBoardAndMemberVO board);
 	void rhit(int board_id);
@@ -27,5 +28,6 @@ public interface RBoardService {
 	//void rwrite_img(RBoardAndMemberVO board);
 	
 	List<BoardtypeVO> qgetboardtypeList();
+	//void rdelete(int board_id, int review_id);
 	
 }

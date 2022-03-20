@@ -14,7 +14,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class RBoardAndMemberVO {
+public class ReviewVO {
 
 	private int review_id;
 	private int order_detail_id;

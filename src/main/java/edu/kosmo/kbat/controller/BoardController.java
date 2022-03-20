@@ -28,12 +28,14 @@ import edu.kosmo.kbat.page.PageVO;
 import edu.kosmo.kbat.service.NBoardService;
 import edu.kosmo.kbat.service.QBoardService;
 import edu.kosmo.kbat.service.RBoardService;
+import edu.kosmo.kbat.service.ReviewService;
 import edu.kosmo.kbat.service.StorageService;
 import edu.kosmo.kbat.service.UserService;
 import edu.kosmo.kbat.vo.NBoardAndMemberVO;
 import edu.kosmo.kbat.vo.ProductVO;
 import edu.kosmo.kbat.vo.QBoardAndMemberVO;
 import edu.kosmo.kbat.vo.RBoardAndMemberVO;
+import edu.kosmo.kbat.vo.ReviewVO;
 import edu.kosmo.kbat.vo.UserVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -56,6 +58,9 @@ public class BoardController {
 	
 	@Autowired
 	private StorageService storageService;
+	
+	@Autowired
+	private ReviewService reviewService;
 		
 	@GetMapping("/nlist")//ssj3
 	public String list(Criteria cri, Model model) {
@@ -255,24 +260,32 @@ public class BoardController {
 	}
 	
 	@GetMapping("/rlist")//ssj3
-	public String rlist(Criteria cri, Model model, RBoardAndMemberVO boardVO) {
+	public String rlist(Criteria cri, Model model, RBoardAndMemberVO boardVO, ReviewVO rboardVO) {
 		log.info("list()..");		
 		model.addAttribute("rlist", rboardService.rgetList(cri));
 		int total = rboardService.rgetTotalCount();
 		log.info("total" + total);
 		
-		model.addAttribute("pageMaker", new PageVO(cri, total));	
+		model.addAttribute("pageMaker", new PageVO(cri, total));
 		
+		System.out.println("--------------- : " + rboardVO.getReview_id());
 		
 		return "rboard/list";
 	}
 	
 	@GetMapping("/rcontent_view")
-	public String rcontent_view(RBoardAndMemberVO boardVO, Model model) {
+	public String rcontent_view(RBoardAndMemberVO boardVO, ReviewVO rboardVO, Model model) {
 		log.info("content_view()..");
 		int board_id = boardVO.getBoard_id();
+		int review_id = rboardVO.getReview_id();
 		model.addAttribute("rcontent_view", rboardService.rread(board_id));
+		//model.addAttribute("review_id", reviewService.rvread(review_id));
+		//model.addAttribute("rcontent_view", rboardService.rread(board_id, review_id));
 		//model.addAttribute("rcontent_view", boardVO);
+		System.out.println("*********************" + rboardService.rread(board_id));
+		System.out.println("*************************" + rboardVO.getReview_id());
+
+
 		return "rboard/content_view";
 	}
 	
@@ -284,7 +297,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("/rwrite")
-	public String rwrite(RBoardAndMemberVO boardVO, Model model, @RequestPart(required = false) MultipartFile file,
+	public String rwrite(RBoardAndMemberVO boardVO, ReviewVO rboardVO, Model model, @RequestPart(required = false) MultipartFile file,
 			RedirectAttributes redirectAttributes) {		
 		log.info("write()...");	
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -301,9 +314,13 @@ public class BoardController {
         String rating_check = boardVO.getRating_check();
         
         model.addAttribute(rating_check);
+        
+        int review_id = rboardVO.getReview_id();
+        model.addAttribute(review_id);
 
         System.out.println("멤버 아이디1 : " +  uservo.getMember_number());
         System.out.println("멤버 아이디2 : " +  userService.getUser(user_id));
+        System.out.println("멤버 아이디3 : " +  boardVO.getReview_id());
 		
         //rboardService.rwrite(boardVO);
 		//rboardService.rwrite_review(boardVO);
@@ -346,17 +363,20 @@ public class BoardController {
 	}	
 
 	@GetMapping("/rmodify_view")
-	public String rmodify_view(QBoardAndMemberVO boardVO, Model model) {//ssj
+	public String rmodify_view(RBoardAndMemberVO boardVO, Model model) {//ssj
 		log.info("modify_view()...");
 		int board_id = boardVO.getBoard_id();	
+		//int review_id = boardVO.getReview_id();
 		model.addAttribute("rmodify_view", rboardService.rread(board_id));
 		return "rboard/modify_view";		
 	}	
 	
 	@GetMapping("/rdelete")
-	public String rdelete(RBoardAndMemberVO boardVO, Model model) {		
+	public String rdelete(RBoardAndMemberVO boardVO, ReviewVO rboardVO, Model model) {		
 		log.info("delete()...");	
-		rboardService.rdelete(boardVO.getBoard_id());				
+		int review_id = rboardVO.getReview_id();
+		rboardService.rdelete(boardVO.getBoard_id());	
+		reviewService.rdelete(review_id);
 		return "redirect:rlist";		
 	}
 

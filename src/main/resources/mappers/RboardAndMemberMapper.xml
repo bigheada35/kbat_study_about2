@@ -144,7 +144,8 @@
 													board.board_content,
 													board.board_date,
 													board.board_hit,
-													rating.rating_check											
+													rating.rating_check,
+													review.review_id									
 												from boardtype, board, member, rating, review
 												where 
 													board.boardtype_id = boardtype.boardtype_id 

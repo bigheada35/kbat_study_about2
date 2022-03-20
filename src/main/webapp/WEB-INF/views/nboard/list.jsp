@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<sec:authorize access="isAuthenticated()">
+<sec:authentication property="principal" var="principal" />
+</sec:authorize>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -33,10 +36,12 @@
    	  </c:if> --%>
       
       
-      <tr>
-         <td colspan="5"> <a href="nwrite_view">글작성</a> </td>
-      </tr>             
+                 
    </table>
+   
+   <tr>
+         <td colspan="5"> <a href="nwrite_view">글작성</a> </td>
+   </tr>  
    
    <c:if test="${pageMaker.pre}">
          <a href="nlist${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
@@ -50,7 +55,6 @@
 	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 		<a href="nlist${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
 	</c:if> <br>
-	
-	<a href="/login">소셜로그인</a>
+
 </body>
 </html>

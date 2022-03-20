@@ -11,7 +11,7 @@
 <style>
 	.oriImg{
 		width:200px;
-		height : auto
+		height:auto
 	}
 </style>
 <body>
@@ -22,6 +22,7 @@
 		<input type="hidden" name="board_hit" value="${rcontent_view.board_hit}">
         <input type="hidden" name="board_title" value="${rcontent_view.board_title}">
         <input type="hidden" name="attachment_name" value="${rcontent_view.attachment_name}">
+        <input type="hidden" name="review_id" value="${rcontent_view.review_id}">
         
          <tr>
             <td> 번호 </td>

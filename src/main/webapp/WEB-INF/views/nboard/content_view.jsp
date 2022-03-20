@@ -2,6 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<sec:authorize access="isAuthenticated()">
+<sec:authentication property="principal" var="principal" />
+</sec:authorize>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,11 +41,27 @@
             <td> 내용 </td>
             <td> <textarea rows="10" name="board_content" >${content_view.board_content}</textarea></td>
          </tr>
-          <tr>
-<!--             <td colspan="2"> <input type="submit" value="수정"> &nbsp;&nbsp;  -->
-           <td colspan="2"> <a href="nlist">목록</a> &nbsp;&nbsp;             
-            <a href="nmodify_view?board_id=${content_view.board_id}">수정</a> &nbsp;&nbsp;
-            <a href="ndelete?board_id=${content_view.board_id}">삭제</a> &nbsp;&nbsp; 
+         	<c:choose>
+	                <c:when test="${principal.user.member_number eq '91'}">	
+	                	<td colspan="2"> <a href="nlist">목록</a> &nbsp;&nbsp;             
+			            <a href="nmodify_view?board_id=${content_view.board_id}">수정</a> &nbsp;&nbsp;
+			            <a href="ndelete?board_id=${content_view.board_id}">삭제</a> &nbsp;&nbsp; 
+	                </c:when>
+	                <c:otherwise>비밀글은 작성자와 크리에이터만 볼 수 있습니다.</c:otherwise>
+	            </c:choose>
+   
+	           <%--  <c:if test="${principal.user.authority_name == 'ROLE_ADMIN'}">	 
+	            	<c:out value="${str}" />           	            
+	                	<td colspan="2"> <a href="nlist">목록</a> &nbsp;&nbsp;             
+			            <a href="nmodify_view?board_id=${content_view.board_id}">수정</a> &nbsp;&nbsp;
+			            <a href="ndelete?board_id=${content_view.board_id}">삭제</a> &nbsp;&nbsp; 
+	            	<c:otherwise>비밀글은 작성자와 크리에이터만 볼 수 있습니다.</c:otherwise>
+	       	    </c:if> --%>
+         <tr>
+         
+            <td colspan="2"> <a href="nlist">목록</a> &nbsp;&nbsp;             
+            <a href="nmodify_view?board_id=${content_view.board_id}">수정1</a> &nbsp;&nbsp;
+            <a href="ndelete?board_id=${content_view.board_id}">삭제1</a> &nbsp;&nbsp; 
          </tr>
       </form:form>
    </table>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import edu.kosmo.kbat.mapper.QBoardAndMemberMapper;
 import edu.kosmo.kbat.mapper.RBoardAndMemberMapper;
+import edu.kosmo.kbat.mapper.ReviewMapper;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
@@ -19,6 +20,9 @@ public class RBoardServiceImpl implements RBoardService{
 		
 	@Autowired
 	private RBoardAndMemberMapper boardAndMemberMapper;//ssj
+	
+	@Autowired
+	private ReviewMapper reviewMapper;
 
 	
 	@Override
@@ -28,10 +32,10 @@ public class RBoardServiceImpl implements RBoardService{
 	}
 
 	@Override
-	public RBoardAndMemberVO rread(int board_id) {
-		log.info("read()..");
+	public RBoardAndMemberVO rread(int board_id, int review_id) {
+		log.info("read2()..");
 		rhit(board_id);
-		return boardAndMemberMapper.rread(board_id);
+		return boardAndMemberMapper.rread(board_id, review_id);
 	}
 
 	@Override
@@ -68,8 +72,16 @@ public class RBoardServiceImpl implements RBoardService{
 
 	@Override
 	public void rdelete(int board_id) {
-		log.info("delete()...");	
-		boardAndMemberMapper.rdelete(board_id);	
+		log.info("delete()...");
+				
+		System.out.println("=======================" + board_id);
+		//System.out.println("=======================" + review_id);
+		boardAndMemberMapper.rdelete_attachment(board_id);
+		//reviewMapper.rdelete_rating(review_id);
+		//boardAndMemberMapper.rdelete_rating(review_id);
+		boardAndMemberMapper.rdelete_review(board_id);
+		//boardAndMemberMapper.rdelete(board_id, review_id);	
+		
 	}
 
 
@@ -82,12 +94,20 @@ public class RBoardServiceImpl implements RBoardService{
 	@Override
 	public List<RBoardAndMemberVO> rgetList(Criteria criteria) {
 		log.info("getList() ..");
+		System.out.println("~~~~~~~~~~~~~~~" + boardAndMemberMapper.rgetList());
 		return boardAndMemberMapper.rgetListWithPaging(criteria);
 	}
 
 	@Override
 	public List<BoardtypeVO> qgetboardtypeList() {
 		return boardAndMemberMapper.rgetboardtypeList();
+	}
+
+	@Override
+	public RBoardAndMemberVO rread(int board_id) {
+		log.info("read()..");
+		rhit(board_id);
+		return boardAndMemberMapper.rread(board_id);
 	}
 
 	
