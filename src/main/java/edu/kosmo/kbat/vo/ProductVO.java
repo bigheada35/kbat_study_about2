@@ -1,12 +1,18 @@
 package edu.kosmo.kbat.vo;
 
 import java.sql.Timestamp;
+<<<<<<< HEAD
+import java.util.List;
+=======
+>>>>>>> origin/dev_kbat_kdm_search_0319
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 
 //@Slf4j
 @Getter
@@ -33,5 +39,4 @@ public class ProductVO {
 
 	private int member_number; // 멤버 테이블
 	private String member_id;
-
 }

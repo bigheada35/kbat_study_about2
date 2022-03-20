@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.page.PageVO;
 import edu.kosmo.kbat.service.MainService;
+
 import edu.kosmo.kbat.service.ProductService;
 import edu.kosmo.kbat.service.UserService;
 import edu.kosmo.kbat.vo.ProductVO;
@@ -29,12 +31,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @AllArgsConstructor
 @Controller
-
 public class MainController {
 	
 	@Autowired
 	private	ProductService productService;
-	
+
 	//KDM 검색
 	@Autowired
 	private MainService mainService;
@@ -88,7 +89,6 @@ public class MainController {
 		
 		return "/user/playVideo";
 	}
-	
 	
 	// KDM 상품 검색 
 	@GetMapping("/main/search")

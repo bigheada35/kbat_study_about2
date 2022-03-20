@@ -1,6 +1,8 @@
 package edu.kosmo.kbat.controller;
 
 
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.security.core.Authentication;
@@ -9,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,17 +43,10 @@ public class UserController {
 		return "user/userHome";
 	}
 	
-	/*
-	@GetMapping("/user/userHome")
-	public void userHome() {
-		System.out.println("----userHome");
-	}
- 	*/
-   
    @GetMapping("/add/addForm")
    public void userForm() {
       log.info("Welcome userForm");
-      
+
       System.out.println("----- userForm ");
    }
 
@@ -64,19 +60,18 @@ public class UserController {
    
    @GetMapping("/add/addFormAdmin")
    public void addFormAdmin() {
-      log.info("Welcome userForm");
-      System.out.println("----- userForm ");
+      log.info("Welcome addFormAdmin");
+      System.out.println("----- addFormAdmin ");
    }
    @PostMapping("/add/addAdmin")
    public String addAdmin(UserVO uservo) {
       log.info("post resister");
-      System.out.println("----- addUser ");
+      System.out.println("----- addAdmin ");
       userService.addAdmin(uservo);
 
       return "redirect:/";
    }
    
-
    @GetMapping("/test/login")
    public @ResponseBody String testLogin(Authentication authentication, @AuthenticationPrincipal UserDetails userDetails) {	  
 	   System.out.println("/test/login===============");
