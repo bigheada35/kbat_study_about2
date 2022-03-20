@@ -55,6 +55,39 @@
 	
 	</select>
 	
+<select id="get" resultMap = "ProductMap">
+		<![CDATA[ 
+				select 
+					category.category_id as category_id,
+					category.category_name as category_name,
+					category.category_parent as category_parent,
+					product.product_id as product_id,
+					product.product_name as product_name,
+					product.product_price as product_price,
+					product.product_enable as product_enable,
+					product.product_date as product_date,
+					product.product_stock as product_stock,
+					product.product_description as product_description,
+					video.video_id as video_id,
+					video.video_name as video_name,
+					image.image_id as image_id,
+					image.image_name as image_name
+				from 
+					category,
+					product,
+					video,
+					image 
+				where 
+					#{product_id} = video.product_id 
+					and 
+					#{product_id} = image.product_id
+					and
+                    #{product_id} = product.product_id 
+					order by 
+					product.product_date desc
+		]]>
+	</select>	
+
  	<insert id="write" >
    		<![CDATA[
  			insert into product(product_id, 

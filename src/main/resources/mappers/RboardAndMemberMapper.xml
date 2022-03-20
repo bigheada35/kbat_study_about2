@@ -49,8 +49,10 @@
    	
    	 <select id="rread" resultMap = "rBoardMap">
    		<![CDATA[
-      		select * from board,member where member.member_number =board.member_number and board_id = #{board_id}
-      		
+      		select * from board,member,attachment
+			where member.member_number =board.member_number 
+			and attachment.board_id = board.board_id
+			and board.board_id = #{board_id}      		
    		]]>
    	</select>
    	
@@ -85,7 +87,7 @@
     <insert id="rwrite_img" >
    		<![CDATA[
      		insert into attachment(board_id, attachment_id, attachment_name)
-			values (board_seq.currval, attachment_seq.nextval, '1234s')
+			values (board_seq.currval, attachment_seq.nextval, #{attachment_name})
   		]]>
     </insert> 
    	 

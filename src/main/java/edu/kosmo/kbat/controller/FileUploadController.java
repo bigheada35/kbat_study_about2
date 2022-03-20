@@ -50,9 +50,7 @@ public class FileUploadController {
 
 	@GetMapping("/upload/list")
 	public String listUploadedFiles(Model model) throws IOException {
-		
-
-		
+				
 		model.addAttribute("files", storageService.loadAll().map(
 				path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
 						"serveFile", path.getFileName().toString()).build().toUri().toString())
@@ -122,7 +120,7 @@ public class FileUploadController {
 	@ResponseBody
 	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 		
-		Resource file = storageService.loadAsResource(filename);
+		Resource file = storageService.loadAsResource(filename);		
 		
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
 				"attachment; filename=\"" + file.getFilename() + "\"").body(file);

@@ -37,14 +37,21 @@ public class RBoardServiceImpl implements RBoardService{
 	@Override
 	public void rwrite(RBoardAndMemberVO board) {
 		log.info("write()..");
+		
+		String attachment_name = board.getAttachment_name();
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@" + attachment_name);
+		
 		boardAndMemberMapper.rwrite(board);
 		boardAndMemberMapper.rwrite_review(board);
 		boardAndMemberMapper.rwrite_rating(board);
+		
+		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$" + board.getAttachment_name());
+		
+		boardAndMemberMapper.rwrite_img(attachment_name);
+		
 		//boardAndMemberMapper.rwrite_img(board.getAttachment_name());
 		
-		//productMapper.writeVideo(product.getVideo_name());
-		
-		boardAndMemberMapper.rwrite_img(board.getAttachment_name());
+		System.out.println("=====================" + attachment_name);
 	}
 
 	@Override
