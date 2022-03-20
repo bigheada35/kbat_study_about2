@@ -1,8 +1,6 @@
 package edu.kosmo.kbat.controller;
 
 
-import java.io.IOException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.security.core.Authentication;
@@ -11,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -40,6 +37,7 @@ public class UserController {
 	@GetMapping("/user/userHome")
 	public String userHome(@AuthenticationPrincipal PrincipalDetails principalDetails) {
 		System.out.println("principalDetails : " +principalDetails.getUser());
+		System.out.println("----userHome----");
 		return "user/userHome";
 	}
 	
