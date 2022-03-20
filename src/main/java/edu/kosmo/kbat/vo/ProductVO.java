@@ -1,10 +1,6 @@
 package edu.kosmo.kbat.vo;
 
 import java.sql.Timestamp;
-<<<<<<< HEAD
-import java.util.List;
-=======
->>>>>>> origin/dev_kbat_kdm_search_0319
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
