@@ -62,6 +62,18 @@
 
 <main role="main">
 
+
+<!--KDM 검색-->
+<div class="search_wrap">
+                		<form id="searchForm" action="/main/search" method="get">
+                			<div class="search_input">
+                				<input type="text" name="keyword">
+                    			<button class='btn search_btn'>검 색</button>                				
+                			</div>
+                		</form>
+                	</div>
+                	
+                	
   <section class="jumbotron text-center">
     <div class="container">
       <h1>공부어때 동영상 강의 쇼핑몰</h1>

@@ -26,6 +26,13 @@ public class UserService {
 	
 	@Autowired
    private UserMapper userMapper;
+	
+	
+	public UserVO getUser(String member_id) {			
+		return userMapper.getUser(member_id);
+	}
+	
+
 
    // caution:  must use @Transactional
    //@Transactional(rollbackFor = Exception.class)
