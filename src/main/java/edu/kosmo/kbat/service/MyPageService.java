@@ -3,7 +3,7 @@ package edu.kosmo.kbat.service;
 import java.util.List;
 
 import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
-import edu.kosmo.kbat.page.MemberOrderCriteria;
+import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.MemberVO;
 
 public interface MyPageService {
@@ -22,9 +22,9 @@ public interface MyPageService {
 	// 주문내역 리스트 가져오기
 	public List<ProductOrderDetailOrderVO> getOrderMyList(String member_id);
 
-	public List<ProductOrderDetailOrderVO> getOrderMyList(String member_id, MemberOrderCriteria cri);
+	public List<ProductOrderDetailOrderVO> getOrderMyList(String member_id, Criteria cri);
 
 	// 페이징 단위에 적용되는 최대 주문내역 단위
-	public int getOrderMyTotal(MemberOrderCriteria cri);
+	public int getOrderMyTotal(Criteria cri);
 
 }

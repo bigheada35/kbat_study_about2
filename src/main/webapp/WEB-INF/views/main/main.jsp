@@ -66,6 +66,11 @@
 <div class="search_wrap">
                 		<form id="searchForm" action="/main/search" method="get">
                 			<div class="search_input">
+                			<select name="type">
+                					<option value="N">강의명</option>
+                					<option value="D">강의 설명</option>
+                					
+                				</select>
                 				<input type="text" name="keyword">
                     			<button class='btn search_btn'>검 색</button>                				
                 			</div>
