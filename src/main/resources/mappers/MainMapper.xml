@@ -9,41 +9,36 @@
 <mapper namespace="edu.kosmo.kbat.mapper.MainMapper">
 
 
-	<!-- <sql id="searchCriteria">
-		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+	
+	
+	<sql id="criteria">
+	<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item='type' collection="typeArr">
 				<trim prefix="OR">
 					<choose>
-						<when test="type =='T'.toString()">
-							product_id like '%'||#{keyword}||'%'
-						</when>
-						<when test="type =='C'.toString()">
+									
+						<when test="type =='N'.toString()">
 							product_name like '%'||#{keyword}||'%'
 						</when>
-						<when test="type =='W'.toString()">
+						<when test="type =='D'.toString()">
 							product_description like '%'||#{keyword}||'%'
 						</when>
+							<when test="type =='C'.toString()">
+							category_name like '%'||#{keyword}||'%'
+						</when>
+						
 					</choose>
 				</trim>
 			</foreach>
 		</trim>	
-	</sql> -->
-	
-	
-	<sql id="criteria">
-		    <if test="keyword != null">
-			    product_name like '%' || #{keyword} || '%' and
-			</if>
 	</sql>
 	
 	<select id="getProductList" resultType="edu.kosmo.kbat.vo.ProductVO">
 		<![CDATA[
-			SELECT  
-				product_id, product_name, product_price, product_description
-		 FROM (
-		 	select rownum rn, product_id, product_name, product_price, product_description
-		 	from product
-		 	where
+			SELECT * FROM (
+		 	select rownum rn, c.category_id, c.category_name, p.product_id, p.product_name, p.product_description 
+		 	from category c, product p
+			where (c.category_id = p.category_id) and
 		]]>
 		
 	    
@@ -64,7 +59,7 @@
 		select count(*) from product
 		where
 		<include refid="criteria"></include> 
-		product_id >0
+		product_id > 0
 		
 	</select>
 </mapper>

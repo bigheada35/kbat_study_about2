@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.kosmo.kbat.page.MemberOrderCriteria;
-import edu.kosmo.kbat.page.MemberOrderPageVO;
+import edu.kosmo.kbat.page.Criteria;
+import edu.kosmo.kbat.page.PageVO;
 import edu.kosmo.kbat.principal.PrincipalDetails;
 import edu.kosmo.kbat.service.MyPageService;
 import edu.kosmo.kbat.vo.MemberVO;
@@ -85,7 +85,7 @@ public class MyPageController {
 
 	// 주문 목록
 	@GetMapping("/myOrderList")
-	public ModelAndView myOrderList(@AuthenticationPrincipal PrincipalDetails principalDetails, MemberOrderCriteria cri,
+	public ModelAndView myOrderList(@AuthenticationPrincipal PrincipalDetails principalDetails, Criteria cri,
 			ModelAndView mav) throws Exception {
 		log.debug("myOrderList");
 		log.info("myOrderList");
@@ -105,7 +105,7 @@ public class MyPageController {
 
 		int total = myPageService.getOrderMyTotal(cri);
 		log.info("total" + total);
-		mav.addObject("pageMaker", new MemberOrderPageVO(cri, total));
+		mav.addObject("pageMaker", new PageVO(cri, total));
 
 		return mav;
 	}

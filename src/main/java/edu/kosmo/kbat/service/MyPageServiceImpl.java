@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
 import edu.kosmo.kbat.mapper.MyPageMapper;
-import edu.kosmo.kbat.page.MemberOrderCriteria;
+import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -73,14 +73,14 @@ public class MyPageServiceImpl implements MyPageService {
 
 	// 주문내역 리스트 페이징
 	@Override
-	public List<ProductOrderDetailOrderVO> getOrderMyList(String member_id, MemberOrderCriteria cri) {
+	public List<ProductOrderDetailOrderVO> getOrderMyList(String member_id, Criteria cri) {
 		log.info("getOrderMyList WITH criteria: " + cri);
 		return myPageMapper.getOrderMyListPaging(member_id, cri);
 	}
 
 	// 주문내역 리스트 페이징 갯수
 	@Override
-	public int getOrderMyTotal(MemberOrderCriteria cri) {
+	public int getOrderMyTotal(Criteria cri) {
 		log.info("getOrderMyTotal WITH criteria: " + cri);
 		return myPageMapper.getOrderMyTotalCount(cri);
 	}

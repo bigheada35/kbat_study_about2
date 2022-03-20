@@ -23,20 +23,14 @@ public class Criteria {
 	}
 
 	// 검색 type KDM(https://kimvampa.tistory.com/245?category=771727)
-	private String type; // 내용, 제목, 작성자
+	private String type; // 내용, 제목, 카테고리
 
 	// 검색 키워드
 	private String keyword;
-	
-	//상품 리스트
-	private String[] productArr;
-	
-	//카테고리 코드
-	private String categoryCode;
 
-	// 검색타입 데이터 배열 변환
+	// 검색 조건 N상품명 D상품설명 C카테고리명
 	public String[] getTypeArr() {
 		return type == null ? new String[] {} : type.split("");
-
 	}
+
 }

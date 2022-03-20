@@ -92,26 +92,13 @@ public class MainController {
 	
 	// KDM 상품 검색 
 	@GetMapping("/main/search")
-	public String searchProductGET(Criteria cri, Model model) {
-		
-		log.info("cri : " + cri);
-		
-		List<ProductVO> list = mainService.getProductList(cri);
-		log.info("pre list : " + list);
-		if(!list.isEmpty()) {
-			model.addAttribute("list", list);
-			log.info("list : " + list);
-		} else {
-			model.addAttribute("listcheck", "empty");
-			
-			return "/main/search";
-		}
-		
-		model.addAttribute("pageMaker", new PageVO(cri, mainService.getProductTotal(cri)));
-		
-		
-		return "/main/search";
-		
+	public ModelAndView searchProductGET(Criteria cri, ModelAndView mav) {
+		mav.setViewName("/main/search");
+
+		mav.addObject("list", mainService.getProductList(cri));
+		int total = mainService.getProductTotal(cri);
+		mav.addObject("pageMaker", new PageVO(cri, total));
+		return mav;
 	}
 	
 }

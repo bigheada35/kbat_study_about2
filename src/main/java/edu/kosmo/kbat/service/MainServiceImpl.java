@@ -3,15 +3,10 @@ package edu.kosmo.kbat.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
 import edu.kosmo.kbat.mapper.MainMapper;
-import edu.kosmo.kbat.mapper.MyPageMapper;
 import edu.kosmo.kbat.page.Criteria;
-import edu.kosmo.kbat.page.MemberOrderCriteria;
-import edu.kosmo.kbat.vo.MemberVO;
 import edu.kosmo.kbat.vo.ProductVO;
 import lombok.extern.slf4j.Slf4j;
 
