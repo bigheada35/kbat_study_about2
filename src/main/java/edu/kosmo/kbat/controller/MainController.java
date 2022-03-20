@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,11 +21,6 @@ import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.page.PageVO;
 import edu.kosmo.kbat.service.MainService;
 
-=======
-import edu.kosmo.kbat.page.Criteria;
-import edu.kosmo.kbat.page.PageVO;
-import edu.kosmo.kbat.service.MainService;
->>>>>>> origin/dev_ush
 import edu.kosmo.kbat.service.ProductService;
 import edu.kosmo.kbat.service.UserService;
 import edu.kosmo.kbat.vo.ProductVO;
