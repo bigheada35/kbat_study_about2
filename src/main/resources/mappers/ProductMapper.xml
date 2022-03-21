@@ -82,7 +82,9 @@
 					and 
 					#{product_id} = image.product_id
 					and
-                    #{product_id} = product.product_id 
+                    #{product_id} = product.product_id
+                    and
+                    category.category_id = product.category_id                     
 					order by 
 					product.product_date desc
 		]]>
