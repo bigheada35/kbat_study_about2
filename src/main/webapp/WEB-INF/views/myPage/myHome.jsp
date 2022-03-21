@@ -65,6 +65,12 @@
 			<a class="btn" href="/myPage/myOrderList">주문내역</a>
 		</div>
 	</c:if>
+	
+		<c:if test="${member.member_id eq principal.user.member_id}">
+		<div class="profile-info__actions" style="padding-top: 50px;">
+			<a class="btn" href="/myPage/myReview">내가 쓴 리뷰</a>
+		</div>
+	</c:if>
 
 
 </body>

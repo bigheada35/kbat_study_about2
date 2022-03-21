@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO;
 import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
 import edu.kosmo.kbat.mapper.MyPageMapper;
 import edu.kosmo.kbat.page.Criteria;
@@ -83,6 +84,13 @@ public class MyPageServiceImpl implements MyPageService {
 	public int getOrderMyTotal(Criteria cri) {
 		log.info("getOrderMyTotal WITH criteria: " + cri);
 		return myPageMapper.getOrderMyTotalCount(cri);
+	}
+
+	// 내가 작성한 상품 리뷰
+	@Override
+	public List<ProductOrderDetailBoardVO> getReviewMyList(String member_id) {
+		log.info("getReviewMyList()......");
+		return myPageMapper.reviewMyList(member_id);
 	}
 
 }
