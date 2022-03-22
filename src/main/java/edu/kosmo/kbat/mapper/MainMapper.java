@@ -16,7 +16,4 @@ public interface MainMapper {
 	// 상품 총 갯수
 	public int getProductTotal(Criteria cri);
 
-	// 상품 리스트 요청
-	public String[] getProductList(String keyword);
-
 }

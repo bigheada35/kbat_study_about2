@@ -1,7 +1,6 @@
 package edu.kosmo.kbat.vo;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,4 +33,6 @@ public class ProductVO {
 	private int image_id;
 	private String image_name;
 
+	private int member_number; // 멤버 테이블
+	private String member_id;
 }

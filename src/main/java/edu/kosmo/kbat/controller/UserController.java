@@ -37,20 +37,14 @@ public class UserController {
 	@GetMapping("/user/userHome")
 	public String userHome(@AuthenticationPrincipal PrincipalDetails principalDetails) {
 		System.out.println("principalDetails : " +principalDetails.getUser());
+		System.out.println("----userHome----");
 		return "user/userHome";
 	}
 	
-	/*
-	@GetMapping("/user/userHome")
-	public void userHome() {
-		System.out.println("----userHome");
-	}
- 	*/
-   
    @GetMapping("/add/addForm")
    public void userForm() {
       log.info("Welcome userForm");
-      
+
       System.out.println("----- userForm ");
    }
 
@@ -64,19 +58,18 @@ public class UserController {
    
    @GetMapping("/add/addFormAdmin")
    public void addFormAdmin() {
-      log.info("Welcome userForm");
-      System.out.println("----- userForm ");
+      log.info("Welcome addFormAdmin");
+      System.out.println("----- addFormAdmin ");
    }
    @PostMapping("/add/addAdmin")
    public String addAdmin(UserVO uservo) {
       log.info("post resister");
-      System.out.println("----- addUser ");
+      System.out.println("----- addAdmin ");
       userService.addAdmin(uservo);
 
       return "redirect:/";
    }
    
-
    @GetMapping("/test/login")
    public @ResponseBody String testLogin(Authentication authentication, @AuthenticationPrincipal UserDetails userDetails) {	  
 	   System.out.println("/test/login===============");

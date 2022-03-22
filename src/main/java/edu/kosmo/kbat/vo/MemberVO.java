@@ -1,6 +1,5 @@
 package edu.kosmo.kbat.vo;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import lombok.AllArgsConstructor;

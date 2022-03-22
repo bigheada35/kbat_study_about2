@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
 
-import org.apache.jasper.tagplugins.jstl.core.ForEach;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,18 +13,20 @@ import edu.kosmo.kbat.vo.AuthVO;
 import edu.kosmo.kbat.vo.UserVO;
 import lombok.Getter;
 import lombok.Setter;
+
 @Getter
 @Setter
 public class PrincipalDetails implements UserDetails, OAuth2User {
 
 	private UserVO user;
 	private Map<String, Object> attributes;
-	
-	//일반 로그인
+
+	// 일반 로그인
 	public PrincipalDetails(UserVO user) {
 		this.user = user;
 	}
-	//OAuth 로그인	
+
+	// OAuth 로그인
 	public PrincipalDetails(UserVO user, Map<String, Object> attributes) {
 		this.user = user;
 		this.attributes = attributes;
@@ -35,12 +35,12 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
-	      
-		for(AuthVO auth : user.getAuthList()) {
-	      authorities.add(new SimpleGrantedAuthority(auth.getAuthority_name()));
-	      }
+
+		for (AuthVO auth : user.getAuthList()) {
+			authorities.add(new SimpleGrantedAuthority(auth.getAuthority_name()));
+		}
 		return authorities;
-				
+
 	}
 
 	@Override
@@ -51,7 +51,7 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 
 	@Override
 	public String getUsername() {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
 		return user.getMember_id();
 	}
 
@@ -79,7 +79,7 @@ public class PrincipalDetails implements UserDetails, OAuth2User {
 		if (user.getEnabled() == 0)
 			return false;
 		else
-		return true;
+			return true;
 	}
 
 	@Override

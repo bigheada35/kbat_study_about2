@@ -32,7 +32,7 @@ public class UserVO {
 	private String member_email;
 	private String member_address;
 	private String member_company;
-	private int enabled; // 시큐리티
+	private int enabled;
 	
 	//4개 추가
 	//private String username;
@@ -48,7 +48,7 @@ public class UserVO {
 	//추가
 	@Builder
 	public UserVO(String member_id, String member_name, String password, String member_phone, String member_email, String member_address,
-			String member_company, String provider, String providerId, String authority_name) {
+			String member_company, String provider, String providerId, String authority_name, int enabled) {
 		this.member_id = member_id;
 		this.password = password;
 		this.member_phone = member_phone;
@@ -59,6 +59,7 @@ public class UserVO {
 		this.providerId = providerId;
 		this.authority_name = authority_name;
 		this.member_name = member_name;
+		this.enabled = enabled;
 	}	
 	
 	

@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.kosmo.kbat.page.MemberOrderCriteria;
-import edu.kosmo.kbat.page.MemberOrderPageVO;
+import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
+import edu.kosmo.kbat.page.Criteria;
+import edu.kosmo.kbat.page.PageVO;
 import edu.kosmo.kbat.principal.PrincipalDetails;
 import edu.kosmo.kbat.service.MyPageService;
+import edu.kosmo.kbat.service.UserService;
+import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
 import lombok.extern.slf4j.Slf4j;
 
@@ -26,6 +29,9 @@ import lombok.extern.slf4j.Slf4j;
 @RequestMapping("/myPage")
 
 public class MyPageController {
+	
+	@Autowired
+	private UserService userService;
 
 	@Autowired
 	private MyPageService myPageService;
@@ -85,7 +91,7 @@ public class MyPageController {
 
 	// 주문 목록
 	@GetMapping("/myOrderList")
-	public ModelAndView myOrderList(@AuthenticationPrincipal PrincipalDetails principalDetails, MemberOrderCriteria cri,
+	public ModelAndView myOrderList(@AuthenticationPrincipal PrincipalDetails principalDetails, Criteria cri,
 			ModelAndView mav) throws Exception {
 		log.debug("myOrderList");
 		log.info("myOrderList");
@@ -105,8 +111,39 @@ public class MyPageController {
 
 		int total = myPageService.getOrderMyTotal(cri);
 		log.info("total" + total);
-		mav.addObject("pageMaker", new MemberOrderPageVO(cri, total));
+		mav.addObject("pageMaker", new PageVO(cri, total));
 
+		return mav;
+	}
+	
+	@GetMapping("/myReview")
+	public ModelAndView reviewList(@AuthenticationPrincipal PrincipalDetails principalDetails, Criteria cri, ProductOrderDetailOrderVO productOrderDetailBoardVO,
+			ModelAndView mav, BoardtypeVO boardtypeVO) throws Exception {
+		log.debug("reviewList");
+		log.info("reviewList..");
+
+		mav.setViewName("myPage//myReview");
+
+		// 인증된 회원 정보 받아오기
+		String member_id = principalDetails.getUserID();
+		mav.addObject("member", userService.getUser(member_id));
+
+		// 내가 쓴 리뷰 불러오기
+		mav.addObject("reviewMyList", myPageService.getReviewMyList(member_id));
+		/*
+		 * // 내가 쓴 리뷰 내용불러오기 mav.addObject("reviewContent",
+		 * myPageService.reviewContent(member_id));
+		 * 
+		 * // 작성한 상품 리뷰 리스트 받아오기 mav.addObject("prdct_myr_list",
+		 * myPageService.getMyReviewList(cri, member_id)); // 작성한 상품 리뷰 응답여부 받아오기
+		 * mav.addObject("prdctr_cmnt_stat",
+		 * myPageService.getPrdctrCmntStat(bCommentVO.getBoard_id())); // 답변한 댓글 불러오기
+		 * mav.addObject("comment",
+		 * myPageService.getMyqComment(boardtypeVO.getBoard_id()));
+		 * 
+		 * int total = myPageService.getReviewTotal(cri); log.info("total" + total);
+		 * mav.addObject("pageMaker", new PrdReviewPageVO(cri, total));
+		 */
 		return mav;
 	}
 

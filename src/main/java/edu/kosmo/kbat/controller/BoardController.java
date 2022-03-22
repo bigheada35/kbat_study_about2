@@ -308,6 +308,7 @@ public class BoardController {
         System.out.println("멤버 아이디2 : " +  userService.getUser(user_id));
         System.out.println("멤버 아이디3 : " +  boardVO.getReview_id());
 	
+
 		System.out.println("별점 =================== : " + boardVO.getRating_check());
 
 		storageService.store(file);		

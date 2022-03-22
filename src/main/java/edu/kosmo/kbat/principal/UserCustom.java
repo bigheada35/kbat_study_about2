@@ -1,6 +1,5 @@
 package edu.kosmo.kbat.principal;
 
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -14,27 +13,26 @@ import edu.kosmo.kbat.vo.AuthVO;
 import edu.kosmo.kbat.vo.UserVO;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Getter
 @Setter
 public class UserCustom extends User {
-	
+
 	@Setter(onMethod_ = @Autowired)
 	private UserVO user;
-	   
+
 	public UserCustom(String username, String password, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
 	}
 
 	public UserCustom(UserVO user) {
-		
-		//super(user.getUsername(), user.getPassword(), getAuth(user));
+
+		// super(user.getUsername(), user.getPassword(), getAuth(user));
 		super(user.getMember_id(), user.getPassword(), getAuth(user));
 
-System.out.println("==========UserCustom");
+		System.out.println("==========UserCustom");
 		this.user = user;
 	}
 
@@ -43,7 +41,7 @@ System.out.println("==========UserCustom");
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
 		for (AuthVO auth : memberVO.getAuthList()) {
-			//authorities.add(new SimpleGrantedAuthority(auth.getAuthority()));
+			// authorities.add(new SimpleGrantedAuthority(auth.getAuthority()));
 			authorities.add(new SimpleGrantedAuthority(auth.getAuthority_name()));
 		}
 

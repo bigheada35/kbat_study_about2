@@ -43,7 +43,7 @@
 	<div class="container">
 		<ul class="pagination justify-content-center">
 			<c:choose>
-				<c:when test="${pageMaker.prev}">
+				<c:when test="${pageMaker.pre}">
 					<li class="page-item"><a class="page-link"
 						href="${pageMaker.makeQuery(pageMaker.startPage - 1) }">&laquo;</a></li>
 				</c:when>

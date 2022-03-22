@@ -125,6 +125,26 @@
 	</select>
 
 
+	<!-- 작성한 상품 리뷰글 -->
+	<select id="reviewMyList"
+		resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO">
+
+<![CDATA[
+SELECT o.orders_id, o.orders_price, o.orders_date, d.product_id, p.product_name , m.member_id
+			FROM orders o, order_detail d, product p, boardtype b, member m
+			WHERE o.member_number = m.member_number AND
+			o.orders_id = d.orders_id AND
+            m.member_id = 'kbat1' AND
+            b.boardtype_id = 2
+			ORDER BY o.orders_date DESC
+          
+	]]>
+	</select>
+
+
+	<!-- 고객 QnA 상세페이지 판매자가 작성한 댓글 리스트 받아오기 -->
+	<!-- <select id="getMyqReply" resultType="edu.kosmo.kbat.vo.QBoardAndMemberVO."> 
+		<![CDATA[ SELECT * FROM board_comment WHERE board_id = #{board_id} ]]> </select> -->
 
 
 

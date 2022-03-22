@@ -14,7 +14,7 @@
 	    <result property="member_email" column="member_email"/>
 	    <result property="member_address" column="member_address"/>
 	    <result property="member_company" column="member_company"/>
-		<result property="enabled"	column="enabled"/>
+	    <result property="enabled"	column="enabled"/>
 		<collection property="authList" resultMap="authMap"></collection>
 	</resultMap>
 	
@@ -35,8 +35,7 @@
 		<collection property="orderDetailVO"
 			resultMap="orderDetail"></collection>
 		<collection property="rboardVO" resultMap="orderReview"></collection>
-	
-</resultMap>
+	</resultMap>
 
 	<resultMap id="orderDetail"
 		type="edu.kosmo.kbat.vo.OrderDetailVO">
@@ -53,10 +52,14 @@
 
 
 	<select id="getUser" resultMap="userMap">
-		select * 
-		from member, authority 
-		where member.member_number = authority.member_number and member.member_id = #{username}
+		select *
+		from member, authority
+		where member.member_number = authority.member_number and
+		member.member_id =
+		#{username}
 	</select>
-	
+
+
+
 
 </mapper>
