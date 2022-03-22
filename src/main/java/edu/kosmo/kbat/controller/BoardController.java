@@ -148,8 +148,6 @@ public class BoardController {
 		int board_id = boardVO.getBoard_id();
 		model.addAttribute("qcontent_view", qboardService.qread(board_id));
 		
-		//model.addAttribute("qreply_view");
-		
 		return "qboard/content_view";
 	}
 	
@@ -177,15 +175,13 @@ public class BoardController {
         System.out.println("==================board_enable1 : " +  boardVO.getBoard_enable());
         
         boardVO.setMember_number(uservo.getMember_number());
-        System.out.println("양세윤 바보ㅗㅗㅗㅗㅗㅗㅗㅗㅗㅗ" + uservo.getMember_number());
+        System.out.println(uservo.getMember_number());
         
         String board_enable = boardVO.getBoard_enable();
         
         model.addAttribute(board_enable);
         
-        System.out.println("==================board_enable2333333333333 : " +  boardVO.getBoard_enable());
-        
-
+        System.out.println(boardVO.getBoard_enable());        
         System.out.println("멤버 아이디1 : " +  uservo.getMember_number());
         System.out.println("멤버 아이디2 : " +  userService.getUser(user_id));
         
@@ -194,9 +190,6 @@ public class BoardController {
 		log.info("qwrite1()...");	
 		qboardService.qrepwrite(boardVO);
 		log.info("qrepwrite()...");	
-		log.info("reply group==== " + boardVO.getReply_group());
-		log.info("reply id==== " + boardVO.getReply_id());
-		log.info("reply board_id==== " + boardVO.getBoard_id());
 		
 		return "redirect:qlist";		
 	}
@@ -250,7 +243,6 @@ public class BoardController {
         System.out.println("멤버 아이디2 : " +  userService.getUser(user_id));
 		log.info("reply()...");
 		System.out.println("---333--------group : " + boardVO.getReply_group());
-		//boardVO.setReply_group(boardVO.getReply_group()); 
 		qboardService.qregisterReply(boardVO);	
 	   
 		System.out.println("---444--------group : " + boardVO.getReply_group());
@@ -279,12 +271,6 @@ public class BoardController {
 		int board_id = boardVO.getBoard_id();
 		int review_id = rboardVO.getReview_id();
 		model.addAttribute("rcontent_view", rboardService.rread(board_id));
-		//model.addAttribute("review_id", reviewService.rvread(review_id));
-		//model.addAttribute("rcontent_view", rboardService.rread(board_id, review_id));
-		//model.addAttribute("rcontent_view", boardVO);
-		System.out.println("*********************" + rboardService.rread(board_id));
-		System.out.println("*************************" + rboardVO.getReview_id());
-
 
 		return "rboard/content_view";
 	}
@@ -321,16 +307,7 @@ public class BoardController {
         System.out.println("멤버 아이디1 : " +  uservo.getMember_number());
         System.out.println("멤버 아이디2 : " +  userService.getUser(user_id));
         System.out.println("멤버 아이디3 : " +  boardVO.getReview_id());
-		
-        //rboardService.rwrite(boardVO);
-		//rboardService.rwrite_review(boardVO);
-		//rboardService.rwrite_rating(boardVO);	
-        
-        //boardVO.setAttachment_name(user_id);
-        
-        
-        //rboardService.rwrite(boardVO);
-		
+	
 		System.out.println("별점 =================== : " + boardVO.getRating_check());
 
 		storageService.store(file);		
@@ -366,7 +343,6 @@ public class BoardController {
 	public String rmodify_view(RBoardAndMemberVO boardVO, Model model) {//ssj
 		log.info("modify_view()...");
 		int board_id = boardVO.getBoard_id();	
-		//int review_id = boardVO.getReview_id();
 		model.addAttribute("rmodify_view", rboardService.rread(board_id));
 		return "rboard/modify_view";		
 	}	
@@ -375,8 +351,8 @@ public class BoardController {
 	public String rdelete(RBoardAndMemberVO boardVO, ReviewVO rboardVO, Model model) {		
 		log.info("delete()...");	
 		int review_id = rboardVO.getReview_id();
-		rboardService.rdelete(boardVO.getBoard_id());	
 		reviewService.rdelete(review_id);
+		rboardService.rdelete(boardVO.getBoard_id());			
 		return "redirect:rlist";		
 	}
 

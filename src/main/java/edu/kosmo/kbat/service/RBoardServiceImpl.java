@@ -12,6 +12,7 @@ import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
 import edu.kosmo.kbat.vo.QBoardAndMemberVO;
 import edu.kosmo.kbat.vo.RBoardAndMemberVO;
+import edu.kosmo.kbat.vo.ReviewVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -23,7 +24,6 @@ public class RBoardServiceImpl implements RBoardService{
 	
 	@Autowired
 	private ReviewMapper reviewMapper;
-
 	
 	@Override
 	public List<RBoardAndMemberVO> rgetList() {
@@ -31,12 +31,6 @@ public class RBoardServiceImpl implements RBoardService{
 		return boardAndMemberMapper.rgetList();
 	}
 
-	@Override
-	public RBoardAndMemberVO rread(int board_id, int review_id) {
-		log.info("read2()..");
-		rhit(board_id);
-		return boardAndMemberMapper.rread(board_id, review_id);
-	}
 
 	@Override
 	public void rwrite(RBoardAndMemberVO board) {
@@ -52,9 +46,7 @@ public class RBoardServiceImpl implements RBoardService{
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$" + board.getAttachment_name());
 		
 		boardAndMemberMapper.rwrite_img(attachment_name);
-		
-		//boardAndMemberMapper.rwrite_img(board.getAttachment_name());
-		
+
 		System.out.println("=====================" + attachment_name);
 	}
 
@@ -73,14 +65,11 @@ public class RBoardServiceImpl implements RBoardService{
 	@Override
 	public void rdelete(int board_id) {
 		log.info("delete()...");
-				
+
 		System.out.println("=======================" + board_id);
-		//System.out.println("=======================" + review_id);
 		boardAndMemberMapper.rdelete_attachment(board_id);
-		//reviewMapper.rdelete_rating(review_id);
-		//boardAndMemberMapper.rdelete_rating(review_id);
 		boardAndMemberMapper.rdelete_review(board_id);
-		//boardAndMemberMapper.rdelete(board_id, review_id);	
+		boardAndMemberMapper.rdelete(board_id);
 		
 	}
 
