@@ -2,6 +2,7 @@ package edu.kosmo.kbat.mapper;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import edu.kosmo.kbat.vo.UserVO;
 
@@ -22,4 +23,5 @@ public interface UserMapper {
    @Insert("insert into authority(authority_id, authority_name, member_number) values(authority_seq.nextval, 'ROLE_ADMIN', member_seq.currval)")
    public void insertAuthoritiesAdmin(UserVO UserVO);
    
+ 
 }

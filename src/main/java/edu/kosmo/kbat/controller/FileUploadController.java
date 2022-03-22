@@ -50,9 +50,7 @@ public class FileUploadController {
 
 	@GetMapping("/upload/list")
 	public String listUploadedFiles(Model model) throws IOException {
-		
-
-		
+				
 		model.addAttribute("files", storageService.loadAll().map(
 				path -> MvcUriComponentsBuilder.fromMethodName(FileUploadController.class,
 						"serveFile", path.getFileName().toString()).build().toUri().toString())
@@ -122,45 +120,54 @@ public class FileUploadController {
 	@ResponseBody
 	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 		
-		Resource file = storageService.loadAsResource(filename);
+		Resource file = storageService.loadAsResource(filename);		
 		
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
 				"attachment; filename=\"" + file.getFilename() + "\"").body(file);
 	}
 
 	@PostMapping("/upload/fileUpload")
-	public String handleFileUpload(@RequestParam("file") MultipartFile file,
-			RedirectAttributes redirectAttributes,
-			@ModelAttribute ProductVO productVO) {
+	public String handleFileUpload(@RequestParam("fileVideo") MultipartFile file1,
+									@RequestParam("fileImage") MultipartFile file2,
+									RedirectAttributes redirectAttributes,
+									@ModelAttribute ProductVO productVO) {
 		
 
 		
-		storageService.store(file);
+		storageService.store(file1);
+		storageService.store(file2);
 		
 		
 
 		//ssj 0305 convert file to uri
-		String uri = MvcUriComponentsBuilder.fromMethodName(
+		String uri1 = MvcUriComponentsBuilder.fromMethodName(
 				FileUploadController.class,
 				"serveFile", 
-				file.getOriginalFilename())
+				file1.getOriginalFilename())
 		.build()
 		.toUri()
 		.toString();
 		
+		String uri2 = MvcUriComponentsBuilder.fromMethodName(
+				FileUploadController.class,
+				"serveFile", 
+				file2.getOriginalFilename())
+		.build()
+		.toUri()
+		.toString();		
 		
-		productVO.setProduct_name(file.getOriginalFilename());
+		productVO.setProduct_name(file1.getOriginalFilename());
 		productVO.setProduct_enable("1");
 		productVO.setProduct_stock(1);
-		productVO.setVideo_name(uri);
-		productVO.setImage_name("noimage.jpg");
+		productVO.setVideo_name(uri1);
+		productVO.setImage_name(uri2);
 		
 		
 		productService.write(productVO);
 		
 		
 		redirectAttributes.addFlashAttribute("message",
-				"You successfully uploaded " + file.getOriginalFilename() + "!");
+				"You successfully uploaded " + file1.getOriginalFilename() + "!");
 
 		return "redirect:/upload/list2";
 	}
