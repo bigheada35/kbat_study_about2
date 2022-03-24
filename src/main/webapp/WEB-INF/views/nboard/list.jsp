@@ -12,6 +12,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+<<<<<<< HEAD
 <style>
 	.paging{
 		text-align : center;
@@ -70,4 +71,79 @@
 		</div>		
 	<div>
 </body>
+=======
+<body>  
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">번호</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+
+   <table width="500" cellpadding="0" cellspacing="0" border="1">
+      <tr>
+         <td>번호</td>
+         <td>제목</td>
+         <td>작성자</td>
+         <td>작성일자</td>
+         <td>조회수</td>
+      </tr>
+      <c:forEach items="${list}" var="board">
+      <tr>
+         <td>${board.board_id}</td>
+         <td>
+            <a href="ncontent_view?board_id=${board.board_id}">${board.board_title}</a></td>
+         <td>${board.member_id}</td>
+         <td>${board.board_date}</td>
+         <td>${board.board_hit}</td>
+      </tr>
+      </c:forEach>                
+   </table>
+   
+   <tr>
+   		<c:if test="${principal.user.member_id == 'kbatc5'}" >
+			<td colspan="5"> <a href="nwrite_view">글작성</a> </td>
+	    </c:if>	
+   </tr>  
+   <br>
+  
+   <c:if test="${pageMaker.pre}">
+         <a href="nlist${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
+   </c:if>
+
+	<!-- 링크를 걸어준다 1-10페이지까지 페이지를 만들어주는것  -->
+	<c:forEach var="idx" begin="${pageMaker.startPage }" end="${pageMaker.endPage }" >
+		<a href="nlist${pageMaker.makeQuery(idx)}">${idx}</a>
+	</c:forEach>
+	      
+	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+		<a href="nlist${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
+	</c:if> <br>
+
+</body>
+
+>>>>>>> efc6e90bd5c32093481fe53d03b733fc4629a760
 </html>

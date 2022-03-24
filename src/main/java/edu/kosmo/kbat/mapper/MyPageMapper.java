@@ -29,11 +29,22 @@ public interface MyPageMapper {
 
 	// 페이징 단위에 적용되는 최대 주문내역 단위
 	public int getOrderMyTotalCount(Criteria cri);
+<<<<<<< HEAD
 	
 	// QnA 내 글에 관리자가 작성한 댓글 리스트 
 	//public List<QBoardAndMemberVO> getMyqReply(int board_id);
 	
 	// 내가 작성한 상품 리뷰
 	public List<ProductOrderDetailOrderVO> reviewMyList(String member_id);
+=======
+
+	// QnA 내 글에 관리자가 작성한 댓글 리스트
+	// public List<QBoardAndMemberVO> getMyqReply(int board_id);
+
+	// 리뷰 마이페이지 리스트
+	public List<ProductOrderDetailBoardVO> reviewMyList(String member_id);
+>>>>>>> efc6e90bd5c32093481fe53d03b733fc4629a760
+
+	public List<ProductOrderDetailBoardVO> getMyReviewList(Criteria cri, String member_id);
 
 }

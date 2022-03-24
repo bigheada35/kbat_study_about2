@@ -1,30 +1,31 @@
 package edu.kosmo.kbat.controller;
 
 
-import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.kosmo.kbat.joinvo.ProductProductViewVO;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.page.PageVO;
+import edu.kosmo.kbat.principal.PrincipalDetails;
 import edu.kosmo.kbat.service.MainService;
-
+import edu.kosmo.kbat.service.MyPageService;
 import edu.kosmo.kbat.service.ProductService;
-import edu.kosmo.kbat.service.UserService;
+import edu.kosmo.kbat.vo.MemberVO;
 import edu.kosmo.kbat.vo.ProductVO;
-import edu.kosmo.kbat.vo.UserVO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,6 +37,13 @@ public class MainController {
 	final int NameLimit = 15;
 	final int DescLimit = 25;
 	
+<<<<<<< HEAD
+=======
+
+	@Autowired
+	private	MyPageService myPageService;
+	
+>>>>>>> efc6e90bd5c32093481fe53d03b733fc4629a760
 	@Autowired
 	private	ProductService productService;
 
@@ -116,7 +124,11 @@ public class MainController {
 		mav.addObject("pageMaker", new PageVO(cri, total));
 		return mav;
 	}
+<<<<<<< HEAD
 	@GetMapping("/main/cartorder")
+=======
+		@GetMapping("/main/cartorder")
+>>>>>>> efc6e90bd5c32093481fe53d03b733fc4629a760
 	public String cartorder(HttpServletRequest request,  Model model) {
 		String product_id = (String) request.getParameter("product_id");
 		System.out.println("----cartorder----product_id:"+product_id);
