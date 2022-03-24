@@ -23,6 +23,15 @@
           font-size: 3.5rem;
         }
       }
+      
+      #cart-and-order {
+            width:340px; height:300px;
+           /* background-color:yellow;  */
+           position:fixed;
+           top:25%; left:70%;
+           opacity:1.0;
+      }
+      
     </style>
     <!-- Custom styles for this template -->
     <link href="/css/album.css" rel="stylesheet">
@@ -78,38 +87,96 @@
   </section> 
   
 
-  
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-    
-		
-	      <div class="row">
-	    	<%-- <c:forEach items="${products}" var="prod" varStatus="status" >  	 --%>
-		        <div class="col-md-3">
+  <div id="cart-and-order">
+  		        <div class="col-md-12">
 		          <div class="card mb-4 shadow-sm">
-					<!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-		            <img class="bd-placeholder-img card-img-top" src="<c:url value="${prod.image_name}"/>" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">${status.index+1} ${prod.product_name}</text></svg>
-		            <%-- <img class="card-img-top" src="<c:url value="${prod.image_name}"/>" style="min-height:250px;"/> --%>
+		            <img class="bd-placeholder-img card-img-top" src="<c:url value="${prod.image_name}"/>" width="100%" height="160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">${status.index+1} ${prod.product_name}</text></svg>
 		            <div class="card-body">
 		              <p class="card-text">${prod.product_description}</p>
 		              <p class="card-text">가격 : ${prod.product_price} 원</p>
 		              <p class="card-text">${prod.product_date}</p>
 		              <div class="d-flex justify-content-between align-items-center">
+		              	<a href="/main/cartorder?product_id=${prod.product_id}" class="btn btn-primary my-2">장바구니담기</a>&nbsp
+		              	<a href="/main/checkout?product_id=${prod.product_id}" class="btn btn-primary my-2">구매하기</a>&nbsp
 		              	<a href="/main/playVideo?product_id=${prod.product_id}" class="btn btn-primary my-2">Play</a>
-		                <small class="text-muted">9 mins</small>
 		              </div>
 		            </div>
 		          </div>
 		        </div>
-		  
-			<%-- </c:forEach>	 --%>	   
-		   </div>
+  </div>
+
+
+    <div class="container">
+    
+		
+		        <div class="col-md-8">
+		        
+			      <table class="table table-warning">
+			        <thead>
+			          <tr>
+			            <th scope="col">글번호</th>
+			            <th scope="col">제목</th>
+			            <th scope="col">작성자</th>
+			            <th scope="col">조회수</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+			          <tr>
+			            <th scope="row">1</th>
+			            <td>그때 가 생각나는고 너무 너무 좋아요</td>
+			            <td>퇘개미</td>
+			            <td>233</td>
+			          </tr>
+			          <tr>
+			            <th scope="row">2</th>
+			            <td>감사합니다 좋은 곡이에요</td>
+			            <td>익명</td>
+			            <td>123</td>
+			          </tr>
+			          <tr>
+			            <th scope="row">3</th>
+			            <td colspan="2">30년전 목소리 너무 좋아요</td>
+			            <td>566</td>
+			          </tr>
+			        </tbody>
+			      </table>
+		          
+		          <table class="table table-info">
+			        <thead>
+			          <tr>
+			            <th scope="col">글번호</th>
+			            <th scope="col">제목</th>
+			            <th scope="col">작성자</th>
+			            <th scope="col">조회수</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+			          <tr>
+			            <th scope="row">1</th>
+			            <td>쿠폰 발행 언제 되나요?</td>
+			            <td>퇴근합니다</td>
+			            <td>78</td>
+			          </tr>
+			          <tr>
+			            <th scope="row">2</th>
+			            <td>아 저 시간있으세요?</td>
+			            <td>오로라고래</td>
+			            <td>56</td>
+			          </tr>
+			          <tr>
+			            <th scope="row">3</th>
+			            <td colspan="2">도코에서 만난 전여친도 이노래 좋아해요?</td>
+			            <td>9992</td>
+			          </tr>
+			        </tbody>
+			      </table>
+		          
+		        </div>
 
 
 
     </div>
-  </div>
+
 
 </main>
 

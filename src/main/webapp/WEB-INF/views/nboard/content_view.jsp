@@ -2,6 +2,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<sec:authorize access="isAuthenticated()">
+<sec:authentication property="principal" var="principal" />
+</sec:authorize>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,15 +41,19 @@
          <tr>
             <td> 내용 </td>
             <td> <textarea rows="10" name="board_content" >${content_view.board_content}</textarea></td>
-         </tr>
-          <tr>
-<!--             <td colspan="2"> <input type="submit" value="수정"> &nbsp;&nbsp;  -->
-           <td colspan="2"> <a href="nlist">목록</a> &nbsp;&nbsp;             
-            <a href="nmodify_view?board_id=${content_view.board_id}">수정</a> &nbsp;&nbsp;
-            <a href="ndelete?board_id=${content_view.board_id}">삭제</a> &nbsp;&nbsp; 
-         </tr>
+         </tr>       	
+         	<c:choose>         	
+	                <c:when test="${principal.user.member_number == 0}">	
+	                	<td colspan="2"> <a href="nlist">목록</a> &nbsp;&nbsp;            
+			            <a href="nmodify_view?board_id=${content_view.board_id}">수정</a> &nbsp;&nbsp;
+			            <a href="ndelete?board_id=${content_view.board_id}">삭제</a> &nbsp;&nbsp; 
+	                </c:when>
+	                <c:otherwise><td colspan="2"> <a href="nlist">목록</a> &nbsp;&nbsp; </c:otherwise>
+	            </c:choose>
+         <tr> 
       </form:form>
    </table>
    
 </body>
+
 </html>
