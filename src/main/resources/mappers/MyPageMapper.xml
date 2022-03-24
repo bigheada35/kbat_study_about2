@@ -90,11 +90,12 @@
 	<select id="getOrderMyList"
 		resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO">
 	<![CDATA[
-	SELECT o.orders_id, p.product_id, m.member_id, p.product_name, o.orders_date, o.orders_price
-		FROM product p, order_detail d, orders o , member m
+	   SELECT o.orders_id, p.product_id, m.member_id, p.product_name, o.orders_date, o.orders_price, i.image_name
+		FROM product p, order_detail d, orders o , member m, image i
 		WHERE p.product_id = d.product_id AND 
 		    o.orders_id = d.orders_id AND 
-		    m.member_id = #{member_id}
+		    m.member_id = #{member_id} AND
+            i.product_id = p.product_id  
 		ORDER BY o.orders_date DESC
 	]]>
 	</select>
@@ -104,11 +105,12 @@
 	
   SELECT * FROM (
               SELECT ROWNUM AS RNUM, A.* FROM (
-		SELECT o.orders_id, p.product_id, m.member_id, p.product_name, o.orders_date, o.orders_price
-		FROM product p, order_detail d, orders o , member m
+		SELECT o.orders_id, p.product_id, m.member_id, p.product_name, o.orders_date, o.orders_price, i.image_name
+		FROM product p, order_detail d, orders o , member m, image i
 		WHERE p.product_id = d.product_id AND 
 		    o.orders_id = d.orders_id AND 
-		    m.member_id = #{member_id}
+		    m.member_id = #{member_id} AND
+		    i.product_id = p.product_id  
 		ORDER BY o.orders_date DESC
  			) A WHERE ROWNUM <= #{cri.pageNum} * #{cri.amount} 
 		) WHERE RNUM > (#{cri.pageNum}-1) * #{cri.amount}

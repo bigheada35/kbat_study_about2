@@ -341,27 +341,31 @@
 											onclick="reverseTD ( 2 )"
 											style="padding: 0px 5px 0px 5px; margin: 0px;">▼</button>
 									</th>
+									
 									<th
 										style="text-align: center; padding-left: 15px; padding-right: 15px;">
 									<th
 										style="text-align: center; padding-left: 15px; padding-right: 15px;">
 										<h4>상태</h4>
+										<br>
+							   			</th>
+							   		</tr>
+							   	</thead>
+										
 							<tbody>
 								<c:forEach items="${order_list}" var="order" varStatus="status">
 									<tr class="table-secondary">
-										<%--  상품정보 
-										<td style="text-align: center; padding: 15px 0px 0px 0px;">
-												<a
-											href="${pageContext.request.contextPath}/prdct/${order.prdct_id}"><img
-												src="/prdct_img/prdct_thumbnail/${order.prdct_thumbnail}"
-												onerror="this.src='/prdct_img/prdct_thumbnail/none-thumbnail.png'"
-												width="100px" height="120px"></a>
-										</td> --%>
-										<td
-											style="text-align: left; padding-left: 0px; padding-right: 0px;">
+									<td	style="text-align: left; padding-left: 0px; padding-right: 0px;">
 									
-											<h6>${order.product_name}&nbsp;</h6>
-										</td>
+						<a href="/main/playVideo?product_id=${order.product_id}" class="btn btn-primary my-2"><img src="<c:url value="${order.image_name}"/>" style="max-width:100px;"/>
+					 </td>
+											   		<td style="text-align: left; padding-left: 0px; padding-right: 0px;">
+								   			<h4 style="padding-bottom: 5px;">${order.orders_id}</h4>
+											<h6 style="max-width: 180px; padding-bottom: 5px;">${order.product_description}</h6>
+											<h6>
+												${order.product_description}
+											
+											</h6>
 										<%-- 주문일(정렬대상) --%>
 										<td style="text-align: left; padding: 60px 0px 0px 0px;">
 											<h6>${order.orders_date}</h6>
