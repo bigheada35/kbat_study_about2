@@ -25,11 +25,11 @@
 		width : 60%;
 	}
 	
-	.content{
-		position : absolute;
-		top : 230px;
+ 	<%--.content{
+		position : relative;
+		bottom : 230px;
 		border-bottom : none;
-	}
+	} --%>
 	
 	.button{
 		margin-left : 20%;
@@ -39,6 +39,10 @@
 	#b-list{
 		
 	}
+	
+	.title{
+		width : 100%;
+	}
 </style>
 <body>
 	<br>
@@ -46,17 +50,11 @@
 		<table class="table"> 
 			<form:form action="nmodify" method="post">
 			<input type="hidden" name="board_id" value="${modify_view.board_id}">
-			<input type="hidden" name="board_hit" value="${modify_view.board_hit}">
-			<input type="hidden" name="board_title" value="${modify_view.board_title}"> 
 			<thead> 
 			   	<tr>
 			      <th scope="col">번호</th>
 			      <td>${modify_view.board_id}</td>
-			    </tr>
-			    <tr>  
-			      <th scope="col">제목</th>			      
-			      <td>${modify_view.board_title}</td>
-			    </tr>
+			    </tr>			    
 			    <tr>  
 			      <th scope="col">작성자</th>
 			      <td>${modify_view.member_id}</td>
@@ -69,23 +67,15 @@
 			      <th scope="col">조회수</th>
 			      <td>${modify_view.board_hit}</td>
 			    </tr>   
+			    <tr>  
+			      <th scope="col">제목</th>			      
+			      <td><input type="text" name="board_title" class="title" value="${modify_view.board_title}"></td>
+			    </tr>
 			    <tr style="border-bottom:2px solid">   
 			      <th scope="col" class="content">내용</th>
-			      <td><textarea rows="10" name="board_content" style="width:100%">${modify_view.board_content}</textarea></td>
+			      <td><textarea rows="10" name="board_content" style="width:100%" value="${modify_view.board_content}">${modify_view.board_content}</textarea></td>
 			    </tr>   
 			</thead>
-			<tbody>	
-			  	<c:forEach items="${list}" var="board">
-			      <tr>
-			         <td>${board.board_id}</td>
-			         <td>
-			            <a href="ncontent_view?board_id=${board.board_id}" style="text-decoration:none; color:black">${board.board_title}</a></td>
-			         <td>${board.member_id}</td>
-			         <td style="text-align:center">${board.board_date}</td>
-			         <td style="text-align:center">${board.board_hit}</td>
-			      </tr>
-				</c:forEach>       
-			</tbody>
 		</table>		
 		<div class="button">
 			<c:choose>         	

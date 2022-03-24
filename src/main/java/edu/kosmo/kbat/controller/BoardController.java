@@ -129,7 +129,7 @@ public class BoardController {
 		return "redirect:nlist";		
 	}
 	
-	@GetMapping("/qlist")//ssj3
+	@GetMapping("main/qlist")//ssj3
 	public String qlist(Criteria cri, Model model, QBoardAndMemberVO boardVO) {
 		log.info("qlist()..");				
 		model.addAttribute("qlist", qboardService.qgetList(cri));
@@ -138,11 +138,11 @@ public class BoardController {
 		log.info("total : " + total);
 		model.addAttribute("pageMaker", new PageVO(cri, total));	
 		
-		System.out.println("테스트" +  qboardService.qgetList(cri));
+		System.out.println("테스트 qboardService.qgetList(cri) : " +  qboardService.qgetList(cri));
 		return "qboard/list";
 	}
 	
-	@GetMapping("/qcontent_view")
+	@GetMapping("main/qcontent_view")
 	public String qcontent_view(QBoardAndMemberVO boardVO, Model model) {
 		log.info("qcontent_view()..");
 		int board_id = boardVO.getBoard_id();
@@ -251,7 +251,7 @@ public class BoardController {
 		return "redirect:qlist";		
 	}
 	
-	@GetMapping("/rlist")//ssj3
+	@GetMapping("main/rlist")//ssj3
 	public String rlist(Criteria cri, Model model, RBoardAndMemberVO boardVO, ReviewVO rboardVO) {
 		log.info("list()..");		
 		model.addAttribute("rlist", rboardService.rgetList(cri));
@@ -260,12 +260,12 @@ public class BoardController {
 		
 		model.addAttribute("pageMaker", new PageVO(cri, total));
 		
-		System.out.println("--------------- : " + rboardVO.getReview_id());
+		System.out.println("---------------rboardVO.getReview_id() : " + rboardVO.getReview_id());
 		
 		return "rboard/list";
 	}
 	
-	@GetMapping("/rcontent_view")
+	@GetMapping("main/rcontent_view")
 	public String rcontent_view(RBoardAndMemberVO boardVO, ReviewVO rboardVO, Model model) {
 		log.info("content_view()..");
 		int board_id = boardVO.getBoard_id();
@@ -275,14 +275,14 @@ public class BoardController {
 		return "rboard/content_view";
 	}
 	
-	@GetMapping("/rwrite_view")
+	@GetMapping("main/rwrite_view")
 	public String rwrite_view(Model model) {		
 		log.info("write_view()...");
 		return "rboard/write_view";
 		
 	}
 	
-	@PostMapping("/rwrite")
+	@PostMapping("main/rwrite")
 	public String rwrite(RBoardAndMemberVO boardVO, ReviewVO rboardVO, Model model, @RequestPart(required = false) MultipartFile file,
 			RedirectAttributes redirectAttributes) {		
 		log.info("write()...");	

@@ -25,11 +25,11 @@
 		width : 60%;
 	}
 	
-	.content{
-		position : absolute;
-		top : 230px;
+	<%--.content{
+		position : relative;
+		bottom : 180px;
 		border-bottom : none;
-	}
+	} --%>
 	
 	.button{
 		margin-left : 20%;
@@ -38,6 +38,10 @@
 	
 	#b-list{
 		
+	}
+	
+	.content1{
+		width : 100%;
 	}
 </style>
 <body>
@@ -51,11 +55,7 @@
 			   	<tr>
 			      <th scope="col">번호</th>
 			      <td>${content_view.board_id}</td>
-			    </tr>
-			    <tr>  
-			      <th scope="col">제목</th>
-			      <td>${content_view.board_title}</td>
-			    </tr>
+			    </tr>			    
 			    <tr>  
 			      <th scope="col">작성자</th>
 			      <td>${content_view.member_id}</td>
@@ -68,23 +68,16 @@
 			      <th scope="col">조회수</th>
 			      <td>${content_view.board_hit}</td>
 			    </tr>   
+			    <tr>  
+			      <th scope="col">제목</th>
+			      <td>${content_view.board_title}</td>
+			    </tr>
 			    <tr style="border-bottom:2px solid">   
 			      <th scope="col" class="content">내용</th>
-			      <td><textarea rows="10" name="board_content" style="width:100%">${content_view.board_content}</textarea></td>
+			      <%-- <td><textarea rows="10" name="board_content" style="width:100%">${content_view.board_content}</textarea></td> --%>
+			      <td><textarea class="content1">${content_view.board_content}</textarea></td>
 			    </tr>   
 			</thead>
-			<%-- <tbody>	
-			  	<c:forEach items="${list}" var="board">
-			      <tr>
-			         <td>${board.board_id}</td>
-			         <td>
-			            <a href="ncontent_view?board_id=${board.board_id}" style="text-decoration:none; color:black">${board.board_title}</a></td>
-			         <td>${board.member_id}</td>
-			         <td style="text-align:center">${board.board_date}</td>
-			         <td style="text-align:center">${board.board_hit}</td>
-			      </tr>
-				</c:forEach>       
-			</tbody> --%>
 		</table>
 		<div class="button">
 			<c:choose>         	
