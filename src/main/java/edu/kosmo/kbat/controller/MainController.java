@@ -24,8 +24,19 @@ import edu.kosmo.kbat.principal.PrincipalDetails;
 import edu.kosmo.kbat.service.MainService;
 import edu.kosmo.kbat.service.MyPageService;
 import edu.kosmo.kbat.service.ProductService;
+<<<<<<< HEAD
 import edu.kosmo.kbat.vo.MemberVO;
 import edu.kosmo.kbat.vo.ProductVO;
+=======
+import edu.kosmo.kbat.service.QBoardService;
+import edu.kosmo.kbat.service.RBoardService;
+import edu.kosmo.kbat.service.UserService;
+import edu.kosmo.kbat.vo.ProductVO;
+import edu.kosmo.kbat.vo.QBoardAndMemberVO;
+import edu.kosmo.kbat.vo.RBoardAndMemberVO;
+import edu.kosmo.kbat.vo.ReviewVO;
+import edu.kosmo.kbat.vo.UserVO;
+>>>>>>> origin/dev_ush
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,10 +48,13 @@ public class MainController {
 	final int NameLimit = 15;
 	final int DescLimit = 25;
 	
+<<<<<<< HEAD
 
 	@Autowired
 	private	MyPageService myPageService;
 	
+=======
+>>>>>>> origin/dev_ush
 	@Autowired
 	private	ProductService productService;
 
@@ -48,6 +62,11 @@ public class MainController {
 	@Autowired
 	private MainService mainService;
 	
+	@Autowired
+	private RBoardService rboardService;
+	
+	@Autowired
+	private QBoardService qboardService;
 	
 	@GetMapping("/pay/import")
 	public void import2() {
@@ -80,7 +99,7 @@ public class MainController {
 		model.addAttribute("products", productVO);
 	}
 	@GetMapping("/main/detail")
-	public void detail(HttpServletRequest request,  Model model) {
+	public void detail(HttpServletRequest request,  Model model, Criteria cri, RBoardAndMemberVO boardVO, ReviewVO rboardVO, QBoardAndMemberVO qboardVO) {
 		String product_id = (String) request.getParameter("product_id");
 		System.out.println("----detail----product_id:"+product_id);
 		ProductVO productVO = productService.get(Integer.valueOf(product_id));
@@ -100,7 +119,22 @@ public class MainController {
 		}
 		
 		model.addAttribute("prod", productVO);
+		
+		log.info("list()..");		
+		model.addAttribute("rlist", rboardService.rgetList(cri));
+		int total = rboardService.rgetTotalCount();
+		log.info("total" + total);
+		
+		model.addAttribute("pageMaker", new PageVO(cri, total));
+		
+		System.out.println("---------------rboardVO.getReview_id() : " + rboardVO.getReview_id());
+
+		model.addAttribute("qlist", qboardService.qgetList(cri));
+		System.out.println("member+id : " + qboardService.qgetList(cri));
+		model.addAttribute("pageMaker", new PageVO(cri, total));	
+		
 	}
+	
 	@GetMapping("/main/playVideo")
 	public String playVideo(HttpServletRequest request,  Model model) {
 		String product_id = (String) request.getParameter("product_id");
@@ -121,7 +155,11 @@ public class MainController {
 		mav.addObject("pageMaker", new PageVO(cri, total));
 		return mav;
 	}
+<<<<<<< HEAD
 		@GetMapping("/main/cartorder")
+=======
+	@GetMapping("/main/cartorder")
+>>>>>>> origin/dev_ush
 	public String cartorder(HttpServletRequest request,  Model model) {
 		String product_id = (String) request.getParameter("product_id");
 		System.out.println("----cartorder----product_id:"+product_id);
@@ -139,5 +177,8 @@ public class MainController {
 		
 		return "/pay/checkout";
 	}
+<<<<<<< HEAD
 	
+=======
+>>>>>>> origin/dev_ush
 }
