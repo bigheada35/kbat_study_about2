@@ -1,15 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>판매자 마이페이지</title>
 
 <!-- Required CSS files -->
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i"
+	rel="stylesheet">
 <link rel="stylesheet" href="/resources/assets/css/owl.carousel.css">
 <link rel="stylesheet" href="/resources/assets/css/barfiller.css">
 <link rel="stylesheet" href="/resources/assets/css/animate.css">
@@ -19,34 +23,73 @@
 <link rel="stylesheet" href="/resources/assets/css/main.css">
 <link rel="stylesheet" href="/resources/bootstrap.min.css">
 
+<!-- google charts -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+$(document).ready(function() {
+		
+		//var ctx = $("#chart-daily-sales");
+		var labels = [];
+		var daySales = ${dailySales};
+		var lastDay = getLastDay(${year}, ${month});
+		
+		google.load('visualization', '1.1', {packages: ['line']});
+		google.setOnLoadCallback(dailyChart);
+		
+		function dailyChart() {
+			var data = new google.visualization.DataTable();
+			
+			data.addColumn('number', '날짜');
+			data.addColumn('number', '매출액');
+			
+			for(var i = 0; i <= lastDay +1; i++) {
+				data.addRow([i+1, daySales[i]]);
+				console.log(data);
+			}
+			console.log(data);
+			var option = {
+					colors: ['navy']
+			};
+			
+			var chart = new google.charts.Line(document.getElementById('chart-daily-sales'));
+			chart.draw(data, option);
+		}
+		
+		function getLastDay(year, month) {
+			month -= 1;
+			return 32 - new Date(year, month, 32).getDate();
+		}
+		
+	});
+}
+</script>
 </head>
 <body>
-<div style="overflow: hidden;" class="container">
-	
-	<div class="container">
-		<span style="margin-left: 24px; line-height: 100px; margin-top: 20px; margin-bottom: 20px;">
-            <h3>${member.member_name }</h3>
-            <h3 style="position: relative; top: 15px;">${member.member_id }</h3>
-         </span>
-         <span style="margin-left: 22px; position: relative; bottom: 10px;"> <a href="/seller/mypage/myinfo/${member.member_id }">정보수정</a></span> 
-           <span style="margin-left: 300px;" align="center">
-            <h2 style="position: relative; top: 5px;">새 주문</h2>
-            <h4 style="position: relative; top: 15px;">${orderCount } 건</h4>
-         </span>
-         <span style="margin-left: 80px;" align="center">
-            <h2 style="position: relative; top: 5px;">취소</h2>
-            <h4 style="position: relative; top: 15px;">${cancelCount } 건</h4>
-         </span>
-         <span style="margin-left: 80px;" align="center">
-            <h2 style="position: relative; top: 5px;">교환</h2>
-            <h4 style="position: relative; top: 15px;">${exchangeCount } 건</h4>
-         </span>
-         <span style="margin-left: 80px;" align="center">
-            <h2 style="position: relative; top: 5px;">환불</h2>
-            <h4 style="position: relative; top: 15px;">${refundCount } 건</h4>
-         </span>
-      </div>
-		
+	<div style="overflow: hidden;" class="container">
+
+		<div class="container">
+			<span
+				style="margin-left: 24px; line-height: 100px; margin-top: 20px; margin-bottom: 20px;">
+				<h3>${member.member_name }</h3>
+				<h3 style="position: relative; top: 15px;">${member.member_id }</h3>
+			</span> <span style="margin-left: 22px; position: relative; bottom: 10px;">
+				<a href="/seller/mypage/myinfo/${member.member_id }">정보수정</a>
+			</span> <span style="margin-left: 300px;" align="center">
+				<h2 style="position: relative; top: 5px;">새 주문</h2>
+				<h4 style="position: relative; top: 15px;">${orderCount }건</h4>
+			</span> <span style="margin-left: 80px;" align="center">
+				<h2 style="position: relative; top: 5px;">취소</h2>
+				<h4 style="position: relative; top: 15px;">${cancelCount }건</h4>
+			</span> <span style="margin-left: 80px;" align="center">
+				<h2 style="position: relative; top: 5px;">교환</h2>
+				<h4 style="position: relative; top: 15px;">${exchangeCount }건</h4>
+			</span> <span style="margin-left: 80px;" align="center">
+				<h2 style="position: relative; top: 5px;">환불</h2>
+				<h4 style="position: relative; top: 15px;">${refundCount }건</h4>
+			</span>
+		</div>
+
 		<hr>
 
 		<div class="container">
@@ -81,7 +124,9 @@
 					<div class="single-info" style="margin-bottom: 40px">
 						<h3>상품 관리</h3>
 						<hr>
-						<h5><a href="/seller/mypage/${member.member_id}/prdct_register">등록</a></h5>
+						<h5>
+							<a href="/seller/mypage/${member.member_id}/prdct_register">등록</a>
+						</h5>
 						<h5>
 							<a href="/seller/mypage/prdct">조회</a>
 						</h5>
@@ -105,39 +150,42 @@
 					</div>
 				</div>
 
-				<span style="border-left: 1px solid rgba(0, 0, 0, .1); width: 922px;">
-					<h3 style="margin-top: 5px; margin-left: 15px; padding-bottom: 2px;">
+				<span
+					style="border-left: 1px solid rgba(0, 0, 0, .1); width: 922px;">
+					<h3
+						style="margin-top: 5px; margin-left: 15px; padding-bottom: 2px;">
 						<strong style="margin: 10px;">매출조회</strong>
-					</h3><hr />
-					<h4 style="margin-left: 16px;">일간 매출통계</h4>
-					<jsp:include page="${pageContext.request.contextPath }/WEB-INF/views/chart/dailyChart.jsp"></jsp:include>
+					</h3>
 					<hr />
-					<h4 style="margin-left: 16px;">주간 매출통계</h4>
-					<jsp:include page="${pageContext.request.contextPath }/WEB-INF/views/chart/weeklyChart.jsp"></jsp:include>
+					<h4 style="margin-left: 16px;">일간 매출통계</h4> <jsp:include
+						page="${pageContext.request.contextPath }/WEB-INF/views/chart/dailyChart.jsp"></jsp:include>
 					<hr />
-					<h4 style="margin-left: 16px;">월간 매출통계</h4>
-					<jsp:include page="${pageContext.request.contextPath }/WEB-INF/views/chart/monthChart.jsp"></jsp:include>
+					<h4 style="margin-left: 16px;">주간 매출통계</h4> <jsp:include
+						page="${pageContext.request.contextPath }/WEB-INF/views/chart/weeklyChart.jsp"></jsp:include>
 					<hr />
-					<h4 style="margin-left: 16px;">연간 매출통계</h4>
-					<jsp:include page="${pageContext.request.contextPath }/WEB-INF/views/chart/yearChart.jsp"></jsp:include>
+					<h4 style="margin-left: 16px;">월간 매출통계</h4> <jsp:include
+						page="${pageContext.request.contextPath }/WEB-INF/views/chart/monthChart.jsp"></jsp:include>
 					<hr />
-				
+					<h4 style="margin-left: 16px;">연간 매출통계</h4> <jsp:include
+						page="${pageContext.request.contextPath }/WEB-INF/views/chart/yearChart.jsp"></jsp:include>
+					<hr />
+
 				</span>
 			</div>
 		</div>
 
-		
-		<!--Required JS files-->
-	<script src="/resources/assets/js/jquery-2.2.4.min.js"></script>
-	<script src="/resources/assets/js/vendor/popper.min.js"></script>
-	<script src="/resources/assets/js/vendor/bootstrap.min.js"></script>
-	<script src="/resources/assets/js/vendor/owl.carousel.min.js"></script>
-	<script src="/resources/assets/js/vendor/isotope.pkgd.min.js"></script>
-	<script src="/resources/assets/js/vendor/jquery.barfiller.js"></script>
-	<script src="/resources/assets/js/vendor/loopcounter.js"></script>
-	<script src="/resources/assets/js/vendor/slicknav.min.js"></script>
-	<script src="/resources/assets/js/active.js"></script>
 
-</div>
+		<!--Required JS files-->
+		<script src="/resources/assets/js/jquery-2.2.4.min.js"></script>
+		<script src="/resources/assets/js/vendor/popper.min.js"></script>
+		<script src="/resources/assets/js/vendor/bootstrap.min.js"></script>
+		<script src="/resources/assets/js/vendor/owl.carousel.min.js"></script>
+		<script src="/resources/assets/js/vendor/isotope.pkgd.min.js"></script>
+		<script src="/resources/assets/js/vendor/jquery.barfiller.js"></script>
+		<script src="/resources/assets/js/vendor/loopcounter.js"></script>
+		<script src="/resources/assets/js/vendor/slicknav.min.js"></script>
+		<script src="/resources/assets/js/active.js"></script>
+
+	</div>
 </body>
 </html>
