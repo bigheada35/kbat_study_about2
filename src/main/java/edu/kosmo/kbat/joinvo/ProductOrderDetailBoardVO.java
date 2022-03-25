@@ -52,6 +52,11 @@ public class ProductOrderDetailBoardVO {
 	private int product_id;
 	private String product_name; // 상품명
 
+	private int video_id;
+	private String video_name;
+	private int image_id;
+	private String image_name;
+	
 	private MemberVO memberVO; // 회원 VO
 	private ProductVO productVO;
 	private OrderVO orderVO;

@@ -30,7 +30,11 @@ public class ProductOrderVO { // 상품주문
 	
 	private String member_id; // 회원id fk
 
-
+	private int video_id;
+	private String video_name;
+	private int image_id;
+	private String image_name;
+	
 	public OrderDetailVO orderDetailVO;
 	public List<OrderDetailVO> listOrderDetailVO;
 	private RBoardAndMemberVO rboardVO;

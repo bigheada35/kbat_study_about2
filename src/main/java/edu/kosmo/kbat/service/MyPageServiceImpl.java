@@ -87,10 +87,21 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	// 내가 작성한 상품 리뷰
+	
 	@Override
 	public List<ProductOrderDetailBoardVO> getReviewMyList(String member_id) {
 		log.info("getReviewMyList()......");
 		return myPageMapper.reviewMyList(member_id);
 	}
+	
+	@Override
+	public List<ProductOrderDetailBoardVO> getMyReviewList(Criteria cri, String member_id) {
+		log.info("reviewMyList()......");
+		return myPageMapper.getMyReviewList(cri, member_id);
+	}
+	
+	
+
+	
 
 }

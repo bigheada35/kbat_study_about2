@@ -29,7 +29,9 @@ public interface MyPageService {
 	public int getOrderMyTotal(Criteria cri);
 	
 	// 내가 작성한 상품 리뷰
-	
 	public List<ProductOrderDetailBoardVO> getReviewMyList(String member_id);
+
+	public List<ProductOrderDetailBoardVO> getMyReviewList(Criteria cri, String member_id);
+
 
 }

@@ -117,12 +117,12 @@ public class MyPageController {
 	}
 	
 	@GetMapping("/myReview")
-	public ModelAndView reviewList(@AuthenticationPrincipal PrincipalDetails principalDetails, Criteria cri, ProductOrderDetailBoardVO productOrderDetailBoardVO,
+	public ModelAndView reviewList(@AuthenticationPrincipal PrincipalDetails principalDetails, ProductOrderDetailBoardVO productOrderDetailBoardVO,
 			ModelAndView mav, BoardtypeVO boardtypeVO) throws Exception {
-		log.debug("reviewList");
+
 		log.info("reviewList..");
 
-		mav.setViewName("myPage//myReview");
+		mav.setViewName("myPage/myReview");
 
 		// 인증된 회원 정보 받아오기
 		String member_id = principalDetails.getUserID();
@@ -130,11 +130,13 @@ public class MyPageController {
 
 		// 내가 쓴 리뷰 불러오기
 		mav.addObject("reviewMyList", myPageService.getReviewMyList(member_id));
-		/*
-		 * // 내가 쓴 리뷰 내용불러오기 mav.addObject("reviewContent",
-		 * myPageService.reviewContent(member_id));
-		 * 
-		 * // 작성한 상품 리뷰 리스트 받아오기 mav.addObject("prdct_myr_list",
+		
+		log.debug("reviewList ========================"+ myPageService.getReviewMyList(member_id));
+		
+		 // 내가 쓴 리뷰 내용불러오기
+		 //mav.addObject("reviewContent", myPageService.reviewContent(member_id));
+		  
+		 /* // 작성한 상품 리뷰 리스트 받아오기 mav.addObject("prdct_myr_list",
 		 * myPageService.getMyReviewList(cri, member_id)); // 작성한 상품 리뷰 응답여부 받아오기
 		 * mav.addObject("prdctr_cmnt_stat",
 		 * myPageService.getPrdctrCmntStat(bCommentVO.getBoard_id())); // 답변한 댓글 불러오기
