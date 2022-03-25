@@ -15,6 +15,7 @@
 	    <result property="member_address" column="member_address"/>
 	    <result property="member_company" column="member_company"/>
 	    <result property="enabled"	column="enabled"/>
+	    <result property="order_detail_id"	column="order_detail_id"/>
 		<collection property="authList" resultMap="authMap"></collection>
 	</resultMap>
 	
@@ -28,38 +29,25 @@
 	<resultMap id="order" type="edu.kosmo.kbat.vo.OrderVO">
 		<result property="orders_id" column="orders_id" />
 		<result property="orders_price" column="orders_price" />
-		<result property="orders_date" column="orders_date" />
-	
-<result property="member_number" column="member_number" />
+		<result property="orders_date" column="orders_date" />	
+		<result property="member_number" column="member_number" />
 		<result property="member_id" column="member_id" />
-		<collection property="orderDetailVO"
-			resultMap="orderDetail"></collection>
+		<collection property="orderDetailVO" resultMap="orderDetail"></collection>
 		<collection property="rboardVO" resultMap="orderReview"></collection>
 	</resultMap>
 
-	<resultMap id="orderDetail"
-		type="edu.kosmo.kbat.vo.OrderDetailVO">
-
+	<resultMap id="orderDetail" type="edu.kosmo.kbat.vo.OrderDetailVO">
 		<result property="order_detail_id" column="order_detail_id" />
-		<result property="order_detail_count"
-			column="order_detail_count" />
-
+		<result property="order_detail_count" column="order_detail_count" />
 		<result property="orders_id" column="orders_id" />
 		<result property="product_id" column="product_id" />
-
 	</resultMap>
-
-
 
 	<select id="getUser" resultMap="userMap">
 		select *
 		from member, authority
 		where member.member_number = authority.member_number and
-		member.member_id =
-		#{username}
+		member.member_id = #{username}
 	</select>
-
-
-
 
 </mapper>

@@ -27,8 +27,10 @@
     [<a href="<c:url value="/add/addFormAdmin" />">크리에이터 회원가입</a>]
     [<a href="<c:url value="/user/userHome" />">유저 홈</a>]
     [<a href="<c:url value="/admin/adminHome" />">관리자 홈</a>]
-      [<a href="<c:url value="/myPage/myHome" />">마이페이지</a>]
-         [<a href="<c:url value="/statistics/income" />">매출 통계</a>]
+    [<a href="<c:url value="/myPage/myHome" />">마이페이지</a>]
+    [<a href="<c:url value="/statistics/income" />">매출 통계</a>]
+    [<a href="<c:url value="/main/main" />">/main/main</a>]
+    
 </h3>
 <a href="/oauth2/authorization/google">구글 로그인</a>
 <a href="/oauth2/authorization/naver">네이버 로그인</a>

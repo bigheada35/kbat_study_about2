@@ -14,13 +14,22 @@
      <form:form action="rwrite" method="post" enctype="multipart/form-data">                  		
 		<tr>			
 			<!-- <td class="form-inline">  -->
-			    <input type="radio" name="rating_check" id="rating_check" value="★☆☆☆☆" class="radio" /><span class="ml_10">★☆☆☆☆</span>
+			   <!--  <input type="radio" name="rating_check" id="rating_check" value="★☆☆☆☆" class="radio" /><span class="ml_10">★☆☆☆☆</span>
 			    <input type="radio" name="rating_check" id="rating_check" value="★★☆☆☆" class="radio" /><span class="ml_10">★★☆☆☆</span>
 			    <input type="radio" name="rating_check" id="rating_check" value="★★★☆☆" class="radio" /><span class="ml_10">★★★☆☆</span>
 			    <input type="radio" name="rating_check" id="rating_check" value="★★★★☆" class="radio" /><span class="ml_10">★★★★☆</span>
-			    <input type="radio" name="rating_check" id="rating_check" value="★★★★★" class="radio" /><span class="ml_10">★★★★★</span>
+			    <input type="radio" name="rating_check" id="rating_check" value="★★★★★" class="radio" /><span class="ml_10">★★★★★</span> -->
 			<!-- </td>  -->
 		</tr> 
+		<tr>
+			<select name="rating_check" id="rating_check">
+				<option name="rating_check" id="rating_check">★☆☆☆☆</option>
+				<option name="rating_check" id="rating_check">★★☆☆☆</option>
+				<option name="rating_check" id="rating_check">★★★☆☆</option>
+				<option name="rating_check" id="rating_check">★★★★☆</option>
+				<option name="rating_check" id="rating_check">★★★★★</option>				
+			</select>
+		</tr>
 		<br>
 		<tr>				
 				<label for="img"></label> 

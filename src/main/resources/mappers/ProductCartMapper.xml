@@ -2,12 +2,15 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.kosmo.kbat.mapper.ProductMapper">
+<mapper namespace="edu.kosmo.kbat.mapper.ProductCartMapper">
 	
-	<resultMap id="ProductMap" type="edu.kosmo.kbat.vo.ProductVO">
-		<result property="category_id" column="category_id"/>
-		<result property="category_name" column="category_name"/>
-		<result property="category_parent" column="category_parent"/>
+	<resultMap id="ProductMap" type="edu.kosmo.kbat.vo.ProductCartVO">
+		<result property="member_number" column="member_number"/>
+		<result property="member_id" column="member_id"/>
+		<result property="member_name" column="member_name"/>
+		<result property="member_phone" column="member_phone"/>
+		<result property="member_email" column="member_email"/>
+		<result property="member_address" column="member_address"/>
 		<result property="product_id" column="product_id"/>
 		<result property="product_name" column="product_name"/>
 		<result property="product_price" column="product_price"/>
@@ -24,9 +27,12 @@
 	<select id="getList" resultMap = "ProductMap">
 		<![CDATA[ 
 				select 
-					category.category_id as category_id,
-					category.category_name as category_name,
-					category.category_parent as category_parent,
+                    member.member_number as member_number,
+					member.member_id as member_id,
+					member.member_name as member_name,
+					member.member_phone as member_phone,
+                    member.member_email as member_email,
+                    member.member_address as member_address,
 					product.product_id as product_id,
 					product.product_name as product_name,
 					product.product_price as product_price,
@@ -39,16 +45,21 @@
 					image.image_id as image_id,
 					image.image_name as image_name
 				from 
-					category,
+                    cart,
+					member,
 					product,
 					video,
 					image 
 				where 
-					category.category_id = product.category_id 
+					cart.product_id = video.product_id 
 					and 
-					product.product_id = video.product_id 
-					and 
-					product.product_id = image.product_id 
+					cart.product_id = image.product_id
+					and
+                    cart.product_id = product.product_id
+                    and
+                    #{member_number} = member.member_number
+                    and
+                    #{member_number} = cart.member_number
 					order by 
 					product.product_date desc
 		]]>
@@ -58,9 +69,12 @@
 <select id="get" resultMap = "ProductMap">
 		<![CDATA[ 
 				select 
-					category.category_id as category_id,
-					category.category_name as category_name,
-					category.category_parent as category_parent,
+                    member.member_number as member_number,
+					member.member_id as member_id,
+					member.member_name as member_name,
+					member.member_phone as member_phone,
+                    member.member_email as member_email,
+                    member.member_address as member_address,
 					product.product_id as product_id,
 					product.product_name as product_name,
 					product.product_price as product_price,
@@ -73,7 +87,7 @@
 					image.image_id as image_id,
 					image.image_name as image_name
 				from 
-					category,
+					member,
 					product,
 					video,
 					image 
@@ -84,44 +98,45 @@
 					and
                     #{product_id} = product.product_id
                     and
-                    category.category_id = product.category_id                     
+                    #{member_number} = member.member_number                     
 					order by 
 					product.product_date desc
 		]]>
 	</select>	
 
+	<resultMap id="CartMap" type="edu.kosmo.kbat.vo.CartVO">
+		<result property="cart_id" column="cart_id"/>
+		<result property="cart_count" column="cart_count"/>
+		<result property="member_number" column="member_number"/>
+		<result property="product_id" column="product_id"/>
+	</resultMap>
+
+ 	<select id="exist" resultMap ="CartMap">
+   		<![CDATA[
+				select 
+					* 
+				from 
+					cart 
+				where
+					member_number = #{member_number} 
+				and 
+					product_id=#{product_id}
+  		]]>
+    </select> 
+
  	<insert id="write" >
    		<![CDATA[
- 			insert into product(product_id, 
- 					product_name, 
- 					product_price, 
- 					product_enable, 
- 					product_stock, 
- 					product_description, 
- 					category_id) 
- 			values(product_seq.nextval, 
- 					#{product_name}, 
- 					#{product_price}, 
- 					#{product_enable}, 
- 					#{product_stock}, 
- 					#{product_description},
- 					#{category_id})
+ 			insert into cart(
+ 					cart_id,
+ 					cart_count,
+ 					member_number,
+ 					product_id) 
+ 			values(cart_seq.nextval, 
+ 					1, 
+ 					#{member_number}, 
+ 					#{product_id})
   		]]>
     </insert> 
- 
-  	<update id="modify" >
-   		<![CDATA[
-			update 
-			    product
-			set 
-			    product_name = #{product_name},
-			    product_price = #{product_price},
-			    product_date = #{product_date},
-			    product_description = #{product_description}
-			where 
-			    product_id = #{product_id}
-  		]]>
-    </update> 
  
 	 
 </mapper>

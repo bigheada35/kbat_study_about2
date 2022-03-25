@@ -18,7 +18,7 @@
     img{
         width : 80%;
     }
-    
+
     .paging{
 		text-align : center;
 	}
@@ -60,6 +60,7 @@
     <br>
     <div class="info">
         <img src="/resources/assets/img/빙고.png" >
+    
     </div>
     <div class="info">
         <img src="/resources/assets/img/빙고.png" >
@@ -68,6 +69,7 @@
         <img src="/resources/assets/img/빙고.png" >
     </div>
 </div> 		
+
 
 <br>
 	<div class="container">  
@@ -98,10 +100,30 @@
 						</td>
 				        <td style="text-align:center">${board.board_hit}</td>
       				</tr>
+      				<tr>
+				<c:if test="${principal.user.order_detail_id != null}" >
+					<a href="rwrite_view"><button type="button" class="btn btn-dark">후기 작성...</button></a>
+				</c:if>	
+			</tr>  
+      				      				
 				</c:forEach>       
 			</tbody>
 		<br>
 		</table>
+		
+		<div class="n-button">
+			<tr>
+					<a href="rwrite_view"><button type="button" class="btn btn-dark">후기 작성11</button></a>
+			</tr>  
+		</div>
+		
+		<div class="n-button">
+			<tr>
+				<c:if test="${principal.user.order_detail_id != null}" >
+					<a href="rwrite_view"><button type="button" class="btn btn-dark">후기 작성</button></a>
+				</c:if>	
+			</tr>  
+		</div>
 		
 		<div class="paging">		
 			<c:if test="${pageMaker.pre}">
@@ -159,20 +181,21 @@
       		 </tr>
      		 </c:forEach>
       		<tr>
-      		<c:choose>         	
-	                <c:when test="${principal.user.member_number != null}">	
-	                	<td colspan="5"> <a href="qwrite_view" style="text-decoration:none; color:black">글작성</a> </td>           
-<%-- 			            <a href="nmodify_view?board_id=${content_view.board_id}">수정</a> &nbsp;&nbsp;
-			            <a href="ndelete?board_id=${content_view.board_id}">삭제</a> &nbsp;&nbsp;  --%>
-	                </c:when>
-	                <c:otherwise></c:otherwise>
-	            </c:choose>
+      		
          <!-- <td colspan="5"> <a href="qwrite_view">글작성</a> </td> -->
       	</tr>  	
 				     
 			</tbody>
 		<br>
 		</table>
+		<c:choose>         	
+	                <c:when test="${principal.user.order_detail_id != null}">	
+	                	<td colspan="5"><a href="qwrite_view" style="text-decoration:none; color:black"><button type="button" class="btn btn-dark">글작성</button></a> </td>           
+<%-- 			            <a href="nmodify_view?board_id=${content_view.board_id}">수정</a> &nbsp;&nbsp;
+			            <a href="ndelete?board_id=${content_view.board_id}">삭제</a> &nbsp;&nbsp;  --%>
+	                </c:when>
+	                <c:otherwise></c:otherwise>
+	            </c:choose>
 		
 		<div class="paging">		
 			<c:if test="${pageMaker.pre}">
