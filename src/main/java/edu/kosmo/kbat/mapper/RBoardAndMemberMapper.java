@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.BoardtypeVO;
@@ -42,8 +43,14 @@ public interface RBoardAndMemberMapper {
 	void rwrite_review(RBoardAndMemberVO board);
 	void rwrite_rating(RBoardAndMemberVO board);
 	
+	@Select("select * from review r, product p, order_detail o where r.order_detail_id = o.order_detail_id and p.product_id = o.product_id and p.product_id = #{product_id}")
+	RBoardAndMemberVO rread_order_detail(int order_detail_id);
+	
 	//사진첨부
 	void rwrite_img(String attachment_name);
+	
+	//@Insert("insert into ")
+	//void rwrite_product_id(int prouduct_id);
 	
 	
 }

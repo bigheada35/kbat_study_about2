@@ -258,17 +258,22 @@ public class BoardController {
 		log.info("total" + total);
 		
 		model.addAttribute("pageMaker", new PageVO(cri, total));
+		
+		System.out.println("---------------rboardVO.getReview_id() : " + rboardVO.getReview_id());
 
 		return "rboard/list";
 	}
 	
 	@GetMapping("main/rcontent_view")
-	public String rcontent_view(RBoardAndMemberVO boardVO, ReviewVO rboardVO, Model model, UserVO userVO) {
+	public String rcontent_view(RBoardAndMemberVO boardVO, ReviewVO rboardVO, Model model) {
 		log.info("content_view()..");
 		int board_id = boardVO.getBoard_id();
 		int review_id = rboardVO.getReview_id();
+		//int prouduct_id = productVO.getProduct_id();
 		//int order_detail_id = userVO.getOrder_detail_id();
+
 		model.addAttribute("rcontent_view", rboardService.rread(board_id));
+		//model.addAttribute(productVO);
 
 		return "rboard/content_view";
 	}
@@ -276,6 +281,9 @@ public class BoardController {
 	@GetMapping("main/rwrite_view")
 	public String rwrite_view(Model model) {		
 		log.info("write_view()...");
+		//int product_id = productVO.getProduct_id();
+        //model.addAttribute(product_id);
+        //log.info("=================product_id==========" + product_id);
 		return "rboard/write_view";
 		
 	}
@@ -283,6 +291,7 @@ public class BoardController {
 	@PostMapping("main/rwrite")
 	public String rwrite(RBoardAndMemberVO boardVO, ReviewVO rboardVO, Model model, @RequestPart(required = false) MultipartFile file,
 			RedirectAttributes redirectAttributes, UserVO userVO) {		
+
 		log.info("write()...");	
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String user_id = auth.getName();
@@ -301,6 +310,9 @@ public class BoardController {
         
         int review_id = rboardVO.getReview_id();
         model.addAttribute(review_id);
+        
+        //int product_id = productVO.getProduct_id();
+        //model.addAttribute(product_id);
 
         //int order_detail_id = userVO.getOrder_detail_id();
         //model.addAttribute(order_detail_id);
@@ -309,6 +321,7 @@ public class BoardController {
         System.out.println("멤버 아이디1 : " +  uservo.getMember_number());
         System.out.println("멤버 아이디2 : " +  userService.getUser(user_id));
         System.out.println("멤버 아이디3 : " +  boardVO.getReview_id());
+
 		System.out.println("별점 =================== : " + boardVO.getRating_check());
 		//System.out.println("order_detail_id =================== : " + userVO.getOrder_detail_id());
 	
@@ -323,7 +336,7 @@ public class BoardController {
 		
 		boardVO.setAttachment_name(uri1);
 		
-		rboardService.rwrite(boardVO);
+		rboardService.rwrite(boardVO, rboardVO); //rboardVO추가
 		
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");

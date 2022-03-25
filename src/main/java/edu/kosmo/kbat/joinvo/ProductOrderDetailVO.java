@@ -22,10 +22,16 @@ public class ProductOrderDetailVO { // 결제 후 정보 저장
 	private String member_number; // 회원id fk
 	private String member_id; // 회원id fk
 
-	private String product_id; // 상품id fk
+	private int product_id; // 상품id fk
 	private int product_price; // 상품금액
 	private String product_name; // 상품이름 추가
 
 	private OrderDetailVO[] orderDetailVO;
+	
+	private int video_id;
+	private String video_name;
+	private int image_id;
+	private String image_name;
+	
 
 }

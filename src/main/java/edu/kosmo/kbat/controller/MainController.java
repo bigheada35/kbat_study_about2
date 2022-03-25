@@ -161,8 +161,6 @@ public class MainController {
 		String product_id = (String) request.getParameter("product_id");
 		System.out.println("----cartorder----product_id:"+product_id);
 		
-		
-		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String user_id = auth.getName();
         System.out.println("----------------------유저 아이디 : " + user_id);	
@@ -215,6 +213,7 @@ public class MainController {
     		model.addAttribute("products", productCartVO);
         }
  		return "/user/cartOrder";
+
 	}
 	@GetMapping("/main/checkout")
 	public String checkout(HttpServletRequest request,  Model model) {
@@ -364,4 +363,5 @@ public class MainController {
 	}
 	
 	
+
 }

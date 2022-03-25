@@ -10,6 +10,7 @@ import edu.kosmo.kbat.mapper.ReviewMapper;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
+import edu.kosmo.kbat.vo.ProductVO;
 import edu.kosmo.kbat.vo.QBoardAndMemberVO;
 import edu.kosmo.kbat.vo.RBoardAndMemberVO;
 import edu.kosmo.kbat.vo.ReviewVO;
@@ -25,6 +26,7 @@ public class RBoardServiceImpl implements RBoardService{
 	@Autowired
 	private ReviewMapper reviewMapper;
 	
+	
 	@Override
 	public List<RBoardAndMemberVO> rgetList() {
 		log.info("getList()..");
@@ -33,16 +35,25 @@ public class RBoardServiceImpl implements RBoardService{
 
 
 	@Override
-	public void rwrite(RBoardAndMemberVO board) {
+	public void rwrite(RBoardAndMemberVO board, ReviewVO reviewVO) {
 		log.info("write()..");
 		
 		String attachment_name = board.getAttachment_name();
+		int order_detail_id1 = reviewVO.getOrder_detail_id();
+		int order_detail_id2 = board.getOrder_detail_id();
 		System.out.println("@@@@@@@@@@@@@@@@@@@@@" + attachment_name);
 		
+		boardAndMemberMapper.rgetList();
+		boardAndMemberMapper.rread_order_detail(order_detail_id1);
+		System.out.println("=============order_detail_id1 : " + order_detail_id1);
+		reviewVO.getOrder_detail_id();
+		System.out.println("=============order_detail_id2 : " + order_detail_id1);
+		board.getOrder_detail_id();
+		System.out.println("=============order_detail_id3 : " + order_detail_id2);
 		boardAndMemberMapper.rwrite(board);
 		boardAndMemberMapper.rwrite_review(board);
 		boardAndMemberMapper.rwrite_rating(board);
-		
+				
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$" + board.getAttachment_name());
 		
 		boardAndMemberMapper.rwrite_img(attachment_name);
@@ -99,7 +110,6 @@ public class RBoardServiceImpl implements RBoardService{
 		return boardAndMemberMapper.rread(board_id);
 	}
 
-	
-	
+
 	
 }

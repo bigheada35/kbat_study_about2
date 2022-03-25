@@ -20,6 +20,7 @@
 		<result property="review_id" column="review_id" />
 		<result property="attachment_id" column="attachment_id" />
 		<result property="attachment_name" column="attachment_name" />
+		<result property="product_id" column="product_id" />
 		<collection property="boardtypeList" resultMap="boardtypeMap"></collection>
 	</resultMap>
 
@@ -37,6 +38,22 @@
 
    	<select id="rgetList" resultMap = "rBoardMap">  				
    		<![CDATA[ 
+   			select * from boardtype,board,member, rating, review, order_detail, product, orders
+			where board.boardtype_id = boardtype.boardtype_id 
+			and board.boardtype_id = 2 
+			and member.member_number =board.member_number 
+			and review.board_id = board.board_id
+			and review.review_id = rating.review_id
+            and member.member_number = orders.member_number
+            and review.review_id = rating.review_id
+            and product.product_id = order_detail.product_id
+            and orders.orders_id = order_detail.orders_id 
+			order by board.board_id
+   		]]>  		
+   	</select> 
+   	
+   	<!-- <select id="rgetList" resultMap = "rBoardMap">  				
+   		<![CDATA[ 
    			select * from boardtype,board,member, rating, review
 			where board.boardtype_id = boardtype.boardtype_id 
 			and board.boardtype_id = 2 
@@ -45,7 +62,7 @@
 			and review.review_id = rating.review_id
 			order by board.board_id
    		]]>  		
-   	</select> 
+   	</select>  -->
    	
 	<select id="rgetboardtypeList" resultMap = "rBoardMap">
  		<![CDATA[ 
@@ -73,7 +90,7 @@
    	
    	<insert id="rwrite" >
    		<![CDATA[
-     		insert into board (board_id, member_number, board_title, board_content, boardtype_id) 
+     		insert into board (board_id, member_number, board_title, board_content, boardtype_id ) 
       		values (board_seq.nextval, #{member_number}, #{board_title}, #{board_content}, '2') 
   		]]>
     </insert>  
@@ -81,7 +98,7 @@
     <insert id="rwrite_review" >
    		<![CDATA[
      		insert into review(board_id, review_id, order_detail_id)
-			values(board_seq.currval, review_seq.nextval, '1')
+			values(board_seq.currval, review_seq.nextval, #{order_detail_id})
   		]]>
     </insert>  
     
@@ -153,14 +170,18 @@
 													board.board_date,
 													board.board_hit,
 													rating.rating_check,
-													review.review_id									
-												from boardtype, board, member, rating, review
+													review.review_id,	
+													product.product_id								
+												from boardtype, board, member, rating, review, order_detail, product, orders
 												where 
 													board.boardtype_id = boardtype.boardtype_id 
 													and board.boardtype_id = 2 
 													and member.member_number =board.member_number 
 													and review.board_id = board.board_id
 													and review.review_id = rating.review_id
+													and member.member_number = orders.member_number
+													and product.product_id = order_detail.product_id
+                                                    and orders.orders_id = order_detail.orders_id
 												order by board_id
 												
              ) A WHERE ROWNUM <= #{pageNum} * #{amount}

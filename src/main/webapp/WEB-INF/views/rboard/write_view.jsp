@@ -11,7 +11,9 @@
 </head>
 <body>
 <table width="800" cellpadding="0" cellspacing="0" border="1">	
-     <form:form action="rwrite" method="post" enctype="multipart/form-data">                  		
+     <form:form action="rwrite" method="post" enctype="multipart/form-data"> 
+		<%-- <input type="hidden" name="product_id" value="${rwrite_view.product_id}"> --%>
+     	<%-- <input type="hidden" name="order_detail_id" value="${rwrite_view.order_detail_id}">    --%>           		
 		<tr>			
 			<!-- <td class="form-inline">  -->
 			   <!--  <input type="radio" name="rating_check" id="rating_check" value="★☆☆☆☆" class="radio" /><span class="ml_10">★☆☆☆☆</span>

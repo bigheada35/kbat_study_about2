@@ -5,8 +5,8 @@ import java.util.List;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
-import edu.kosmo.kbat.vo.QBoardAndMemberVO;
 import edu.kosmo.kbat.vo.RBoardAndMemberVO;
+import edu.kosmo.kbat.vo.ReviewVO;
 
 
 public interface RBoardService {
@@ -14,7 +14,7 @@ public interface RBoardService {
 	List<RBoardAndMemberVO> rgetList();
 	RBoardAndMemberVO rread(int board_id); 
 	//RBoardAndMemberVO rread(int board_id, int review_id); 
-	void rwrite(RBoardAndMemberVO board);
+	//void rwrite(RBoardAndMemberVO board);
 	void rmodify(RBoardAndMemberVO board);
 	void rhit(int board_id);
 	void rdelete(int board_id);
@@ -24,5 +24,6 @@ public interface RBoardService {
 	public List<RBoardAndMemberVO> rgetList(Criteria criteria);
 	
 	List<BoardtypeVO> qgetboardtypeList();
+	void rwrite(RBoardAndMemberVO board, ReviewVO reviewVO); //reviewvo추가
 
 }

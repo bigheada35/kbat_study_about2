@@ -36,4 +36,6 @@ public class RBoardAndMemberVO {
 		
 	private List<BoardtypeVO> boardtypeList;
 	
+	private int product_id;
+	
 }

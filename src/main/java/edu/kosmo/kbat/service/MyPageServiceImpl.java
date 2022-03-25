@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO;
 import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
 import edu.kosmo.kbat.mapper.MyPageMapper;
 import edu.kosmo.kbat.page.Criteria;
@@ -86,10 +87,21 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	// 내가 작성한 상품 리뷰
+	
 	@Override
-	public List<ProductOrderDetailOrderVO> getReviewMyList(String member_id) {
+	public List<ProductOrderDetailBoardVO> getReviewMyList(String member_id) {
 		log.info("getReviewMyList()......");
 		return myPageMapper.reviewMyList(member_id);
 	}
+	
+	@Override
+	public List<ProductOrderDetailBoardVO> getMyReviewList(Criteria cri, String member_id) {
+		log.info("reviewMyList()......");
+		return myPageMapper.getMyReviewList(cri, member_id);
+	}
+	
+	
+
+	
 
 }
