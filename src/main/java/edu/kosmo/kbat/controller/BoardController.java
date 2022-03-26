@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
@@ -155,7 +156,7 @@ public class BoardController {
 	}
 
 	@PostMapping("qwrite")
-	public String qwrite(QBoardAndMemberVO boardVO, Model model, ProductOrderDetailOrderVO productOrderDetailOrderVO, HttpServletRequest request) {
+	public String qwrite(QBoardAndMemberVO boardVO, Model model, HttpServletRequest request) {
 		
 		//int proudct_id = Integer.parseInt(request.getParameter("product_id"));
 		//int order_detail_id = Integer.parseInt(request.getParameter("order_detail_id"));
@@ -214,10 +215,10 @@ public class BoardController {
 	}
 
 	@GetMapping("qreply_view")
-	public String qreply_view(ProductOrderDetailOrderVO productOrderDetailOrderVO, Model model) {
+	public String qreply_view(ProductOrderDetailOrderVO productOrderDetailOrderVO, QBoardAndMemberVO boardVO, Model model) {
 		log.info("reply_view()...");
-		model.addAttribute("qwrite_view", productOrderDetailOrderVO);
-		//System.out.println("---111--------group : " + boardVO.getReply_group());
+		model.addAttribute("qreply_view", boardVO);
+		System.out.println("---111--------group : " + boardVO.getReply_group());
 		//model.addAttribute("qreply_view", boardVO);
 		//System.out.println("---222--------group : " + boardVO.getReply_group());
 		return "qboard/reply_view";
@@ -255,10 +256,7 @@ public class BoardController {
 		model.addAttribute("rlist", rboardService.rgetListWithPaging(productOrderDetailOrderVO.getProduct_id()));
 		int total = rboardService.rgetTotalCount();
 		log.info("total" + total);
-		model.addAttribute("pageMaker", new PageVO(cri, total));
-		
-		
-		
+		model.addAttribute("pageMaker", new PageVO(cri, total));		
 		return "rboard/list";
 	}
 
@@ -362,8 +360,10 @@ public class BoardController {
 
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
-*/
-		return "redirect:rlist";
+
+		System.out.println("-------Attachment_name----" + boardVO.getAttachment_name());
+		*/
+		return "redirect:main";
 	}
 
 	
@@ -371,7 +371,7 @@ public class BoardController {
 	public String rmodify(RBoardAndMemberVO boardVO, Model model) {
 		log.info("modify()...");
 		rboardService.rmodify(boardVO);
-		return "redirect:rlist";
+		return "redirect:main";
 	}
 
 	@GetMapping("main/rmodify_view")
@@ -388,7 +388,7 @@ public class BoardController {
 		int review_id = rboardVO.getReview_id();
 		reviewService.rdelete(review_id);
 		rboardService.rdelete(boardVO.getBoard_id());
-		return "redirect:rlist";
+		return "redirect:main";
 	}
 
 }

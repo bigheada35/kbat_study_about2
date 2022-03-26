@@ -70,7 +70,7 @@
    	
    	<insert id="qwrite" >
    		<![CDATA[
-     		insert into board (board_id, member_number, board_title, board_content, boardtype_id, board_enable) 
+     		insert into board (board_id, member_number, board_title, board_content, boardtype_id, board_enable ) 
       		values (board_seq.nextval, #{member_number}, #{board_title}, #{board_content}, 1, #{board_enable}) 
   		]]>
     </insert> 
@@ -81,6 +81,8 @@
      		values(board_seq.currval, board_seq.currval, reply_seq.nextval, '0', '0')
   		]]>
     </insert>  
+    
+    
    	
     <!-- <insert id="write" >
    		<![CDATA[

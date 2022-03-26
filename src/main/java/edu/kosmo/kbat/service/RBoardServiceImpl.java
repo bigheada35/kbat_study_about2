@@ -63,7 +63,7 @@ public class RBoardServiceImpl implements RBoardService{
 		boardAndMemberMapper.rwrite_review(board);
 		boardAndMemberMapper.rwrite_rating(board);
 				
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$" + board.getAttachment_name());
+		//System.out.println("$$$$$$$$$$$$$$$$$$$$$$$" + board.getAttachment_name());
 		
 		//boardAndMemberMapper.rwrite_img(attachment_name);
 

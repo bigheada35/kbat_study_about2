@@ -121,12 +121,12 @@
     </insert>  
     
     
-	<!--  <insert id="rwrite_img" >
+	<!-- <insert id="rwrite_img" >
    		<![CDATA[
      		insert into attachment(board_id, attachment_id, attachment_name)
 			values (board_seq.currval, attachment_seq.nextval, #{attachment_name})
   		]]>
-    </insert> -->
+    </insert>  -->
   	 
     <!-- <insert id="write" >
    		<![CDATA[

@@ -32,7 +32,7 @@
       <tr>
          <td>${board.board_id}</td>       
          <td>
-            <a href="rcontent_view?board_id=${board.board_id}&review_id=${board.review_id}">${board.board_title}</a></td>
+            <a href="rcontent_view?board_id=${board.board_id}&review_id=${board.review_id}&product_id=${board.product_id}">${board.board_title}</a></td>
          <%-- <td>${board.boardtype_id}</td>  --%>
          <td>${board.member_id}</td>
          <td>${board.board_date}</td>

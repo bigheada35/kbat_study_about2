@@ -16,7 +16,7 @@
 </head>
 <style>
     img{
-        width : 80%;
+        width : 100%;
     }
     
     .paging{
@@ -52,29 +52,20 @@
     		</div>
     	</div>
     </section>
-    <br><br>
-    <div class="detail" style="text-align: center;">
-<!--         <p style="color:gray">상세정보 / 후기게시판 / 문의게시판<p>
-        <hr> -->
-    </div>    
+    
     <br>
     <div class="info">
-        <img src="/resources/img/${prod.product_name}.png" >
+        <img src="/resources/img/${prod.product_name}-1.png" >
     </div>
     <div class="info">
-        <img src="/resources/assets/img/빙고.png" >
-    </div>
-    <div class="info">
-        <img src="/resources/assets/img/빙고.png" >
+        <img src="/resources/img/${prod.product_name}-2.png" >
     </div>
 </div> 		
 
-<br>
+<br><br><br>
 	<div class="container">  
 		<table class="table">  
-			<h4>후기 게시판</h4> 
-			
-			  
+			<h4>후기 게시판</h4> 			  
 			<thead> 
 				<tr>
 				<th scope="col">번호</th>
@@ -88,7 +79,8 @@
 			<tbody>	
 				<c:forEach items="${rlist}" var="board">
 					<input type="hidden" name="rating_check" value="${board.rating_check}">
-	      			<input type="hidden" name="review_id" value="${board.review_id}">	      
+	      			<input type="hidden" name="review_id" value="${board.review_id}">	
+	      			<input type="hidden" name="review_id" value="${board.product_id}">	      
 					<tr>
 						<td>${board.board_id}</td>
 						<td>
@@ -116,10 +108,10 @@
 				<a href="rlist${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
 			</c:if> 
 		</div>		
-	<div>
+	<div><br><br><br>
 
 	
-<br>
+<%-- <br>
 	<div class="container">  
 		<table class="table">  
 			<h4>문의 게시판</h4>   
@@ -171,7 +163,7 @@
 			<c:when test="${principal.user.member_number != null}">	
 				<td colspan="5"> <a href="qwrite_view" style="text-decoration:none; color:black"><button type="button" class="btn btn-dark">글작성</button></a> </td>           
 			</c:when>
-<%-- 			<c:otherwise></c:otherwise> --%>
+			<c:otherwise></c:otherwise>
 	    </c:choose>
 	
 		<div class="paging">		
@@ -187,7 +179,7 @@
 		</div>		
 	<div>
 	
-	<br><br><br>	
+	<br><br><br>	 --%>
 
 </body>
 </html>
