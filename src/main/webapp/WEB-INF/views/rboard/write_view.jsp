@@ -11,9 +11,9 @@
 </head>
 <body>
 <table width="800" cellpadding="0" cellspacing="0" border="1">	
-     <form:form action="rwrite" method="post" enctype="multipart/form-data"> 
-		<%-- <input type="hidden" name="product_id" value="${rwrite_view.product_id}"> --%>
-     	<%-- <input type="hidden" name="order_detail_id" value="${rwrite_view.order_detail_id}">    --%>           		
+     <form:form action="/main/rwrite" method="post" enctype="multipart/form-data"> 
+		<input type="hidden" name="product_id" value="${rwrite_view.product_id}"> 
+     	 <input type="hidden" name="order_detail_id" value="${rwrite_view.order_detail_id}">   		
 		<tr>			
 			<!-- <td class="form-inline">  -->
 			   <!--  <input type="radio" name="rating_check" id="rating_check" value="★☆☆☆☆" class="radio" /><span class="ml_10">★☆☆☆☆</span>
@@ -33,11 +33,7 @@
 			</select>
 		</tr>
 		<br>
-		<tr>				
-				<label for="img"></label> 
-				<img src="<c:url value="${rwrite_view.attachment_name}"/>" />
-				<input type="file" name="file" >			
-		 </tr>
+
          <tr>
             <td> 제목 </td>
             <td> <input type="text" name="board_title" size = "50"> </td>
@@ -46,7 +42,7 @@
             <td> 내용 </td>
             <td> <textarea name="board_content" rows="10" ></textarea> </td>
          </tr>
-
+ 
          <tr>             
             <td colspan="2"> <input type="submit" value="입력"> &nbsp;&nbsp; 
             <a href="rlist">목록보기</a></td>

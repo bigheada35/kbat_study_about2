@@ -36,6 +36,7 @@ public interface RBoardAndMemberMapper {
 	//페이징
 	int rgetTotalCount();
 	List<RBoardAndMemberVO> rgetListWithPaging(Criteria criteria);
+	List<RBoardAndMemberVO> rgetListWithPaging(int proudct_id);
 	
 	List<BoardtypeVO> rgetboardtypeList();
 	
@@ -47,7 +48,7 @@ public interface RBoardAndMemberMapper {
 	RBoardAndMemberVO rread_order_detail(int order_detail_id);
 	
 	//사진첨부
-	void rwrite_img(String attachment_name);
+	//void rwrite_img(String attachment_name);
 	
 	//@Insert("insert into ")
 	//void rwrite_product_id(int prouduct_id);

@@ -29,7 +29,9 @@ public interface QBoardService {
 
 	//페이징
 	int qgetTotalCount();
-	public List<QBoardAndMemberVO> qgetList(Criteria criteria);
+	//public List<QBoardAndMemberVO> qgetList(Criteria criteria);
+	//List<QBoardAndMemberVO> qgetListWithPaging(int proudct_id);
+	List<QBoardAndMemberVO> qgetListWithPaging(Criteria criteria);
 	
 	List<BoardtypeVO> qgetboardtypeList();
 

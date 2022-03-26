@@ -27,7 +27,8 @@
         <input type="hidden" name="board_title" value="${rcontent_view.board_title}">
         <input type="hidden" name="attachment_name" value="${rcontent_view.attachment_name}">
         <input type="hidden" name="review_id" value="${rcontent_view.review_id}">
-        <input type="hidden" name="product_id" value="${rcontent_view.product_id}">   
+        <input type="hidden" name="product_id" value="${rcontent_view.product_id}">  
+        <input type="hidden" name="order_detail_id" value="${rcontent_view.order_detail_id}">   
         
          <tr>
             <td> 번호 </td>
@@ -45,10 +46,10 @@
             <td> 제목 </td>
             <td> ${rcontent_view.board_title} </td>
          </tr>   
-         </tr>
+         <!--  <tr>
          	<td> 사진 </td>
          	<td><img src="${rcontent_view.attachment_name}" class="oriImg"></td>         	
-         <tr>      
+         </tr>    -->  
          <tr>
             <td> 내용 </td>
             <td> <textarea rows="10" name="board_content" >${rcontent_view.board_content}</textarea></td>

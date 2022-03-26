@@ -384,7 +384,7 @@
 										
 										</td>
 										<td>
-											<a href="/main/rwrite_view">구매후기</a>
+											<a href="/main/rwrite_view?product_id=${order.product_id}&order_detail_id=${order.order_detail_id}">구매후기</a>
 										</td>
 									</tr>
 								</c:forEach>

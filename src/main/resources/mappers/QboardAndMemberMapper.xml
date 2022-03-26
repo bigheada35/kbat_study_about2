@@ -19,6 +19,7 @@
 		<result property="member_id" column="member_id" />
 		<result property="member_name" column="member_name" />
 		<result property="board_enable" column="board_enable" />
+		<result property="product_id" column="product_id" />
 		<collection property="boardtypeList" resultMap="boardtypeMap"></collection>
 	</resultMap>
 
@@ -153,7 +154,7 @@
 													reply.reply_id,
 													reply.reply_group,													
 													reply.reply_step,
-													reply.reply_indent													
+													reply.reply_indent												
 												from boardtype, board, member, reply
 												where 
 													board.boardtype_id = boardtype.boardtype_id 

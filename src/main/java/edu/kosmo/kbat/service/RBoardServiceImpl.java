@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import edu.kosmo.kbat.mapper.MyPageMapper;
 import edu.kosmo.kbat.mapper.QBoardAndMemberMapper;
 import edu.kosmo.kbat.mapper.RBoardAndMemberMapper;
 import edu.kosmo.kbat.mapper.ReviewMapper;
@@ -26,6 +28,9 @@ public class RBoardServiceImpl implements RBoardService{
 	@Autowired
 	private ReviewMapper reviewMapper;
 	
+	@Autowired
+	private MyPageMapper myPageMapper;
+	
 	
 	@Override
 	public List<RBoardAndMemberVO> rgetList() {
@@ -38,27 +43,31 @@ public class RBoardServiceImpl implements RBoardService{
 	public void rwrite(RBoardAndMemberVO board, ReviewVO reviewVO) {
 		log.info("write()..");
 		
-		String attachment_name = board.getAttachment_name();
-		int order_detail_id1 = reviewVO.getOrder_detail_id();
-		int order_detail_id2 = board.getOrder_detail_id();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@" + attachment_name);
+		//String attachment_name = board.getAttachment_name();
+		//int order_detail_id1 = reviewVO.getOrder_detail_id();
+		//int order_detail_id2 = board.getOrder_detail_id();
+		
+		//System.out.println("@@@@@@@@@@@@@@@@@@@@@" + attachment_name);
 		
 		boardAndMemberMapper.rgetList();
-		boardAndMemberMapper.rread_order_detail(order_detail_id1);
-		System.out.println("=============order_detail_id1 : " + order_detail_id1);
-		reviewVO.getOrder_detail_id();
-		System.out.println("=============order_detail_id2 : " + order_detail_id1);
-		board.getOrder_detail_id();
-		System.out.println("=============order_detail_id3 : " + order_detail_id2);
+		
+		myPageMapper.getOrderMyList(board.getMember_id());
+		
+		//boardAndMemberMapper.rread_order_detail(order_detail_id1);
+		//System.out.println("=============order_detail_id1 : " + order_detail_id1);
+		//reviewVO.getOrder_detail_id();
+		//System.out.println("=============order_detail_id2 : " + order_detail_id1);
+		//board.getOrder_detail_id();
+		//System.out.println("=============order_detail_id3 : " + order_detail_id2);
 		boardAndMemberMapper.rwrite(board);
 		boardAndMemberMapper.rwrite_review(board);
 		boardAndMemberMapper.rwrite_rating(board);
 				
 		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$" + board.getAttachment_name());
 		
-		boardAndMemberMapper.rwrite_img(attachment_name);
+		//boardAndMemberMapper.rwrite_img(attachment_name);
 
-		System.out.println("=====================" + attachment_name);
+		//System.out.println("=====================" + attachment_name);
 	}
 
 	@Override
@@ -97,6 +106,14 @@ public class RBoardServiceImpl implements RBoardService{
 		System.out.println("~~~~~~~~~~~~~~~" + boardAndMemberMapper.rgetList());
 		return boardAndMemberMapper.rgetListWithPaging(criteria);
 	}
+	
+	@Override
+	public List<RBoardAndMemberVO> rgetListWithPaging(int proudct_id) {
+		log.info("getList()2 ..");
+		System.out.println("~~~~~~~~~~~~~~~" + boardAndMemberMapper.rgetList());
+		return boardAndMemberMapper.rgetListWithPaging(proudct_id);
+	}
+
 
 	@Override
 	public List<BoardtypeVO> qgetboardtypeList() {
@@ -111,5 +128,6 @@ public class RBoardServiceImpl implements RBoardService{
 	}
 
 
+	
 	
 }

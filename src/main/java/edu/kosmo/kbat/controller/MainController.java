@@ -122,7 +122,8 @@ public class MainController {
 		model.addAttribute("prod", productVO);
 		
 		log.info("list()..");		
-		model.addAttribute("rlist", rboardService.rgetList(cri));
+		//model.addAttribute("rlist", rboardService.rgetList(cri));
+		model.addAttribute("rlist", rboardService.rgetListWithPaging(Integer.valueOf(product_id)));
 		int total = rboardService.rgetTotalCount();
 		log.info("total" + total);
 		
@@ -130,8 +131,9 @@ public class MainController {
 		
 		System.out.println("---------------rboardVO.getReview_id() : " + rboardVO.getReview_id());
 
-		model.addAttribute("qlist", qboardService.qgetList(cri));
-		System.out.println("member+id : " + qboardService.qgetList(cri));
+		//model.addAttribute("qlist", qboardService.qgetList(cri));
+		//model.addAttribute("qlist", qboardService.qgetListWithPaging(Integer.valueOf(product_id)));
+		//System.out.println("member+id : " + qboardService.qgetList(cri));
 		model.addAttribute("pageMaker", new PageVO(cri, total));	
 		
 	}

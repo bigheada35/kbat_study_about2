@@ -59,7 +59,7 @@
     </div>    
     <br>
     <div class="info">
-        <img src="/resources/assets/img/빙고.png" >
+        <img src="/resources/img/${prod.product_name}.png" >
     </div>
     <div class="info">
         <img src="/resources/assets/img/빙고.png" >
@@ -72,7 +72,9 @@
 <br>
 	<div class="container">  
 		<table class="table">  
-			<h4>후기 게시판</h4>   
+			<h4>후기 게시판</h4> 
+			
+			  
 			<thead> 
 				<tr>
 				<th scope="col">번호</th>
@@ -102,20 +104,6 @@
 			</tbody>
 		<br>
 		</table>
-
-		<div class="n-button">
-			<tr>
-					<a href="rwrite_view"><button type="button" class="btn btn-dark">후기 작성11</button></a>
-			</tr>  
-		</div>
-		
-		<div class="n-button">
-			<tr>
-				<c:if test="${principal.user.order_detail_id != null}" >
-					<a href="rwrite_view"><button type="button" class="btn btn-dark">후기 작성</button></a>
-				</c:if>	
-			</tr>  
-		</div>
 
 		<div class="paging">		
 			<c:if test="${pageMaker.pre}">

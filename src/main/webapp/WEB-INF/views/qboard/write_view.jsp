@@ -20,7 +20,7 @@
 				  	
 	<table width="500" cellpadding="0" cellspacing="0" border="1">
 
-		<form action="qwrite" method="post">
+		<form action="qwrite" method="post"> 
 		<tr>
 			<td class="form-inline">
 			    <input type="radio" name="board_enable" id="board_enable" value="Y" class="radio" /><span class="ml_10">공개</span>

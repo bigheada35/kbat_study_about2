@@ -8,6 +8,7 @@ import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
 import edu.kosmo.kbat.vo.QBoardAndMemberVO;
+import edu.kosmo.kbat.vo.RBoardAndMemberVO;
 
 
 @Mapper
@@ -33,6 +34,7 @@ public interface QBoardAndMemberMapper {
 	//페이징
 	int qgetTotalCount();
 	List<QBoardAndMemberVO> qgetListWithPaging(Criteria criteria);
+	//List<QBoardAndMemberVO> qgetListWithPaging(int proudct_id);
 	
 	List<BoardtypeVO> qgetboardtypeList();
 	

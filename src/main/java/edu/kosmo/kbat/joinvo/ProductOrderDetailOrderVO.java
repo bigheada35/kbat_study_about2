@@ -39,5 +39,8 @@ public class ProductOrderDetailOrderVO { // 상품, 상품카테고리, 주문, 
 	
 	private int image_id;
 	private String image_name;
+	
+	private String attachment_name;
+
 
 }

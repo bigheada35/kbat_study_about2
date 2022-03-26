@@ -6,8 +6,7 @@
 <mapper namespace="edu.kosmo.kbat.mapper.ProductOrderMapper">
 
 	<!-- 주문내역 리스트 가져오기 -->
-	<select id="getOrderList"
-		resultType="edu.kosmo.kbat.vo.ProductOrderVO">
+	<select id="getOrderList" resultType="edu.kosmo.kbat.vo.ProductOrderVO">
 	<![CDATA[
 	SELECT 
 		o.orders_id, 

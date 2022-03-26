@@ -11,6 +11,7 @@ import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
 import edu.kosmo.kbat.vo.QBoardAndMemberVO;
+import edu.kosmo.kbat.vo.RBoardAndMemberVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -66,13 +67,20 @@ public class QBoardServiceImpl implements QBoardService{
 		log.info("delete()...");	
 		boardAndMemberMapper.qdelete(board_id);		
 	}
-
+/*
 	@Override
 	public List<QBoardAndMemberVO> qgetList(Criteria criteria) {
 		log.info("getList() ..");
 		List<QBoardAndMemberVO> lst = boardAndMemberMapper.qgetListWithPaging(criteria);		
 		return lst;		
-	}
+	}*/
+	/*
+	@Override
+	public List<QBoardAndMemberVO> qgetListWithPaging(int proudct_id) {
+		log.info("getList()2 ..");
+		System.out.println("~~~~~~~~~~~~~~~" + boardAndMemberMapper.qgetListWithPaging(proudct_id));
+		return boardAndMemberMapper.qgetListWithPaging(proudct_id);
+	}*/
 
 	@Override
 	public List<BoardtypeVO> qgetboardtypeList() {		
@@ -93,6 +101,13 @@ public class QBoardServiceImpl implements QBoardService{
 		log.info("getTotal() ..");
 		return boardAndMemberMapper.qgetTotalCount();
 	}
+
+	@Override
+	public List<QBoardAndMemberVO> qgetListWithPaging(Criteria criteria) {		
+		return boardAndMemberMapper.qgetListWithPaging(criteria);
+	}
+
+	
 
 
 }
