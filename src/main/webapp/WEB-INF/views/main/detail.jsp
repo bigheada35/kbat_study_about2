@@ -55,17 +55,28 @@
     
     <br>
     <div class="info">
+<<<<<<< HEAD
         <img src="/resources/img/${prod.product_name}-1.png" >
+=======
+        <img src="/resources/assets/img/빙고.png" >
+>>>>>>> origin/dev_ssj
     </div>
     <div class="info">
         <img src="/resources/img/${prod.product_name}-2.png" >
     </div>
 </div> 		
 
+<<<<<<< HEAD
 <br><br><br>
 	<div class="container">  
 		<table class="table">  
 			<h4>후기 게시판</h4> 			  
+=======
+<br>
+	<div class="container">  
+		<table class="table">  
+			<h4>후기 게시판</h4>   
+>>>>>>> origin/dev_ssj
 			<thead> 
 				<tr>
 				<th scope="col">번호</th>
@@ -79,8 +90,12 @@
 			<tbody>	
 				<c:forEach items="${rlist}" var="board">
 					<input type="hidden" name="rating_check" value="${board.rating_check}">
+<<<<<<< HEAD
 	      			<input type="hidden" name="review_id" value="${board.review_id}">	
 	      			<input type="hidden" name="review_id" value="${board.product_id}">	      
+=======
+	      			<input type="hidden" name="review_id" value="${board.review_id}">	      
+>>>>>>> origin/dev_ssj
 					<tr>
 						<td>${board.board_id}</td>
 						<td>
@@ -93,6 +108,7 @@
 				        <td style="text-align:center">${board.board_hit}</td>
       				</tr>
 				</c:forEach>       
+<<<<<<< HEAD
 			</tbody>
 		<br>
 		</table>
@@ -155,6 +171,8 @@
       		<tr>
 
       	</tr>  					     
+=======
+>>>>>>> origin/dev_ssj
 			</tbody>
 		<br>
 		</table>

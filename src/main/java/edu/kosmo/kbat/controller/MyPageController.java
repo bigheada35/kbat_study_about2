@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
+import edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.page.PageVO;
 import edu.kosmo.kbat.principal.PrincipalDetails;
@@ -117,7 +117,11 @@ public class MyPageController {
 	}
 	
 	@GetMapping("/myReview")
+<<<<<<< HEAD
 	public ModelAndView reviewList(@AuthenticationPrincipal PrincipalDetails principalDetails, Criteria cri, ProductOrderDetailOrderVO productOrderDetailBoardVO,
+=======
+	public ModelAndView reviewList(@AuthenticationPrincipal PrincipalDetails principalDetails, ProductOrderDetailBoardVO productOrderDetailBoardVO,
+>>>>>>> origin/dev_ssj
 			ModelAndView mav, BoardtypeVO boardtypeVO) throws Exception {
 
 		log.info("reviewList..");
