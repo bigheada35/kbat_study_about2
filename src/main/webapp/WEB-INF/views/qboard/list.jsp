@@ -17,11 +17,24 @@
 	img{
 		width : 1.2em
 	}
+<<<<<<< HEAD
 	
 	.paging{
 		text-align : center;
 	}
 	
+=======
+
+	.btn{
+		background-color:#FFA500; 
+		border-color:#FFA500;
+	}
+		
+	.paging{
+		text-align : center;
+	}
+		
+>>>>>>> origin/dev_ush
 	.n-button{
 		position : 
 	}

@@ -107,7 +107,7 @@ public class MainController {
 		ProductVO productVO = productService.get(Integer.valueOf(product_id));
 		
 		//상품 이름과 설명의 글짜 길이 줄이기
-		String strName = productVO.getProduct_name();
+		/*String strName = productVO.getProduct_name();
 		String strDesc = productVO.getProduct_description();
 		if(strDesc != null) {
 			if(strDesc.length() > DescLimit) {
@@ -118,7 +118,7 @@ public class MainController {
 			if(strName.length() > NameLimit) {
 				productVO.setProduct_name(strName.substring(0,NameLimit));
 			}
-		}
+		}*/
 		
 		model.addAttribute("prod", productVO);
 		

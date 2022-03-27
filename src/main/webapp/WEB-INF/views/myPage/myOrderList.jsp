@@ -265,6 +265,7 @@
 												<a
 													href="${pageContext.request.contextPath}/myPage/updateMember">정보수정</a>
 											</h6>
+<<<<<<< HEAD
 
 										</li>
 										<li>
@@ -430,6 +431,29 @@
 									<li
 										class="page-item ${pageMaker.cri.pageNum == idx ? 'active' : '' }"><a
 										class="page-link" href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
+=======
+										<%-- 주문일(정렬대상) --%>
+										<td style="text-align: left; padding: 60px 0px 0px 0px;">
+											<h6>${order.orders_date}</h6>
+										</td>
+										<%-- 주문번호(정렬대상) --%>
+										<td style="text-align: center; padding: 60px 0px 0px 0px;">
+											<h6>${order.orders_id}</h6>
+										</td>
+										<%-- 주문금액(정렬대상) --%>
+										<td style="text-align: center; padding: 60px 0px 0px 0px;">
+											<h6>${order.orders_price}원</h6>
+										</td>
+										<%-- 상태 --%>
+										<td
+											style="text-align: center; padding-left: 0px; padding-right: 0px;">
+										
+										</td>
+										<td>
+											<a href="/main/rwrite_view?product_id=${order.product_id}&order_detail_id=${order.order_detail_id}">구매후기</a>
+										</td>
+									</tr>
+>>>>>>> origin/dev_ush
 								</c:forEach>
 
 								<c:choose>

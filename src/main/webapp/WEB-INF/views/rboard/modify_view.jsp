@@ -34,6 +34,14 @@
 		text-align : left;
 	}
 
+<<<<<<< HEAD
+=======
+	.btn{
+		background-color:#FFA500; 
+		border-color:#FFA500;
+	}
+	
+>>>>>>> origin/dev_ush
 	.title{
 		width : 100%;
 	}

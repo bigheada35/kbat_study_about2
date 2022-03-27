@@ -27,7 +27,16 @@
 	
 	.button{
 		margin-left : 20%;
+<<<<<<< HEAD
 		text-align : left;
+=======
+		text-align : left;		
+	}
+	
+	.btn{
+		background-color:#FFA500; 
+		border-color:#FFA500;
+>>>>>>> origin/dev_ush
 	}
 	
 	.content1{

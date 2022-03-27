@@ -29,7 +29,16 @@
 		margin-left : 20%;
 		text-align : left;
 	}
+<<<<<<< HEAD
 	
+=======
+
+	.btn{
+		background-color:#FFA500; 
+		border-color:#FFA500;
+	}
+		
+>>>>>>> origin/dev_ush
 	.content1{
 		width : 100%;
 	}
@@ -72,10 +81,10 @@
 			<c:choose>         	
 				<c:when test="${principal.user.member_id == 'kbatc5'}">	
 					<a href="nlist"><button type="button" class="btn btn-dark" id="b-list">목록</button></a>         
-					<a href="nmodify_view?board_id=${content_view.board_id}"><button type="button" class="btn btn-dark">수정</button></a>
+					<a href="nmodify_view?board_id=${content_view.board_id}"><button type="button" class="btn btn-dark" >수정</button></a>
 					<a href="ndelete?board_id=${content_view.board_id}"><button type="button" class="btn btn-dark">삭제</button></a>
 				</c:when>
-				<c:otherwise><a href="nlist"><button type="button" class="btn btn-dark">목록</button></a></c:otherwise>
+				<c:otherwise><a href="nlist"><button type="button" class="btn btn-dark" >목록</button></a></c:otherwise>
 			</c:choose>
 		</div>
 	</div>

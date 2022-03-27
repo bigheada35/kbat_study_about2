@@ -31,18 +31,14 @@
 		<result property="orders_date" column="orders_date" />
 		<result property="member_number" column="member_number" />
 		<result property="member_id" column="member_id" />
-		<collection property="orderDetailVO"
-			resultMap="orderDetail"></collection>
+		<collection property="orderDetailVO" resultMap="orderDetail"></collection>
 		<collection property="rboardVO" resultMap="orderReview"></collection>
 	</resultMap>
 
-	<resultMap id="orderDetail"
-		type="edu.kosmo.kbat.vo.OrderDetailVO">
+	<resultMap id="orderDetail" type="edu.kosmo.kbat.vo.OrderDetailVO">
 
 		<result property="order_detail_id" column="order_detail_id" />
-		<result property="order_detail_count"
-			column="order_detail_count" />
-
+		<result property="order_detail_count" column="order_detail_count" />
 		<result property="orders_id" column="orders_id" />
 		<result property="product_id" column="product_id" />
 
@@ -87,8 +83,7 @@
 
 
 	<!-- 주문내역 리스트 가져오기 -->
-	<select id="getOrderMyList"
-		resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO">
+	<select id="getOrderMyList" resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO">
 	<![CDATA[
 	   SELECT 
 	   		o.orders_id,
@@ -97,7 +92,8 @@
 	   		p.product_name,
 	   		o.orders_date,
 	   		o.orders_price,
-	   		i.image_name
+	   		i.image_name,
+	   		d.order_detail_id
 		FROM
 			product p,
 			order_detail d,
@@ -114,8 +110,7 @@
 			o.orders_date DESC
 	]]>
 	</select>
-	<select id="getOrderMyListPaging"
-		resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO">
+	<select id="getOrderMyListPaging" resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO">
 	<![CDATA[
 	
   SELECT * FROM (
@@ -128,7 +123,8 @@
 	   		p.product_name,
 	   		o.orders_date,
 	   		o.orders_price,
-	   		i.image_name
+	   		i.image_name,
+	   		d.order_detail_id
 		FROM
 			product p,
 			order_detail d,
@@ -247,6 +243,7 @@
 
 
 
+<<<<<<< HEAD
 	<!-- 최근 본 상품 리스트 가져오기 -->
 	<select id="getProductViewList" resultType="edu.kosmo.kbat.joinvo.ProductProductViewVO">
 	<![CDATA[
@@ -388,3 +385,6 @@
 	
 	
 </mapper>
+=======
+</mapper>
+>>>>>>> origin/dev_ush
