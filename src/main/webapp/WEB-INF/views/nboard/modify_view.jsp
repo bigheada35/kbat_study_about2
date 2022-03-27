@@ -69,7 +69,7 @@
 		</table>		
 		<div class="button">
 			<c:choose>         	
-				<c:when test="${principal.user.member_id == 'kbatc5'}">	
+				<c:when test="${principal.user.member_id == 'admin'}">	
 					<a href="nlist"><button type="button" class="btn btn-dark" id="b-list">목록</button></a>         
 					<button type="submit" class="btn btn-dark">수정</button></a>
 				</c:when>

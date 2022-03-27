@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -25,13 +24,6 @@
           font-size: 3.5rem;
         }
       }
-      
-      #product_price{
-      	 color: rgb(0, 26, 255);
-      }
-      #product_name{
-      	 color: rgb(0, 26, 255);
-      }
     </style>
     <!-- Custom styles for this template -->
     <link href="/css/album.css" rel="stylesheet">
@@ -50,20 +42,19 @@
           <ul class="list-unstyled">
             <li><a href="/main/cartorder" class="text-white">/main/cartorder</a></li>
             <li><a href="/upload/list2" class="text-white">/upload/list2</a></li>
-            <li><a href="/index" class="text-white">/index</a></li>
             <li><a href="/login" class="text-white">/login</a></li>
             <sec:authorize access="isAuthenticated()">
 				<li><a href="#" class="text-white">아이디: <sec:authentication property="principal.user.member_id"/></a></li>
 				<li><a href="#" class="text-white">이름: <sec:authentication property="principal.user.member_name"/></a></li>
-			</sec:authorize>
-         </ul>
+			</sec:authorize>	
+          </ul>
         </div>
       </div>
     </div>
   </div>
   <div class="navbar navbar-dark bg-dark shadow-sm">
     <div class="container d-flex justify-content-between">
-      <a href="#" class="navbar-brand d-flex align-items-center">
+      <a href="/main/main" class="navbar-brand d-flex align-items-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
         <strong>공부어때 동영상 강의 쇼핑몰</strong>
       </a>
@@ -76,65 +67,87 @@
 
 <main role="main">
 
-
-<!--KDM 검색-->
-<div class="search_wrap">
-                		<form id="searchForm" action="/main/search" method="get">
-                			<div class="search_input">
-                			<select name="type">
-                					<option value="N">강의명</option>
-                					<option value="D">강의 설명</option>
-                					
-                				</select>
-                				<input type="text" name="keyword">
-                    			<button class='btn search_btn'>검 색</button>                				
-                			</div>
-                		</form>
-                	</div>
-                	
-                	
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1>공부어때 동영상 강의 쇼핑몰</h1>
-      <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-      <p>
-        <a href="#" class="btn btn-primary my-2">Main call to action</a>
-        <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-      </p>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-    
-		
-	      <div class="row">
-	    	<c:forEach items="${products}" var="prod" varStatus="status" >  	
-		        <div class="col-md-3">
-		          <div class="card mb-3 shadow-sm">
-					<!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-		            <img class="bd-placeholder-img card-img-top" src="<c:url value="${prod.image_name}"/>" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em" id="product_name">${status.index+1} ${prod.product_name}</text></svg>
-		            <%-- <img class="card-img-top" src="<c:url value="${prod.image_name}"/>" style="min-height:250px;"/> --%>
-		            <div class="card-body">
-		              <p class="card-text">${prod.product_description}</p>
-		              <%-- <p class="card-text">가격 : ${prod.product_price} 원</p> --%>
-		              <p id="product_price" class="card-text" id="product_price">가격 : <fmt:formatNumber value="${prod.product_price}" pattern="#,###" /> 원</p>
-		              <p class="card-text">${prod.product_date}</p>
-		              <div class="d-flex justify-content-between align-items-center">
-		              	<a href="/main/detail?product_id=${prod.product_id}" class="btn btn-primary my-2">View</a>
-		                <small class="text-muted">9 mins</small>
-		              </div>
-		            </div>
-		          </div>
-		        </div>
-		  
-			</c:forEach>		   
-		   </div>
+	<h1>결제 페이지 입니다.</h1>
+  
+	<h1>카트 안의 내용.</h1>
+	<table width="1000" cellpadding="0" cellspacing="0" border="1">
+		<%-- <c:forEach items="${files}" var="file"> --%>
+		<c:forEach items="${products}" var="prod">
+		<tr>
+	 	 			 <td>${prod.member_id}</td>
+	 	 			 <td>${prod.member_name}</td>
+	 	 			 <td>${prod.member_phone}</td>
+	 	 			 <td>${prod.member_email}</td>
+	 	 			 <td>${prod.member_address}</td>
+	 				<td>
+	 					<video width="300" height="250" controls/>
+			          		<%-- <source src="<c:url value="${file}"/>" type="video/mp4"> --%>
+			          		<source src="<c:url value="${prod.video_name}"/>" type="video/mp4">
+					    </video>
+					    ${prod.video_name}
+					<td/>
+					<%-- <td>${file} </td> --%>
+					<%-- <td>${prod.video_name} </td> --%>
+					<td>${prod.product_name} </td>
+					<td>${prod.product_price} </td>
+					<td>${prod.product_enable} </td>
+					<td>${prod.product_date} </td>
+					<td style="min-width:200px;">${prod.product_description} </td>
+					<td>
+						<img src="<c:url value="${prod.image_name}"/>" style="max-width:250px;"/>
+					${prod.image_name} </td>
+					<td>
+						<a href="/main/checkout_delete?product_id=${prod.product_id}">카트상품삭제</a> 
+					</td>
+	
+		 </tr>
+		</c:forEach>	
+	</table>
 
 
-      </div>
-    </div>
-  </div>
+	<h1>주문 안의 내용.</h1>
+	<table width="1000" cellpadding="0" cellspacing="0" border="1">
+		<%-- <c:forEach items="${files}" var="file"> --%>
+		<c:forEach items="${products_order}" var="prod">
+		<tr>
+	 	 			 <td>${prod.member_id}</td>
+	 	 			 <%-- <td>${prod.member_name}</td> --%> 
+	 	 			 <%-- <td>${prod.member_phone}</td> --%>
+	 	 			 <%-- <td>${prod.member_email}</td> --%>
+	 	 			 <%-- <td>${prod.member_address}</td> --%>
+	 				<td>
+	 					<video width="300" height="250" controls/>
+			          		<%-- <source src="<c:url value="${file}"/>" type="video/mp4"> --%>
+			          		<source src="<c:url value="${prod.video_name}"/>" type="video/mp4">
+					    </video>
+					    <%-- ${prod.video_name} --%>
+					<td/>
+					<%-- <td>${file} </td> --%>
+					<td>${prod.video_name} </td> 
+					<td>${prod.product_name} </td>
+					<td>${prod.product_price} </td>
+					<%-- <td>${prod.product_enable} </td> --%>
+					<td>${prod.product_date} </td>
+					<td style="min-width:200px;">${prod.product_description} </td>
+					<td>
+						<img src="<c:url value="${prod.image_name}"/>" style="max-width:250px;"/>
+					${prod.image_name} </td> 
+					<td>
+						<a href="/main/checkout_delete?orders_id=${prod.orders_id}">주문삭제</a> 
+					</td>
+	
+		 </tr>
+		</c:forEach>	
+	</table>
+
+	<div class="container">
+	  <div class="row">
+	    <div class="col text-center">
+	      <button class="btn btn-default"><a href="/pay/checkout_import">결제하기</a></button>
+	    </div>
+	  </div>
+	</div>
+
 
 </main>
 

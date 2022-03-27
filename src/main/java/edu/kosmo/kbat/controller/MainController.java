@@ -156,7 +156,9 @@ public class MainController {
 	public String cartorder(HttpServletRequest request,  Model model) {
 		String product_id = (String) request.getParameter("product_id");
 		System.out.println("----cartorder----product_id:"+product_id);
-
+		
+		
+		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String user_id = auth.getName();
         System.out.println("----------------------유저 아이디 : " + user_id);	
@@ -209,7 +211,6 @@ public class MainController {
     		model.addAttribute("products", productCartVO);
         }
  		return "/user/cartOrder";
-
 	}
 	@GetMapping("/main/checkout")
 	public String checkout(HttpServletRequest request,  Model model) {
@@ -289,7 +290,7 @@ public class MainController {
     		List <ProductOrderVO> productOrderVO = productOrderService.getOrderList(uservo.getMember_id());
     		model.addAttribute("products_order", productOrderVO);    		
         }
- 		return "/pay/checkout";
+        return "/pay/import";
 	}	
 	@GetMapping("/pay/checkout_import")
 	public String checkout_import(HttpServletRequest request,  Model model) {
@@ -328,6 +329,7 @@ public class MainController {
 
 		return "/pay/import";
 	}
+
 	@GetMapping("/main/checkout_import_delete")
 	public String checkout_import_delete(HttpServletRequest request,  Model model) {
 		String order_id = (String) request.getParameter("order_id");
@@ -357,6 +359,5 @@ public class MainController {
         }
  		return "/pay/import";
 	}
-
 
 }

@@ -31,8 +31,13 @@ public class HomeController {
 		 * 
 		 * } }
 		 */
-		return "index";
+		//return "index";
+		return "redirect:/main/main";
 	}
+	@GetMapping("/index")
+	public String index(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpSession session) {
+		return "index";
+	}	
 
 	@GetMapping("/login")
 	public String login() {

@@ -94,9 +94,9 @@
 				<p>"${message}"</p>
 			</div>
 		</div>	
-		<div class="row" >			
+		<div class="row">			
 			<div class="col-sm-1"></div>	
-			<div class="col-sm-9" style="border:1px solid gray;">
+			<div class="col-sm-10">
 				<form:form enctype="multipart/form-data" action="fileUpload" method="POST">
 				
 				    <input type="radio" id="contactChoice1" name=category_name value="음악" checked>
@@ -127,66 +127,52 @@
 			</div>
 		</div>
 		
-		
-		<div class="row" style="padding-top: 100px;">
+		<p>files</p>
+		<div class="row">
 			<div class="col-sm-1"></div>
 			<div class="col-sm-10">
-				<table class="table table-striped" width="1000" cellpadding="0" cellspacing="0" border="1" >
-					<thead>
-						<tr>
-							<th scope="col">video</th>
-				            <th scope="col">name</th>
-				            <th scope="col">price</th>
-				            <th scope="col">enable</th>
-				            <th scope="col">date</th>
-							<th scope="col">description</th>
-				            <th scope="col">image</th>
-				            <th scope="col"></th>				            
-						</tr>
-					<thead>
-					<tbody>
-							<%-- <c:forEach items="${files}" var="file"> --%>
-							<c:forEach items="${products}" var="prod">
-							<tr>
-						 	 			 
-						 				<td>
-						 					<video width="300" height="250" controls/>
-								          		<%-- <source src="<c:url value="${file}"/>" type="video/mp4"> --%>
-								          		<source src="<c:url value="${prod.video_name}"/>" type="video/mp4">
-										    </video>
-										    ${prod.video_name}
-										<td/>
-										<%-- <td>${file} </td> --%>
-										<%-- <td>${prod.video_name} </td> --%>
-										<td>
-											${prod.product_name}
-											<form:form action="/upload/modify" method="post">
-												<input type="hidden" name="product_id" value="${prod.product_id}">
-												<input type="text"  name="product_name" />
-												<button type="submit" class="btn">이름변경</button>
-											</form:form>
-										</td>
-										<td><fmt:formatNumber value="${prod.product_price}" pattern="#,###" />원 </td>
-										<td>${prod.product_enable} </td>
-										<td>${prod.product_date} </td>
-										<td style="min-width:200px;">
-											${prod.product_description} 
-											<form:form action="/upload/modify" method="post">
-												<input type="hidden" name="product_id" value="${prod.product_id}">
-												<input type="text"  name="product_description"/>
-												<button type="submit" class="btn">내용변경</button>
-											</form:form>
-										</td>
-										<td>
-											<img src="<c:url value="${prod.image_name}"/>" style="max-width:250px;"/>
-										${prod.image_name} </td>
-										<td>
-											<a href="/upload/delete?product_id=${prod.product_id}">삭제</a> 
-										</td>
-						
-							 </tr>
-							</c:forEach>	
-					</tbody>
+				<table width="1000" cellpadding="0" cellspacing="0" border="1">
+					<%-- <c:forEach items="${files}" var="file"> --%>
+					<c:forEach items="${products}" var="prod">
+					<tr>
+				 	 			 
+				 				<td>
+				 					<video width="300" height="250" controls/>
+						          		<%-- <source src="<c:url value="${file}"/>" type="video/mp4"> --%>
+						          		<source src="<c:url value="${prod.video_name}"/>" type="video/mp4">
+								    </video>
+								    ${prod.video_name}
+								<td/>
+								<%-- <td>${file} </td> --%>
+								<%-- <td>${prod.video_name} </td> --%>
+								<td>
+									${prod.product_name}
+									<form:form action="/upload/modify" method="post">
+										<input type="hidden" name="product_id" value="${prod.product_id}">
+										<input type="text"  name="product_name" />
+										<button type="submit" class="btn">이름변경</button>
+									</form:form>
+								</td>
+								<td><fmt:formatNumber value="${prod.product_price}" pattern="#,###" />원 </td>
+								<td>${prod.product_enable} </td>
+								<td>${prod.product_date} </td>
+								<td style="min-width:200px;">
+									${prod.product_description} 
+									<form:form action="/upload/modify" method="post">
+										<input type="hidden" name="product_id" value="${prod.product_id}">
+										<input type="text"  name="product_description"/>
+										<button type="submit" class="btn">내용변경</button>
+									</form:form>
+								</td>
+								<td>
+									<img src="<c:url value="${prod.image_name}"/>" style="max-width:250px;"/>
+								${prod.image_name} </td>
+								<td>
+									<a href="/upload/delete?product_id=${prod.product_id}">삭제</a> 
+								</td>
+				
+					 </tr>
+					</c:forEach>	
 				</table>
 			</div>
 		</div>	
