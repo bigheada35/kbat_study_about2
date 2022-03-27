@@ -13,8 +13,7 @@ import edu.kosmo.kbat.vo.NBoardAndMemberVO;
 @Mapper
 public interface NBoardAndMemberMapper {
 
-	//List<NBoardVO> getList();	
-	List<NBoardAndMemberVO> getList();//ssj2	
+	List<NBoardAndMemberVO> getList();
 	NBoardAndMemberVO read(int board_id); 
 	void write(NBoardAndMemberVO board);
 

@@ -37,10 +37,31 @@ public class MyPageController {
 	private MyPageService myPageService;
 
 	@GetMapping("/myHome")
-	public ModelAndView myHome_view(ModelAndView mav) {
-		mav.setViewName("/myPage/myHome");
+	public ModelAndView mypage(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpServletRequest request, HttpSession session,
+			ModelAndView mav, MemberVO memberVO) throws Exception {
+		log.info("mypage.......");
+		mav.setViewName("myPage/myHome");
+		// mav.addObject("member", hsService.getMember());
+
+		// 인증 회원 정보
+		MemberVO getMember = myPageService.readMember(principalDetails.getUserID());
+		// 회원 정보 받아오기
+		mav.addObject("member", getMember);
+
+		// 주문내역 리스트 가져오기
+		mav.addObject("order_list", myPageService.getOrderMyList(getMember.getMember_id()));
+
+		// 최근 본 상품 리스트 가져오기
+		mav.addObject("view_list", myPageService.getProductViewList(getMember.getMember_id()));
+
+		/*
+		 * // 찜했던 상품 리스트 받아오기 mav.addObject("like_prdct_list",
+		 * myPageService.getLikeProductList(getMember.getMember_id()));
+		 */
+
 		return mav;
 	}
+
 
 	// 회원 정보 수정 페이지 이동
 
@@ -148,5 +169,30 @@ public class MyPageController {
 		 */
 		return mav;
 	}
+	
+	
+	// 최근본상품
+		@GetMapping("/recentlyProduct")
+		public ModelAndView recentlyProduct(@AuthenticationPrincipal PrincipalDetails principalDetails, Criteria cri, ModelAndView mav)
+				throws Exception {
+			log.debug("recently~~~~~~~~~~");
+			log.info("recently!!!!!!!!!!!!");
+			mav.setViewName("myPage/recentlyProduct");
+
+			// 인증 회원 정보
+			MemberVO getMember = myPageService.readMember(principalDetails.getUserID());
+			// 회원 정보 받아오기
+			mav.addObject("member", getMember);
+
+			// 최근 본 상품 리스트 가져오기
+			// mav.addObject("view_list", memberService.getPrdctViewList(getMbr.getMbr_id()));
+			mav.addObject("view_list", myPageService.getProductViewList(getMember.getMember_id(), cri));
+
+			int total = myPageService.getProductViewTotal(cri);
+			log.info("total" + total);
+			mav.addObject("pageMaker", new PageVO(cri, total));
+
+			return mav;
+		}
 
 }

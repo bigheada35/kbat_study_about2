@@ -5,7 +5,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
+import edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO;
+import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
@@ -13,12 +16,9 @@ import edu.kosmo.kbat.vo.NBoardAndMemberVO;
 import edu.kosmo.kbat.vo.QBoardAndMemberVO;
 import edu.kosmo.kbat.vo.RBoardAndMemberVO;
 
-
 @Mapper
 public interface RBoardAndMemberMapper {
 
-
-	List<RBoardAndMemberVO> rgetList();
 	RBoardAndMemberVO rread(int board_id); 
 	void rwrite(RBoardAndMemberVO board);
 	void rmodify(RBoardAndMemberVO board);
@@ -31,10 +31,9 @@ public interface RBoardAndMemberMapper {
 	@Delete("delete from review where board_id = #{board_id}")
 	void rdelete_review(int board_id);
 
-
 	//페이징
 	int rgetTotalCount();
-	List<RBoardAndMemberVO> rgetListWithPaging(Criteria criteria);
+	List<RBoardAndMemberVO> rgetListWithPaging(Criteria criteria, int product_id);
 	
 	List<BoardtypeVO> rgetboardtypeList();
 	
@@ -44,6 +43,6 @@ public interface RBoardAndMemberMapper {
 	
 	//사진첨부
 	void rwrite_img(String attachment_name);
-	
+
 	
 }

@@ -36,4 +36,6 @@ public class QBoardAndMemberVO {
 	
 	private List<QBoardAndMemberVO> qgetListWithPaging;
 	
+	private int product_id;
+	
 }

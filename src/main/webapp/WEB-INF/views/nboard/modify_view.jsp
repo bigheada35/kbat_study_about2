@@ -25,19 +25,9 @@
 		width : 60%;
 	}
 	
- 	<%--.content{
-		position : relative;
-		bottom : 230px;
-		border-bottom : none;
-	} --%>
-	
 	.button{
 		margin-left : 20%;
 		text-align : left;
-	}
-	
-	#b-list{
-		
 	}
 	
 	.title{
@@ -68,18 +58,18 @@
 			      <td>${modify_view.board_hit}</td>
 			    </tr>   
 			    <tr>  
-			      <th scope="col">제목</th>			      
+			      <th scope="col" style="vertical-align:middle">제목</th>			      
 			      <td><input type="text" name="board_title" class="title" value="${modify_view.board_title}"></td>
 			    </tr>
 			    <tr style="border-bottom:2px solid">   
-			      <th scope="col" class="content">내용</th>
+			      <th scope="col" class="content" style="vertical-align:top">내용</th>
 			      <td><textarea rows="10" name="board_content" style="width:100%" value="${modify_view.board_content}">${modify_view.board_content}</textarea></td>
 			    </tr>   
 			</thead>
 		</table>		
 		<div class="button">
 			<c:choose>         	
-				<c:when test="${principal.user.member_id == 'kbatc5'}">	
+				<c:when test="${principal.user.member_id == 'admin'}">	
 					<a href="nlist"><button type="button" class="btn btn-dark" id="b-list">목록</button></a>         
 					<button type="submit" class="btn btn-dark">수정</button></a>
 				</c:when>

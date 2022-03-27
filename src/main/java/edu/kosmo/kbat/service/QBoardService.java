@@ -12,8 +12,7 @@ import edu.kosmo.kbat.vo.RBoardAndMemberVO;
 
 
 public interface QBoardService {
-	
-	//List<QBoardAndMemberVO> qgetList();
+
 	QBoardAndMemberVO qread(int board_id);
 	void qwrite(QBoardAndMemberVO board);
 	void qmodify(QBoardAndMemberVO board);
@@ -21,20 +20,13 @@ public interface QBoardService {
 	
 	//답글
 	void qdelete(int board_id);
-	
-	//void qregisterBoard(QBoardAndMemberVO board);
 	void qregisterReply(QBoardAndMemberVO board);
-	//void qregisterReply(int group, int step);
 	void qrepwrite(QBoardAndMemberVO board);
 
 	//페이징
 	int qgetTotalCount();
-	public List<QBoardAndMemberVO> qgetList(Criteria criteria);
+	List<QBoardAndMemberVO> qgetListWithPaging(Criteria criteria);
 	
 	List<BoardtypeVO> qgetboardtypeList();
-
-	
-
-
 	
 }

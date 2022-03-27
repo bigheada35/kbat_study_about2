@@ -11,6 +11,7 @@ import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
 import edu.kosmo.kbat.vo.QBoardAndMemberVO;
+import edu.kosmo.kbat.vo.RBoardAndMemberVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -18,7 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class QBoardServiceImpl implements QBoardService{
 		
 	@Autowired
-	private QBoardAndMemberMapper boardAndMemberMapper;//ssj
+	private QBoardAndMemberMapper boardAndMemberMapper;
 
 	@Override
 	public QBoardAndMemberVO qread(int board_id) {
@@ -30,29 +31,19 @@ public class QBoardServiceImpl implements QBoardService{
 	@Override
 	public void qwrite(QBoardAndMemberVO board) {
 		log.info("write()..");
-		boardAndMemberMapper.qwrite(board);
-		System.out.println("member=======" + board.getMember_number());
-		log.info("write()1..");
-		log.info("write2()..");
-		
+		boardAndMemberMapper.qwrite(board);		
 	}
 	
 	@Override
 	public void qrepwrite(QBoardAndMemberVO board) {
 		log.info("rewrite()..");
-		boardAndMemberMapper.qrepwrite(board);
-		System.out.println("reply1 : " + board.getReply_id());
-		System.out.println("reply1 : " + board.getReply_group());
-		System.out.println("reply2 : " + board.getReply_step());
-		System.out.println("reply2 : " + board.getReply_indent());
-		log.info("rewrite2()..");		
+		boardAndMemberMapper.qrepwrite(board);	
 	}
 
 	@Override
 	public void qmodify(QBoardAndMemberVO board) {
 		log.info("modify()service...");	
 		boardAndMemberMapper.qmodify(board);	
-		log.info("modify()service2...");
 	}
 
 	@Override
@@ -65,13 +56,6 @@ public class QBoardServiceImpl implements QBoardService{
 	public void qdelete(int board_id) {
 		log.info("delete()...");	
 		boardAndMemberMapper.qdelete(board_id);		
-	}
-
-	@Override
-	public List<QBoardAndMemberVO> qgetList(Criteria criteria) {
-		log.info("getList() ..");
-		List<QBoardAndMemberVO> lst = boardAndMemberMapper.qgetListWithPaging(criteria);		
-		return lst;		
 	}
 
 	@Override
@@ -92,6 +76,11 @@ public class QBoardServiceImpl implements QBoardService{
 	public int qgetTotalCount() {
 		log.info("getTotal() ..");
 		return boardAndMemberMapper.qgetTotalCount();
+	}
+
+	@Override
+	public List<QBoardAndMemberVO> qgetListWithPaging(Criteria criteria) {		
+		return boardAndMemberMapper.qgetListWithPaging(criteria);
 	}
 
 

@@ -40,5 +40,7 @@ public class ProductVO {
 	private int reply_group; //esh 추가
 	private int board_enable; //esh 추가
 	
+	//private int order_detail_id;
+	
 	
 }

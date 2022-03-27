@@ -51,7 +51,7 @@
 		</table>
 		<div class="n-button">
 			<tr>
-				<c:if test="${principal.user.member_id == 'kbatc5'}" >
+				<c:if test="${principal.user.member_id == 'admin'}" >
 					<a href="nwrite_view"><button type="button" class="btn btn-dark">공지사항 등록</button></a>
 				</c:if>	
 			</tr>  

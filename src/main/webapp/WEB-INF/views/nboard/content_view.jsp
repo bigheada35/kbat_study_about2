@@ -25,19 +25,9 @@
 		width : 60%;
 	}
 	
-	<%--.content{
-		position : relative;
-		bottom : 180px;
-		border-bottom : none;
-	} --%>
-	
 	.button{
 		margin-left : 20%;
 		text-align : left;
-	}
-	
-	#b-list{
-		
 	}
 	
 	.content1{
@@ -73,8 +63,7 @@
 			      <td>${content_view.board_title}</td>
 			    </tr>
 			    <tr style="border-bottom:2px solid">   
-			      <th scope="col" class="content">내용</th>
-			      <%-- <td><textarea rows="10" name="board_content" style="width:100%">${content_view.board_content}</textarea></td> --%>
+			      <th scope="col" class="content" style="vertical-align:top">내용</th>
 			      <td><textarea class="content1">${content_view.board_content}</textarea></td>
 			    </tr>   
 			</thead>

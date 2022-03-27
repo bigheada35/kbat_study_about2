@@ -42,7 +42,8 @@ public class UserVO {
 	private String authority_name;
 	
 	private List<AuthVO> authList;
-
+	
+	private int order_detail_id;
 	
 	
 	//추가

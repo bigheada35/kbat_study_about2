@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
   <head>
@@ -23,6 +25,13 @@
           font-size: 3.5rem;
         }
       }
+      
+      #product_price{
+      	 color: rgb(0, 26, 255);
+      }
+      #product_name{
+      	 color: rgb(0, 26, 255);
+      }
     </style>
     <!-- Custom styles for this template -->
     <link href="/css/album.css" rel="stylesheet">
@@ -39,10 +48,15 @@
         <div class="col-sm-4 offset-md-1 py-4">
           <h4 class="text-white">Contact</h4>
           <ul class="list-unstyled">
-            <li><a href="#" class="text-white">Follow on Twitter</a></li>
-            <li><a href="#" class="text-white">Like on Facebook</a></li>
-            <li><a href="#" class="text-white">Email me</a></li>
-          </ul>
+            <li><a href="/main/cartorder" class="text-white">/main/cartorder</a></li>
+            <li><a href="/upload/list2" class="text-white">/upload/list2</a></li>
+            <li><a href="/index" class="text-white">/index</a></li>
+            <li><a href="/login" class="text-white">/login</a></li>
+            <sec:authorize access="isAuthenticated()">
+				<li><a href="#" class="text-white">아이디: <sec:authentication property="principal.user.member_id"/></a></li>
+				<li><a href="#" class="text-white">이름: <sec:authentication property="principal.user.member_name"/></a></li>
+			</sec:authorize>
+         </ul>
         </div>
       </div>
     </div>
@@ -99,11 +113,12 @@
 		        <div class="col-md-3">
 		          <div class="card mb-3 shadow-sm">
 					<!--<svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
-		            <img class="bd-placeholder-img card-img-top" src="<c:url value="${prod.image_name}"/>" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">${status.index+1} ${prod.product_name}</text></svg>
+		            <img class="bd-placeholder-img card-img-top" src="<c:url value="${prod.image_name}"/>" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em" id="product_name">${status.index+1} ${prod.product_name}</text></svg>
 		            <%-- <img class="card-img-top" src="<c:url value="${prod.image_name}"/>" style="min-height:250px;"/> --%>
 		            <div class="card-body">
 		              <p class="card-text">${prod.product_description}</p>
-		              <p class="card-text">가격 : ${prod.product_price} 원</p>
+		              <%-- <p class="card-text">가격 : ${prod.product_price} 원</p> --%>
+		              <p id="product_price" class="card-text" id="product_price">가격 : <fmt:formatNumber value="${prod.product_price}" pattern="#,###" /> 원</p>
 		              <p class="card-text">${prod.product_date}</p>
 		              <div class="d-flex justify-content-between align-items-center">
 		              	<a href="/main/detail?product_id=${prod.product_id}" class="btn btn-primary my-2">View</a>

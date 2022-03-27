@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO;
 import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
+import edu.kosmo.kbat.joinvo.ProductProductViewVO;
 import edu.kosmo.kbat.mapper.MyPageMapper;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.MemberVO;
@@ -87,20 +88,53 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 
 	// 내가 작성한 상품 리뷰
-	
+
 	@Override
 	public List<ProductOrderDetailBoardVO> getReviewMyList(String member_id) {
 		log.info("getReviewMyList()......");
 		return myPageMapper.reviewMyList(member_id);
 	}
-	
+
 	@Override
 	public List<ProductOrderDetailBoardVO> getMyReviewList(Criteria cri, String member_id) {
 		log.info("reviewMyList()......");
 		return myPageMapper.getMyReviewList(cri, member_id);
 	}
+
 	
+	//최근 본 상품 내역
+	@Override
+	public List<ProductProductViewVO> getProductView(String member_id, int product_id) {
+		log.info("getProductView=============");
+		return myPageMapper.getProductView(member_id, product_id);
+	}
+
+	@Override
+	public void addProductView(String member_id, int product_id) {
+		log.info("addProductView=============");
+		myPageMapper.addProductView(member_id, product_id);
+	}
 	
+	// 최근 본 상품 리스트
+	@Override
+	public List<ProductProductViewVO> getProductViewList(String member_id) {
+		log.info("getPrdctViewList.........");
+		return myPageMapper.getProductViewList(member_id);
+	}
+
+	// 최근 본 상품 리스트 페이징
+	@Override
+	public List<ProductProductViewVO> getProductViewList(String member_id, Criteria cri) {
+		log.info("getProductViewList: !!!!!!!!!!!! " + cri);
+		return myPageMapper.getProductViewListPaging(member_id, cri);
+	}
+
+	// 최근 본 상품 리스트 페이징 최대
+	@Override
+	public int getProductViewTotal(Criteria cri) {
+		log.info("getProductViewList: ~~~~~~~~~~~ " + cri);
+		return myPageMapper.getProductViewTotalCount(cri);
+	}
 
 	
 

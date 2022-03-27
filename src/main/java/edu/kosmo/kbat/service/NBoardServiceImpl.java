@@ -17,16 +17,16 @@ import lombok.extern.slf4j.Slf4j;
 public class NBoardServiceImpl implements NBoardService{
 	
 	@Autowired
-	private NBoardAndMemberMapper boardAndMemberMapper;//ssj
+	private NBoardAndMemberMapper boardAndMemberMapper;
 
 	@Override
-	public List<NBoardAndMemberVO> getList() {//ssj2
+	public List<NBoardAndMemberVO> getList() {
 		log.info("getList()..");
 		return boardAndMemberMapper.getList();
 	}
 	
 	@Override
-	public NBoardAndMemberVO read(int board_id) { //
+	public NBoardAndMemberVO read(int board_id) { 
 		log.info("read()..");
 		hit(board_id);
 		return boardAndMemberMapper.read(board_id);
@@ -40,7 +40,7 @@ public class NBoardServiceImpl implements NBoardService{
 	}
 
 	@Override
-	public void modify(NBoardAndMemberVO board) { //
+	public void modify(NBoardAndMemberVO board) { 
 		log.info("modify()service...");	
 		boardAndMemberMapper.modify(board);	
 		log.info("modify()service2...");
@@ -49,13 +49,13 @@ public class NBoardServiceImpl implements NBoardService{
 	@Override
 	public void hit(int board_id) {
 		log.info("hit()...");	
-		boardAndMemberMapper.hit(board_id);		//
+		boardAndMemberMapper.hit(board_id);		
 	}
 
 	@Override
 	public void delete(int board_id) {
 		log.info("delete()...");	
-		boardAndMemberMapper.delete(board_id);		//
+		boardAndMemberMapper.delete(board_id);		
 	}
 	
 	@Override
@@ -67,12 +67,12 @@ public class NBoardServiceImpl implements NBoardService{
 	@Override
 	public List<NBoardAndMemberVO> getList(Criteria criteria) {
 		log.info("getList() ..");
-		return boardAndMemberMapper.getListWithPaging(criteria);//ssj3
+		return boardAndMemberMapper.getListWithPaging(criteria);
 	}
 
 	@Override
 	public List<BoardtypeVO> getboardtypeList() {		
-		return boardAndMemberMapper.getboardtypeList();//ssj
+		return boardAndMemberMapper.getboardtypeList();
 	}
 
 

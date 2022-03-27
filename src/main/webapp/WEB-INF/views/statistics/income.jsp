@@ -29,7 +29,7 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
 $(document).ready(function() {
 		
-		//var ctx = $("#chart-daily-sales");
+		var ctx = $("#chart-daily-sales");
 		var labels = [];
 		var daySales = ${dailySales};
 		var lastDay = getLastDay(${year}, ${month});

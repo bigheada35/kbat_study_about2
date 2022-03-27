@@ -2,14 +2,21 @@ package edu.kosmo.kbat.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO;
+import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
+import edu.kosmo.kbat.mapper.MyPageMapper;
 import edu.kosmo.kbat.mapper.QBoardAndMemberMapper;
 import edu.kosmo.kbat.mapper.RBoardAndMemberMapper;
 import edu.kosmo.kbat.mapper.ReviewMapper;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
+import edu.kosmo.kbat.vo.ProductVO;
 import edu.kosmo.kbat.vo.QBoardAndMemberVO;
 import edu.kosmo.kbat.vo.RBoardAndMemberVO;
 import edu.kosmo.kbat.vo.ReviewVO;
@@ -25,29 +32,19 @@ public class RBoardServiceImpl implements RBoardService{
 	@Autowired
 	private ReviewMapper reviewMapper;
 	
-	@Override
-	public List<RBoardAndMemberVO> rgetList() {
-		log.info("getList()..");
-		return boardAndMemberMapper.rgetList();
-	}
+	@Autowired
+	private MyPageMapper myPageMapper;
 
 
 	@Override
-	public void rwrite(RBoardAndMemberVO board) {
-		log.info("write()..");
-		
-		String attachment_name = board.getAttachment_name();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@" + attachment_name);
-		
+	public void rwrite(RBoardAndMemberVO board, ProductOrderDetailOrderVO productOrderDetailOrderVO) {
+		log.info("write()..");		
+		String attachment_name = board.getAttachment_name();		
+		myPageMapper.getOrderMyList(board.getMember_id());
 		boardAndMemberMapper.rwrite(board);
 		boardAndMemberMapper.rwrite_review(board);
-		boardAndMemberMapper.rwrite_rating(board);
-		
-		System.out.println("$$$$$$$$$$$$$$$$$$$$$$$" + board.getAttachment_name());
-		
+		boardAndMemberMapper.rwrite_rating(board);		
 		boardAndMemberMapper.rwrite_img(attachment_name);
-
-		System.out.println("=====================" + attachment_name);
 	}
 
 	@Override
@@ -65,26 +62,15 @@ public class RBoardServiceImpl implements RBoardService{
 	@Override
 	public void rdelete(int board_id) {
 		log.info("delete()...");
-
-		System.out.println("=======================" + board_id);
 		boardAndMemberMapper.rdelete_attachment(board_id);
 		boardAndMemberMapper.rdelete_review(board_id);
-		boardAndMemberMapper.rdelete(board_id);
-		
+		boardAndMemberMapper.rdelete(board_id);		
 	}
-
 
 	@Override
 	public int rgetTotalCount() {
 		log.info("getTotal() ..");
 		return boardAndMemberMapper.rgetTotalCount();
-	}
-
-	@Override
-	public List<RBoardAndMemberVO> rgetList(Criteria criteria) {
-		log.info("getList() ..");
-		System.out.println("~~~~~~~~~~~~~~~" + boardAndMemberMapper.rgetList());
-		return boardAndMemberMapper.rgetListWithPaging(criteria);
 	}
 
 	@Override
@@ -99,7 +85,10 @@ public class RBoardServiceImpl implements RBoardService{
 		return boardAndMemberMapper.rread(board_id);
 	}
 
-	
-	
+	@Override
+	public List<RBoardAndMemberVO> rgetListWithPaging(Criteria criteria, int product_id) {
+		log.info("getList() ..");	
+		return boardAndMemberMapper.rgetListWithPaging(criteria, product_id);
+	}
 	
 }
