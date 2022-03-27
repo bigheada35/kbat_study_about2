@@ -29,16 +29,12 @@
 		margin-left : 20%;
 		text-align : left;
 	}
-<<<<<<< HEAD
-	
-=======
 
 	.btn{
 		background-color:#FFA500; 
 		border-color:#FFA500;
 	}
 		
->>>>>>> origin/dev_ush
 	.content1{
 		width : 100%;
 	}

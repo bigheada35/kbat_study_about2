@@ -51,11 +51,7 @@
     		</div>
     	</div>
     </section>
-<<<<<<< HEAD
-    
-=======
     <h4 style="color: #FFA500;">상품 설명</h4>
->>>>>>> origin/dev_ush
     <br>
     <div class="info">
         <img src="/resources/img/${prod.product_name}-1.png" >
@@ -68,11 +64,7 @@
 <br><br><br>
 	<div class="container">  
 		<table class="table">  			
-<<<<<<< HEAD
-			<h4>후기 게시판</h4> 			  
-=======
 			<h4 style="color: #FFA500;">후기 게시판</h4>		  
->>>>>>> origin/dev_ush
 			<thead> 
 				<tr>
 				<th scope="col">번호</th>

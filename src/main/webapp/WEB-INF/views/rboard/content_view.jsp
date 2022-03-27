@@ -28,15 +28,6 @@
 	.table{
 		margin-left : 20%;
 		width : 60%;
-<<<<<<< HEAD
-	}
-	
-	.button{
-		margin-left : 20%;
-		text-align : left;
-	}
-	
-=======
 	}
 	
 	.button{
@@ -49,7 +40,6 @@
 		border-color:#FFA500;
 	}
 		
->>>>>>> origin/dev_ush
 	.content1{
 		width : 100%;
 	}
