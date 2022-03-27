@@ -36,23 +36,22 @@
                 </div>
     			<div class="col-lg-6 product-details ftco-animate" style="height:500px">
     				<br>
-    				<h3>${prod.product_name}</h3>
+    				<h1>${prod.product_name}</h1>
     				<br>
-    				<h1><p><fmt:formatNumber type="currency" value="${prod.product_price}" /></p></h1>				               
+    				<h2><p><fmt:formatNumber type="currency" value="${prod.product_price}" /></p></h2>				               
     				<br>
-    				<p>${prod.product_description}${prod.product_description}${prod.product_description}${prod.product_description}${prod.product_description}${prod.product_description}</p>					
-          	        ${prod.product_description}${prod.product_description}
+    				<p>${prod.product_description}</p>
           	        <br><br>
           	        <p>  
-						<a href="/main/cartorder?product_id=${prod.product_id}" class="btn btn-primary my-2">장바구니 담기</a>
-		              	<a href="/main/checkout?product_id=${prod.product_id}" class="btn btn-primary my-2">구매하기</a>
+						<a href="/main/cartorder?product_id=${prod.product_id}" class="btn btn-primary my-2" style="background-color:#FFA500; border-color:#FFA500;">장바구니 담기</a>
+		              	<a href="/main/checkout?product_id=${prod.product_id}" class="btn btn-primary my-2" style="background-color:#FFA500; border-color:#FFA500;">구매하기</a>
 		              	<%-- <a href="/main/playVideo?product_id=${prod.product_id}" class="btn btn-primary my-2">Play</a> --%>		                     	        
           	        </p>
     			</div>
     		</div>
     	</div>
     </section>
-    
+    <h4 style="color: #FFA500;">상품 설명</h4>
     <br>
     <div class="info">
         <img src="/resources/img/${prod.product_name}-1.png" >
@@ -65,7 +64,7 @@
 <br><br><br>
 	<div class="container">  
 		<table class="table">  			
-			<h4>후기 게시판</h4> 			  
+			<h4 style="color: #FFA500;">후기 게시판</h4>		  
 			<thead> 
 				<tr>
 				<th scope="col">번호</th>

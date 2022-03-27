@@ -20,6 +20,12 @@
 	.n-button{
 		position : 
 	}
+
+	.btn{
+		background-color:#FFA500; 
+		border-color:#FFA500;
+	}
+	
 </style>
 <body>
 	<br>

@@ -27,7 +27,12 @@
 	
 	.button{
 		margin-left : 20%;
-		text-align : left;
+		text-align : left;		
+	}
+	
+	.btn{
+		background-color:#FFA500; 
+		border-color:#FFA500;
 	}
 	
 	.content1{

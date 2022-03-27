@@ -17,11 +17,16 @@
 	img{
 		width : 1.2em
 	}
-	
+
+	.btn{
+		background-color:#FFA500; 
+		border-color:#FFA500;
+	}
+		
 	.paging{
 		text-align : center;
 	}
-	
+		
 	.n-button{
 		position : 
 	}

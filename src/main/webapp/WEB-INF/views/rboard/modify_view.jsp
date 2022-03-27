@@ -34,6 +34,11 @@
 		text-align : left;
 	}
 
+	.btn{
+		background-color:#FFA500; 
+		border-color:#FFA500;
+	}
+	
 	.title{
 		width : 100%;
 	}
