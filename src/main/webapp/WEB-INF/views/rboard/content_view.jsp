@@ -15,10 +15,11 @@
 <title>Insert title here</title>
 </head>
 <style>
-	/* .oriImg{
+	.oriImg{
 		width:200px;
 		height:auto
-	} */
+	} 
+	
 	.input-group{
 		margin-left : 15%;
 		width : 70%;
@@ -29,19 +30,9 @@
 		width : 60%;
 	}
 	
-	<%--.content{
-		position : relative;
-		bottom : 180px;
-		border-bottom : none;
-	} --%>
-	
 	.button{
 		margin-left : 20%;
 		text-align : left;
-	}
-	
-	#b-list{
-		
 	}
 	
 	.content1{
@@ -52,17 +43,17 @@
 <body>
 	<br>
 	<div class="container">
-		<table class="table">    
 		<input type="hidden" name="board_id" value="${rcontent_view.board_id}">
 		<input type="hidden" name="board_hit" value="${rcontent_view.board_hit}">
         <input type="hidden" name="board_title" value="${rcontent_view.board_title}">
         <input type="hidden" name="attachment_name" value="${rcontent_view.attachment_name}">
         <input type="hidden" name="review_id" value="${rcontent_view.review_id}">
         <input type="hidden" name="product_id" value="${rcontent_view.product_id}">  
-        <input type="hidden" name="order_detail_id" value="${rcontent_view.order_detail_id}">   
+        <input type="hidden" name="order_detail_id" value="${rcontent_view.order_detail_id}">  
+		<table class="table">     
         	<thead> 
-			   	<tr>
-			      <th scope="col">번호</th>
+			   	<tr style="border-top: 2px solid;">
+			      <th scope="col" >번호</th>
 			      <td>${rcontent_view.board_id}</td>
 			    </tr>			    
 			    <tr>  
@@ -81,24 +72,26 @@
 			      <th scope="col">제목</th>
 			      <td>${rcontent_view.board_title}</td>
 			    </tr>
+			    </tr>
+		         	<th scope="col" style="vertical-align:top"> 사진 </th>
+		         	<td><img src="${rcontent_view.attachment_name}" class="oriImg"></td>         	
+		        <tr> 
 			    <tr style="border-bottom:2px solid">   
-			      <th scope="col" class="content">내용</th>
-			      <%-- <td><textarea rows="10" name="board_content" style="width:100%">${content_view.board_content}</textarea></td> --%>
+			      <th scope="col" class="content" style="vertical-align:top"> 내용</th>
 			      <td><textarea class="content1">${rcontent_view.board_content}</textarea></td>
 			    </tr>   
 			</thead>
 		</table>
         <div class="button">
 	       	<c:choose>      	
-		                <c:when test="${rcontent_view.member_id eq principal.user.member_id}">	
-		                	<td colspan="2"><a href="/main/main"><button type="button" class="btn btn-dark">목록</button></a>         
-				            <a href="rmodify_view?board_id=${rcontent_view.board_id}"><button type="button" class="btn btn-dark">수정</button></a>
-				            <a href="rdelete?board_id=${rcontent_view.board_id}&review_id=${rcontent_view.review_id}"><button type="button" class="btn btn-dark">삭제</button></a> 
-		                </c:when>
-		                <c:otherwise><td colspan="2"><a href="rlist"><button type="button" class="btn btn-dark">목록</button></a></c:otherwise>
+				<c:when test="${rcontent_view.member_id eq principal.user.member_id}">	
+		        	<td colspan="2"><a href="/main/detail?product_id=${rcontent_view.product_id}"><button type="button" class="btn btn-dark">목록</button></a>         
+				    <a href="rmodify_view?board_id=${rcontent_view.board_id}"><button type="button" class="btn btn-dark">수정</button></a>
+				    <a href="rdelete?board_id=${rcontent_view.board_id}&review_id=${rcontent_view.review_id}"><button type="button" class="btn btn-dark">삭제</button></a> 
+		        </c:when>
+		        <c:otherwise><td colspan="2"><a href="/main/detail?product_id=${rcontent_view.product_id} "><button type="button" class="btn btn-dark">목록</button></a></c:otherwise>
 		    </c:choose>	
 	    </div>
-	</div>
-  
+	</div>  
 </body>
 </html>

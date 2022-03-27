@@ -15,10 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO;
 import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.page.PageVO;
 import edu.kosmo.kbat.service.NBoardService;
+import edu.kosmo.kbat.service.ProductService;
 import edu.kosmo.kbat.service.QBoardService;
 import edu.kosmo.kbat.service.RBoardService;
 import edu.kosmo.kbat.service.ReviewService;
@@ -26,6 +28,7 @@ import edu.kosmo.kbat.service.StorageService;
 import edu.kosmo.kbat.service.UserService;
 import edu.kosmo.kbat.vo.NBoardAndMemberVO;
 import edu.kosmo.kbat.vo.OrderDetailVO;
+import edu.kosmo.kbat.vo.ProductVO;
 import edu.kosmo.kbat.vo.QBoardAndMemberVO;
 import edu.kosmo.kbat.vo.RBoardAndMemberVO;
 import edu.kosmo.kbat.vo.ReviewVO;
@@ -41,7 +44,7 @@ public class BoardController {
 	private NBoardService nboardService;
 
 	@Autowired
-	private QBoardService qboardService;// ssj
+	private QBoardService qboardService;
 
 	@Autowired
 	private RBoardService rboardService;
@@ -55,7 +58,8 @@ public class BoardController {
 	@Autowired
 	private ReviewService reviewService;
 
-	@GetMapping("/nlist") // ssj3
+
+	@GetMapping("/nlist") 
 	public String list(Criteria cri, Model model) {
 		log.info("list()..");
 		model.addAttribute("list", nboardService.getList(cri));
@@ -65,7 +69,7 @@ public class BoardController {
 		return "nboard/list";
 	}
 
-	@GetMapping("/ncontent_view") //
+	@GetMapping("/ncontent_view")
 	public String content_view(NBoardAndMemberVO boardVO, Model model) {
 		log.info("content_view()..");
 		int board_id = boardVO.getBoard_id();
@@ -77,62 +81,49 @@ public class BoardController {
 	public String write_view(Model model) {
 		log.info("write_view()...");
 		return "nboard/write_view";
-
 	}
 
 	@PostMapping("/nwrite") //
 	public String write(NBoardAndMemberVO boardVO) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String user_id = auth.getName();
-
-		System.out.println("유저 아이디 : " + user_id);
-
 		boardVO.setMember_id(user_id);
-
 		UserVO uservo = userService.getUser(user_id);
-
 		boardVO.setMember_number(uservo.getMember_number());
-
-		System.out.println("멤버 아이디1 : " + uservo.getMember_number());
-		System.out.println("멤버 아이디2 : " + userService.getUser(user_id));
 		log.info("write()...");
 		nboardService.write(boardVO);
 		return "redirect:nlist";
 	}
 
-	@PostMapping("/nmodify") //
+	@PostMapping("/nmodify")
 	public String modify(NBoardAndMemberVO boardVO, Model model) {
 		log.info("modify()...");
 		nboardService.modify(boardVO);
 		return "redirect:nlist";
 	}
 
-	@GetMapping("/nmodify_view") //
-	public String modify_view(NBoardAndMemberVO boardVO, Model model) {// ssj
+	@GetMapping("/nmodify_view")
+	public String modify_view(NBoardAndMemberVO boardVO, Model model) {
 		log.info("modify_view()...");
 		int board_id = boardVO.getBoard_id();
 		model.addAttribute("modify_view", nboardService.read(board_id));
 		return "nboard/modify_view";
 	}
 
-	@GetMapping("/ndelete") //
+	@GetMapping("/ndelete")
 	public String delete(NBoardAndMemberVO boardVO, Model model) {
 		log.info("delete()...");
 		nboardService.delete(boardVO.getBoard_id());
 		return "redirect:nlist";
 	}
 
-	@GetMapping("qlist") // ssj3
+	@GetMapping("qlist")
 	public String qlist(Criteria cri, Model model, ProductOrderDetailOrderVO productOrderDetailOrderVO) {
 		log.info("qlist()..");
 		model.addAttribute("qlist", qboardService.qgetListWithPaging(cri));
-		//model.addAttribute("qlist", qboardService.qgetListWithPaging(productOrderDetailOrderVO.getProduct_id()));
-		//System.out.println("member+id : " + qboardService.qgetList(cri));
 		int total = qboardService.qgetTotalCount();
 		log.info("total : " + total);
 		model.addAttribute("pageMaker", new PageVO(cri, total));
-
-		//System.out.println("테스트 qboardService.qgetList(cri) : " + qboardService.qgetList(cri));
 		return "qboard/list";
 	}
 
@@ -141,7 +132,6 @@ public class BoardController {
 		log.info("qcontent_view()..");
 		int board_id = boardVO.getBoard_id();
 		model.addAttribute("qcontent_view", qboardService.qread(board_id));
-
 		return "qboard/content_view";
 	}
 
@@ -149,46 +139,23 @@ public class BoardController {
 	public String qwrite_view(QBoardAndMemberVO boardVO, Model model) {
 		log.info("qwrite_view()...");
 		int board_id = boardVO.getBoard_id();
-
 		model.addAttribute("qwirte_view", qboardService.qread(board_id));
-
 		return "qboard/write_view";
 	}
 
 	@PostMapping("qwrite")
-	public String qwrite(QBoardAndMemberVO boardVO, Model model, HttpServletRequest request) {
-		
-		//int proudct_id = Integer.parseInt(request.getParameter("product_id"));
-		//int order_detail_id = Integer.parseInt(request.getParameter("order_detail_id"));
-		
+	public String qwrite(QBoardAndMemberVO boardVO, Model model, HttpServletRequest request) {		
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String user_id = auth.getName();
-
-		System.out.println("유저 아이디 : " + user_id);
-
 		boardVO.setMember_id(user_id);
-
 		UserVO uservo = userService.getUser(user_id);
-
-		System.out.println("==================board_enable1 : " + boardVO.getBoard_enable());
-
 		boardVO.setMember_number(uservo.getMember_number());
 		System.out.println(uservo.getMember_number());
-
 		String board_enable = boardVO.getBoard_enable();
-
 		model.addAttribute(board_enable);
-
-		System.out.println(boardVO.getBoard_enable());
-		System.out.println("멤버 아이디1 : " + uservo.getMember_number());
-		System.out.println("멤버 아이디2 : " + userService.getUser(user_id));
-
 		log.info("qwrite0()...");
 		qboardService.qwrite(boardVO);
-		log.info("qwrite1()...");
 		qboardService.qrepwrite(boardVO);
-		log.info("qrepwrite()...");
-
 		return "redirect:qlist";
 	}
 
@@ -215,154 +182,63 @@ public class BoardController {
 	}
 
 	@GetMapping("qreply_view")
-	public String qreply_view(ProductOrderDetailOrderVO productOrderDetailOrderVO, QBoardAndMemberVO boardVO, Model model) {
+	public String qreply_view(QBoardAndMemberVO boardVO, Model model) {
 		log.info("reply_view()...");
 		model.addAttribute("qreply_view", boardVO);
-		System.out.println("---111--------group : " + boardVO.getReply_group());
-		//model.addAttribute("qreply_view", boardVO);
-		//System.out.println("---222--------group : " + boardVO.getReply_group());
 		return "qboard/reply_view";
 	}
 
 	@PostMapping("qreply")
 	public String qreply(QBoardAndMemberVO boardVO, Model model) {
-		System.out.println("----------qreply-----");
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String user_id = auth.getName();
-
-		System.out.println("유저 아이디 : " + user_id);
-
 		boardVO.setMember_id(user_id);
-
 		UserVO uservo = userService.getUser(user_id);
-
 		boardVO.setMember_number(uservo.getMember_number());
-
-		System.out.println("멤버 아이디1 : " + uservo.getMember_number());
-		System.out.println("멤버 아이디2 : " + userService.getUser(user_id));
 		log.info("reply()...");
-		System.out.println("---333--------group : " + boardVO.getReply_group());
 		qboardService.qregisterReply(boardVO);
-
-		System.out.println("---444--------group : " + boardVO.getReply_group());
-
 		return "redirect:qlist";
 	}
 
-	@GetMapping("main/rlist") // ssj3
-	public String rlist(Criteria cri, Model model, ProductOrderDetailOrderVO productOrderDetailOrderVO) {
-		log.info("list()..");
-		//model.addAttribute("rlist", rboardService.rgetList(cri));
-		model.addAttribute("rlist", rboardService.rgetListWithPaging(productOrderDetailOrderVO.getProduct_id()));
-		int total = rboardService.rgetTotalCount();
-		log.info("total" + total);
-		model.addAttribute("pageMaker", new PageVO(cri, total));		
-		return "rboard/list";
-	}
-
 	@GetMapping("main/rcontent_view")
-	public String rcontent_view(RBoardAndMemberVO boardVO, ReviewVO rboardVO, OrderDetailVO orderVO, Model model) {
+	public String rcontent_view(RBoardAndMemberVO boardVO, Model model) {
 		log.info("content_view()..");
 		int board_id = boardVO.getBoard_id();
-		int review_id = rboardVO.getReview_id();
-		int prouduct_id = orderVO.getProduct_id();
-		int order_detail_id = rboardVO.getOrder_detail_id();
-
 		model.addAttribute("rcontent_view", rboardService.rread(board_id));
-		// model.addAttribute(productVO);
-
 		return "rboard/content_view";
 	}
 
 	@GetMapping("main/rwrite_view")
-	public String rwrite_view(Model model, ProductOrderDetailOrderVO productOrderDetailOrderVO) {
-		
-		log.info("write_view()...");
-		// int product_id = productVO.getProduct_id();
-		
-		model.addAttribute("rwrite_view",productOrderDetailOrderVO);
-		// log.info("=================product_id==========" + product_id);
-		
+	public String rwrite_view(Model model, ProductOrderDetailOrderVO productOrderDetailOrderVO) {		
+		log.info("write_view()...");		
+		model.addAttribute("rwrite_view",productOrderDetailOrderVO);		
 		return "rboard/write_view";
 
 	}
-	/*
-	@PostMapping("main/rwrite")
-	public String rwrite(Model model, RBoardAndMemberVO rboardVO,
-			@RequestPart(required = false) MultipartFile file, RedirectAttributes redirectAttributes, 
-			ProductOrderDetailOrderVO productOrderDetailOrderVO, HttpServletRequest request) {
-
-		log.info("write()...");
-		
-		ReviewVO reviewVO = null;
-
-		rboardService.rwrite(rboardVO, reviewVO);
-		
-		return "redirect:rlist";
-	}*/
 	
 	@PostMapping("main/rwrite")
-	public String rwrite(RBoardAndMemberVO boardVO, ReviewVO rboardVO, Model model,
+	public String rwrite(RBoardAndMemberVO boardVO, Model model,
 			@RequestPart(required = false) MultipartFile file, RedirectAttributes redirectAttributes, UserVO userVO,
 			ProductOrderDetailOrderVO productOrderDetailOrderVO, HttpServletRequest request) {
-
-		log.info("write()...");
-
+		log.info("write()...");		
 		int proudct_id = Integer.parseInt(request.getParameter("product_id"));
 		int order_detail_id = Integer.parseInt(request.getParameter("order_detail_id"));
-
-		log.info("값 확인====proudct_id==========" + proudct_id);
-		log.info("값 확인====order_detail_id==========" + order_detail_id);
-
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String user_id = auth.getName();
-
-		System.out.println("유저 아이디 : " + user_id);
-
 		boardVO.setMember_id(user_id);
-
 		UserVO uservo = userService.getUser(user_id);
-
 		boardVO.setMember_number(uservo.getMember_number());
-
-		String rating_check = boardVO.getRating_check();
-
-		model.addAttribute(rating_check);
-
-		int review_id = rboardVO.getReview_id();
-		model.addAttribute(review_id);
-
-		int product_id = productOrderDetailOrderVO.getProduct_id();
-		model.addAttribute(product_id);
-
-		// order_detail_id = rboardVO.getOrder_detail_id();
-		model.addAttribute(order_detail_id);
-
-		System.out.println("멤버 아이디1 : " + uservo.getMember_number());
-		System.out.println("멤버 아이디2 : " + userService.getUser(user_id));
-		System.out.println("멤버 아이디3 : " + boardVO.getReview_id());
-		System.out.println("order_detail_id : " + order_detail_id);
-		System.out.println("별점 =================== : " + boardVO.getRating_check());
-		
-		rboardService.rwrite(boardVO, rboardVO); // rboardVO추가
-		
-		// System.out.println("order_detail_id =================== : " +
-		// userVO.getOrder_detail_id());
-/*
 		storageService.store(file);
 		String uri1 = MvcUriComponentsBuilder
 				.fromMethodName(FileUploadController.class, "serveFile", file.getOriginalFilename()).build().toUri()
 				.toString();
-
 		boardVO.setAttachment_name(uri1);
 
-		rboardService.rwrite(boardVO, rboardVO); // rboardVO추가
-
+		rboardService.rwrite(boardVO, productOrderDetailOrderVO);
+		
 		redirectAttributes.addFlashAttribute("message",
 				"You successfully uploaded " + file.getOriginalFilename() + "!");
-
-		System.out.println("-------Attachment_name----" + boardVO.getAttachment_name());
-		*/
+		
 		return "redirect:main";
 	}
 
@@ -375,7 +251,7 @@ public class BoardController {
 	}
 
 	@GetMapping("main/rmodify_view")
-	public String rmodify_view(RBoardAndMemberVO boardVO, Model model) {// ssj
+	public String rmodify_view(RBoardAndMemberVO boardVO, Model model) {
 		log.info("modify_view()...");
 		int board_id = boardVO.getBoard_id();
 		model.addAttribute("rmodify_view", rboardService.rread(board_id));

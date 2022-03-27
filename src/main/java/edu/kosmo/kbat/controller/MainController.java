@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.page.PageVO;
 import edu.kosmo.kbat.service.MainService;
@@ -100,7 +101,7 @@ public class MainController {
 		model.addAttribute("products", productVO);
 	}
 	@GetMapping("/main/detail")
-	public void detail(HttpServletRequest request,  Model model, Criteria cri, RBoardAndMemberVO boardVO, ReviewVO rboardVO, QBoardAndMemberVO qboardVO) {
+	public void detail(HttpServletRequest request,  Model model, Criteria cri, ProductOrderDetailBoardVO productOrderDetailBoardVO) {
 		String product_id = (String) request.getParameter("product_id");
 		System.out.println("----detail----product_id:"+product_id);
 		ProductVO productVO = productService.get(Integer.valueOf(product_id));
@@ -121,20 +122,13 @@ public class MainController {
 		
 		model.addAttribute("prod", productVO);
 		
-		log.info("list()..");		
-		//model.addAttribute("rlist", rboardService.rgetList(cri));
-		model.addAttribute("rlist", rboardService.rgetListWithPaging(Integer.valueOf(product_id)));
+		log.info("main controller list()..");		
+		int pro_id = productOrderDetailBoardVO.getProduct_id();	
+		model.addAttribute("rlist", rboardService.rgetListWithPaging(cri, pro_id));
 		int total = rboardService.rgetTotalCount();
 		log.info("total" + total);
 		
 		model.addAttribute("pageMaker", new PageVO(cri, total));
-		
-		System.out.println("---------------rboardVO.getReview_id() : " + rboardVO.getReview_id());
-
-		//model.addAttribute("qlist", qboardService.qgetList(cri));
-		//model.addAttribute("qlist", qboardService.qgetListWithPaging(Integer.valueOf(product_id)));
-		//System.out.println("member+id : " + qboardService.qgetList(cri));
-		model.addAttribute("pageMaker", new PageVO(cri, total));	
 		
 	}
 	
@@ -162,7 +156,7 @@ public class MainController {
 	public String cartorder(HttpServletRequest request,  Model model) {
 		String product_id = (String) request.getParameter("product_id");
 		System.out.println("----cartorder----product_id:"+product_id);
-		
+
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String user_id = auth.getName();
         System.out.println("----------------------유저 아이디 : " + user_id);	
@@ -363,7 +357,6 @@ public class MainController {
         }
  		return "/pay/import";
 	}
-	
-	
+
 
 }

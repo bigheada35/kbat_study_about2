@@ -53,18 +53,6 @@
    		]]>  		
    	</select> 
    	
-   	<!-- <select id="rgetList" resultMap = "rBoardMap">  				
-   		<![CDATA[ 
-   			select * from boardtype,board,member, rating, review
-			where board.boardtype_id = boardtype.boardtype_id 
-			and board.boardtype_id = 2 
-			and member.member_number =board.member_number 
-			and review.board_id = board.board_id
-			and review.review_id = rating.review_id
-			order by board.board_id
-   		]]>  		
-   	</select>  -->
-   	
 	<select id="rgetboardtypeList" resultMap = "rBoardMap">
  		<![CDATA[ 
 			select * from boardtype,board where board.boardtype_id = boardtype.boardtype_id and board.boardtype_id = 2 order by board_id
@@ -73,36 +61,20 @@
    	
    	 <select id="rread" resultMap = "rBoardMap">
    		<![CDATA[
-      		select * from board,member, rating, review
-			where member.member_number =board.member_number 
-            and review.board_id = board.board_id
-            and rating.review_id = review.review_id
-			and board.board_id = #{board_id}      		
-   		]]>
-   	</select>
-   	
-   	<!-- <select id="rread" resultMap = "rBoardMap">
-   		<![CDATA[
-      		select * from board,member,attachment,rating, review
+      		select * from board,member, rating, review, attachment, product
 			where member.member_number =board.member_number 
 			and attachment.board_id = board.board_id
             and review.board_id = board.board_id
             and rating.review_id = review.review_id
+            and product.product_id = board.product_id
 			and board.board_id = #{board_id}      		
    		]]>
-   	</select> -->
-   	
-   	<!-- <select id="read" resultType="edu.kosmo.kbat.vo.NBoardVO">
-   	select * from boardtype,board,member where board.boardtype_id = boardtype.boardtype_id and board.boardtype_id = 1 and member.member_number =board.member_number
-   		<![CDATA[
-      		select * from board where board_id = #{board_id}
-   		]]>
-   	</select> -->
+   	</select>
    	
    	<insert id="rwrite" >
    		<![CDATA[
-     		insert into board (board_id, member_number, board_title, board_content, boardtype_id ) 
-      		values (board_seq.nextval, #{member_number}, #{board_title}, #{board_content}, '2') 
+     		insert into board (board_id, member_number, board_title, board_content, boardtype_id, product_id ) 
+      		values (board_seq.nextval, #{member_number}, #{board_title}, #{board_content}, '2', #{product_id}) 
   		]]>
     </insert>  
          
@@ -121,19 +93,12 @@
     </insert>  
     
     
-	<!-- <insert id="rwrite_img" >
+	<insert id="rwrite_img" >
    		<![CDATA[
      		insert into attachment(board_id, attachment_id, attachment_name)
 			values (board_seq.currval, attachment_seq.nextval, #{attachment_name})
   		]]>
-    </insert>  -->
-  	 
-    <!-- <insert id="write" >
-   		<![CDATA[
-     		insert into board (board_id, board_title, board_content) 
-      		values (board_seq.nextval, #{board_title}, #{board_content}) 
-  		]]>
-    </insert>  --> 
+    </insert> 
     
     <update id="rmodify">
    		<![CDATA[
@@ -183,7 +148,7 @@
 													board.board_hit,
 													rating.rating_check,
 													review.review_id,	
-													product.product_id								
+													product.product_id					
 												from boardtype, board, member, rating, review, order_detail, product, orders
 												where 
 													board.boardtype_id = boardtype.boardtype_id 
@@ -194,14 +159,13 @@
 													and member.member_number = orders.member_number
 													and product.product_id = order_detail.product_id
                                                     and orders.orders_id = order_detail.orders_id
+                                                    and board.product_id = product.product_id
                                     				and product.product_id = #{product_id}
 												order by board_id
 												
-             ) A WHERE ROWNUM <= #{pageNum} * #{amount}
-         ) WHERE RNUM > (#{pageNum}-1) * #{amount}				
+             ) A WHERE ROWNUM <= #{criteria.pageNum} * #{criteria.amount}
+         ) WHERE RNUM > (#{criteria.pageNum}-1) * #{criteria.amount}				
 	]]>
 	</select>
-	
-
-	 
+		 
 </mapper>

@@ -22,6 +22,7 @@ public class Criteria {
 		this.amount = amount;
 	}
 
+	
 	// 검색 type KDM(https://kimvampa.tistory.com/245?category=771727)
 	private String type; // 내용, 제목, 카테고리
 

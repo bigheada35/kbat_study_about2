@@ -26,19 +26,9 @@
 		width : 60%;
 	}
 	
- 	<%--.content{
-		position : relative;
-		bottom : 230px;
-		border-bottom : none;
-	} --%>
-	
 	.button{
 		margin-left : 20%;
 		text-align : left;
-	}
-	
-	#b-list{
-		
 	}
 	
 	.title{
@@ -49,10 +39,10 @@
 	<br>
 	<div class="container">
 		<table class="table"> 
-    		<form:form action="/main/rwrite" method="post"> 
+    		<form:form action="/main/rwrite" method="post" enctype="multipart/form-data"> 
 			<input type="hidden" name="product_id" value="${rwrite_view.product_id}"> 
 	     	<input type="hidden" name="order_detail_id" value="${rwrite_view.order_detail_id}">   		
-			<thead> 
+			<thead> 				
 				<tr>
 					<th scope="col">별점</th>
 					<td>
@@ -69,15 +59,22 @@
 			      <td>${principal.user.member_id}</td>
 			    </tr> 	
 			    <tr>  
-			      <th scope="col">제목</th>			      
+			      <th scope="col" style="vertical-align:middle">제목</th>			      
 			      <td><input type="text" name="board_title" class="title"></td>
 			    </tr>			     
-			    <tr style="border-bottom:2px solid">   
-			      <th scope="col" class="content">내용</th>
+			    <tr>   
+			      <th scope="col" class="content" style="vertical-align:top">내용</th>
 			      <td><textarea rows="10" name="board_content" style="width:100%"></textarea></td>
-			    </tr>   
-			</thead>
+			    </tr>  
+			    <tr style="border-bottom:2px solid">
+			    	<th scope="col" style="vertical-align:middle">사진첨부</th>
+				    <td><label for="img"></label> 
+						<img src="<c:url value="${rwrite_view.attachment_name}"/>" />
+						<input type="file" name="file" ></td>
+				</tr>			 			   
+			</thead>					
 		</table> 	
+
         <div class="button">
 			<button type="submit" class="btn btn-dark">등록</button></a>
 		</div>

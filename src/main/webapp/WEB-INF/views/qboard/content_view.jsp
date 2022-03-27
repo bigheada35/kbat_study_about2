@@ -25,19 +25,9 @@
 		width : 60%;
 	}
 	
-	<%--.content{
-		position : relative;
-		bottom : 180px;
-		border-bottom : none;
-	} --%>
-	
 	.button{
 		margin-left : 20%;
 		text-align : left;
-	}
-	
-	#b-list{
-		
 	}
 	
 	.content1{
@@ -75,8 +65,7 @@
 			      <td>${qcontent_view.board_title}</td>
 			    </tr>
 			    <tr style="border-bottom:2px solid">   
-			      <th scope="col" class="content">내용</th>
-			      <%-- <td><textarea rows="10" name="board_content" style="width:100%">${content_view.board_content}</textarea></td> --%>
+			      <th scope="col" class="content" style="vertical-align:top">내용</th>
 			      <td><textarea class="content1">${qcontent_view.board_content}</textarea></td>
 			    </tr>   
 			</thead>
@@ -88,7 +77,7 @@
 						<a href="qmodify_view?board_id=${qcontent_view.board_id}"><button type="button" class="btn btn-dark">수정</button></a>						
 						<a href="qdelete?board_id=${qcontent_view.board_id}"><button type="button" class="btn btn-dark">삭제</button></a>
 					</c:when>
-					<c:when test="${principal.user.member_id eq 'eum1720@naver.com'}">	
+					<c:when test="${principal.user.member_id eq 'kbatc5'}">	
 						<a href="qlist"><button type="button" class="btn btn-dark" id="b-list">목록</button></a>         
 						<a href="qreply_view?board_id=${qcontent_view.board_id}&reply_group=${qcontent_view.reply_group}"><button type="button" class="btn btn-dark">답변</button></a>						
 					</c:when>
@@ -97,5 +86,4 @@
 		</div>
 	</div>	
 </body>
-
 </html>

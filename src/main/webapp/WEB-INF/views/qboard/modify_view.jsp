@@ -24,20 +24,10 @@
 		margin-left : 20%;
 		width : 60%;
 	}
-	
- 	<%--.content{
-		position : relative;
-		bottom : 230px;
-		border-bottom : none;
-	} --%>
-	
+
 	.button{
 		margin-left : 20%;
 		text-align : left;
-	}
-	
-	#b-list{
-		
 	}
 	
 	.title{
@@ -68,11 +58,11 @@
 			      <td>${qmodify_view.board_hit}</td>
 			    </tr>   
 			    <tr>  
-			      <th scope="col">제목</th>			      
+			      <th scope="col" style="vertical-align:middle">제목</th>			      
 			      <td><input type="text" name="board_title" class="title" value="${qmodify_view.board_title}"></td>
 			    </tr>
 			    <tr style="border-bottom:2px solid">   
-			      <th scope="col" class="content">내용</th>
+			      <th scope="col" class="content" style="vertical-align:top">내용</th>
 			      <td><textarea rows="10" name="board_content" style="width:100%" value="${qmodify_view.board_content}">${qmodify_view.board_content}</textarea></td>
 			    </tr>   
 			</thead>

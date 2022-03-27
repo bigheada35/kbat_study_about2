@@ -7,13 +7,9 @@ import edu.kosmo.kbat.vo.BoardtypeVO;
 import edu.kosmo.kbat.vo.MemberVO;
 import edu.kosmo.kbat.vo.NBoardAndMemberVO;
 
-
-
 public interface NBoardService {
-	
-	//공지사항 : n, 후기 : r, 문의 : q
-	//List<NBoardVO> getList();
-	List<NBoardAndMemberVO> getList();//ssj2
+
+	List<NBoardAndMemberVO> getList();
 	
 	NBoardAndMemberVO read(int board_id); 
 	void write(NBoardAndMemberVO board); 
@@ -25,7 +21,5 @@ public interface NBoardService {
 	public List<NBoardAndMemberVO> getList(Criteria criteria);
 	
 	List<BoardtypeVO> getboardtypeList();
-	
-	
 
 }

@@ -14,6 +14,11 @@
 <title>Insert title here</title>
 </head>
 <style>
+	img{
+		width:200px;
+		height:auto
+	} 
+	
 	.input-group{
 		margin-left : 15%;
 		width : 70%;
@@ -23,22 +28,12 @@
 		margin-left : 20%;
 		width : 60%;
 	}
-	
- 	<%--.content{
-		position : relative;
-		bottom : 230px;
-		border-bottom : none;
-	} --%>
-	
+		
 	.button{
 		margin-left : 20%;
 		text-align : left;
 	}
-	
-	#b-list{
-		
-	}
-	
+
 	.title{
 		width : 100%;
 	}
@@ -67,17 +62,23 @@
 			      <td>${rmodify_view.board_hit}</td>
 			    </tr>   
 			    <tr>  
-			      <th scope="col">제목</th>			      
+			      <th scope="col" style="vertical-align:middle">제목</th>			      
 			      <td><input type="text" name="board_title" class="title" value="${rmodify_view.board_title}"></td>
 			    </tr>
-			    <tr style="border-bottom:2px solid">   
-			      <th scope="col" class="content">내용</th>
+			    <tr>   
+			      <th scope="col" class="content" style="vertical-align:top">내용</th>
 			      <td><textarea rows="10" name="board_content" style="width:100%" value="${rmodify_view.board_content}">${rmodify_view.board_content}</textarea></td>
-			    </tr>   
+			    </tr>  
+			    <tr style="border-bottom:2px solid">
+			    	<th scope="col" style="vertical-align:top">사진첨부</th>
+				    <td><label for="img"></label> 
+						<img src="<c:url value="${rmodify_view.attachment_name}"/>" />
+						<input type="file" name="file" ></td>
+				</tr> 
 			</thead>
 		</table>		
 		<div class="button">	
-					<a href="rlist"><button type="button" class="btn btn-dark" id="b-list">목록</button></a>         
+					<a href="/main/detail?product_id=${rmodify_view.product_id}"><button type="button" class="btn btn-dark" id="b-list">목록</button></a>         
 					<button type="submit" class="btn btn-dark">수정</button></a>			
 		</div>
 			</form:form>		

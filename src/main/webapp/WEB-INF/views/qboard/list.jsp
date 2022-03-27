@@ -15,7 +15,7 @@
 </head>
 <style>
 	img{
-		width : 0.8em
+		width : 1.2em
 	}
 	
 	.paging{
@@ -31,6 +31,7 @@
 	<div class="container">  
 		<table class="table">  
 			<h1>문의사항</h1>   
+			<br>
          	<thead> 
 				<tr>
 				<th scope="col">번호</th>
@@ -48,7 +49,7 @@
          <td>${board.board_id}</td>           
          <td>                 	
 	        <c:if test="${board.board_enable=='N'}">
-	            <img src="${pageContext.request.contextPath}/resources/img/lock1.png"/>
+	            <img src="${pageContext.request.contextPath}/resources/img/lock.png"/>
 	            <c:choose>
 	                <c:when test="${board.member_id eq principal.user.member_id || principal.user.member_id == 'kbatc5' || principal.user.member_id == 'admin'}">	
 	                	<c:forEach begin="1" end="${board.reply_indent}">[답변]</c:forEach>
@@ -74,28 +75,24 @@
       		<c:choose>         	
 	                <c:when test="${principal.user.member_number != null}">	
 	                	<td colspan="5"> <a href="qwrite_view"><button type="button" class="btn btn-dark">글작성</button></a> </td>           
-<%-- 			            <a href="nmodify_view?board_id=${content_view.board_id}">수정</a> &nbsp;&nbsp;
-			            <a href="ndelete?board_id=${content_view.board_id}">삭제</a> &nbsp;&nbsp;  --%>
 	                </c:when>
 	                <c:otherwise></c:otherwise>
 	            </c:choose>
-         <!-- <td colspan="5"> <a href="qwrite_view">글작성</a> </td> -->
-      </tr>  
+   </tr>  
       
    <div class="paging">	   
-   <c:if test="${pageMaker.pre}">
-         <a href="qlist${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
-   </c:if>
-
-	<!-- 링크를 걸어준다 1-10페이지까지 페이지를 만들어주는것  -->
-	<c:forEach var="idx" begin="${pageMaker.startPage }" end="${pageMaker.endPage }" >
-		<a href="qlist${pageMaker.makeQuery(idx)}" style="text-decoration:none; color:black">${idx}</a>
-	</c:forEach>
-	      
-	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-		<a href="qlist${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
-	</c:if> <br>
+	   <c:if test="${pageMaker.pre}">
+	         <a href="qlist${pageMaker.makeQuery(pageMaker.startPage - 1) }">«</a>
+	   </c:if>
+	
+		<!-- 링크를 걸어준다 1-10페이지까지 페이지를 만들어주는것  -->
+		<c:forEach var="idx" begin="${pageMaker.startPage }" end="${pageMaker.endPage }" >
+			<a href="qlist${pageMaker.makeQuery(idx)}" style="text-decoration:none; color:black">${idx}</a>
+		</c:forEach>
+		      
+		<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+			<a href="qlist${pageMaker.makeQuery(pageMaker.endPage +1) }"> » </a>
+		</c:if> <br>
 	</div>
 </body>
-
 </html>
