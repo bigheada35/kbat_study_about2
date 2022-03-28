@@ -8,7 +8,7 @@
 <!-- Footer area-->
 <footer class="container-fluid bg-light" >
   <div class="row">
-    <div class="col-6 col-md">
+    <div class="col-6 col-md"style="text-align:right;">
       <h5>About us</h5>
       <ul class="list-unstyled text-small">
       	<li><a class="text-muted" href="#">공부어때</a></li>
@@ -17,7 +17,7 @@
         <li><a class="text-muted" href="#">010-1234-5678</a></li>
       </ul>
     </div>
-    <div class="col-6 col-md">
+    <div class="col-6 col-md"style="text-align:center;">
       <h5>Quick links</h5>
       <ul class="list-unstyled text-small">
         <li><a class="text-muted" href="#">카테고리</a></li>

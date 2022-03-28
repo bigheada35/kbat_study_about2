@@ -63,5 +63,12 @@ public class UserService {
       userMapper.insertAuthoritiesAdmin(userVO);
    }
    
+   public int idCheck(String member_id) {
+		System.out.println("idCheck.. : " + member_id);
+		int count = userMapper.idCheck(member_id);
+		System.out.println("count"+count);
+		return count;
+	}
+   
 }
 

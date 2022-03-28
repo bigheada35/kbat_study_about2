@@ -23,5 +23,7 @@ public interface UserMapper {
    @Insert("insert into authority(authority_id, authority_name, member_number) values(authority_seq.nextval, 'ROLE_ADMIN', member_seq.currval)")
    public void insertAuthoritiesAdmin(UserVO UserVO);
    
+   @Select("SELECT count(*) FROM member WHERE member_id = #{member_id}")
+	public int idCheck(String member_id); //아이디중복체크
  
 }

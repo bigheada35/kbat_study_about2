@@ -1,6 +1,9 @@
 package edu.kosmo.kbat.controller;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.security.core.Authentication;
@@ -11,6 +14,7 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import edu.kosmo.kbat.principal.PrincipalDetails;
@@ -28,6 +32,12 @@ public class UserController {
    @Autowired	
    private UserService userService;
 
+   @GetMapping("/add/add")
+   public void add() {
+      log.info("Welcome add");
+
+      System.out.println("----- add");
+   }
  
 	@GetMapping("/admin/adminHome")
 	public void adminHome() {
@@ -90,6 +100,20 @@ public class UserController {
 	   System.out.println("authentication : " + oAuth2User.getAttributes());
 	   System.out.println("OAuth2User : " + oauth.getAttributes());
 	   return "OAuth 세션 정보 확인하기";
+   }
+   
+   @ResponseBody
+   @PostMapping("/add/idCheck")
+   public Map<String,Object> idCheck(@RequestBody UserVO userVO) {
+	   log.info("idCheck 컨트롤러 도착 " + userVO);
+       int count = 0;
+       Map<String, Object> map = new HashMap<String, Object>();
+
+       String member_id = userVO.getMember_id();
+       count = userService.idCheck(member_id);
+       map.put("idCount", count);
+
+       return map;
    }
    
   

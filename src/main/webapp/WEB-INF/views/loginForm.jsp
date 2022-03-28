@@ -10,18 +10,69 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>로그인페이지</h1>
 
-<form action="/login" method="POST">
-<input type="text" name="username"/><br>
-<input type="password" name="password"/><br>
-<button>로그인</button>
-</form>
+  <header>
 
-<a href="/add/addForm">회원가입</a>
-<a href="/oauth2/authorization/google">구글 로그인</a>
-<a href="/oauth2/authorization/naver">네이버 로그인</a>
-<a href="/oauth2/authorization/kakao">카카오 로그인</a>
+
+ 	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common2ssj/header.jsp"></jsp:include>
+	<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common2ssj/body_header.jsp"></jsp:include>
+ 
+
+        <!-- register-area -->
+        <div class="register-area" style="float: none; margin:100 auto;">
+
+            <div class="container">
+                <div class="row"style="padding-top:170px;padding-bottom: 170px;">
+                    <div class="col-md-5" style="float: none; margin:0 auto;">
+
+                        <div class="col-md-12 col-xs-12 register-blocks">
+                            <div class="col-md-12 col-xs-12 login-blocks">
+                                <h2>로그인
+                                </h2>
+                                <form action="/login" method="post">
+                                    <div class="form-group">
+                                        <label for="name">아이디</label>
+                                        <input type="text" class="form-control" id="username" name="username">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">비밀번호</label>
+                                        <input type="password" class="form-control" id="password" name="password">
+                                    </div>
+                                   
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="w-60 btn btn-md btn-warning">
+                                            로그인</button>
+
+                                    </div>
+
+                                    <br>
+
+                                    <div class="soscial"style="text-align:-webkit-center;">
+                                        <p>소셜 로그인</p>
+                                        <button class="social_login"href="/oauth2/authorization/kakao"style="font-size: x-large;">
+                                            <img src="${pageContext.request.contextPath}/resources/assets/img/social_big/kakao.png" alt="">&nbsp;kakao</button>
+
+                                        <button class="social_login"href="/oauth2/authorization/naver"style="font-size: x-large;">
+                                            <img src="${pageContext.request.contextPath}/resources/assets/img/social_big/naver.png" alt="">&nbsp;naver</button>
+
+                                        <button class="social_login"href="/oauth2/authorization/google"style="font-size: x-large;">
+                                            <img src="${pageContext.request.contextPath}/resources/assets/img/social_big/google.jpg" alt="">&nbsp;google</button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
 
 </body>
+
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/common2ssj/body_footer.jsp"></jsp:include>
 </html>

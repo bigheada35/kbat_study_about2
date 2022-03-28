@@ -135,13 +135,17 @@
        
       </form>
 		<sec:authorize access="isAnonymous()">
-			<li><a href="/login" style="color:gray;" class="login-panel">Login</a></li>
+			<li style="list-style: none;"><a href="/login" style="color:gray;" class="login-panel">&nbsp;&nbsp;Login</a></li>
 		</sec:authorize>
           <sec:authorize access="isAuthenticated()">
-			<li><a href="#" style="color:gray;"><sec:authentication property="principal.user.member_id"/>님</a></li>
+			<li style="list-style: none;">&nbsp;&nbsp;<a href="#" style="color:gray;"><sec:authentication property="principal.user.member_id"/>&nbsp;님</a></li>
 		<!-- <li><a href="#" class="text-white">이름: <sec:authentication property="principal.user.member_name"/></a></li> -->
 		</sec:authorize>
       
+      	<sec:authorize access="isAnonymous()">
+			<li style="list-style: none;"><a href="/add" style="color:gray;" class="login-panel">&nbsp;&nbsp;&nbsp;Sign Up</a></li>
+		</sec:authorize>
+		
     </div>
   </div>
 </nav>

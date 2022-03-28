@@ -475,8 +475,7 @@
                             <button id="update-btn" type="submit" class="site-btn register-btn"style="font-size: 15pt">
                                 수정완료</button>
 
-                            <button id="point-btn" type="submit" class="float-right"style="font-size: 10pt;" onclick="deleteMember()">
-                                회원탈퇴</button>
+                       
                         </form>
                     </div>
                 </div>

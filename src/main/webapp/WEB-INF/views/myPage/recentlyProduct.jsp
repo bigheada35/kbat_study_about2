@@ -1,25 +1,56 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<sec:authorize access="isAuthenticated()">
+<sec:authentication property="principal" var="principal" />
+</sec:authorize>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-	<!-- Required meta tags -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>최근 본 상품</title>
-	
-	<!-- Required CSS files -->
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
-	<link rel="stylesheet" href="/resources/assets/css/owl.carousel.css">
-	<link rel="stylesheet" href="/resources/assets/css/barfiller.css">
-	<link rel="stylesheet" href="/resources/assets/css/animate.css">
-	<link rel="stylesheet" href="/resources/assets/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/resources/assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/resources/assets/css/slicknav.css">
-	<link rel="stylesheet" href="/resources/assets/css/main.css">
-	<link rel="stylesheet" href="/resources/bootstrap.min.css">
-	
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>공부어때 | Home page</title>
+<meta name="description" content="GARO is a real-estate template">
+<meta name="author" content="Kimarotec">
+<meta name="keyword"
+	content="html5, css, bootstrap, property, real-estate theme , bootstrap template">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
+	rel='stylesheet' type='text/css'>
+
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" href="favicon.ico"
+	type="/resources/images/x-icon">
+<link rel="icon" href="favicon.ico" type="/resources/images/x-icon">
+
+<link rel="stylesheet" href="/resources/assets/css/normalize.css">
+<link rel="stylesheet" href="/resources/assets/css/font-awesome.min.css">
+<link rel="stylesheet" href="/resources/assets/css/fontello.css">
+<link
+	href="/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
+	rel="stylesheet">
+<link href="/resources/assets/fonts/icon-7-stroke/css/helper.css"
+	rel="stylesheet">
+<link href="/resources/assets/css/animate.css" rel="stylesheet"
+	media="screen">
+<link rel="stylesheet"
+	href="/resources/assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/assets/css/icheck.min_all.css">
+<link rel="stylesheet" href="/resources/assets/css/price-range.css">
+<link rel="stylesheet" href="/resources/assets/css/owl.carousel.css">
+<link rel="stylesheet" href="/resources/assets/css/owl.theme.css">
+<link rel="stylesheet" href="/resources/assets/css/owl.transitions.css">
+<link rel="stylesheet" href="/resources/assets/css/style.css">
+<link rel="stylesheet" href="/resources/assets/css/responsive.css">
+
+<!-- AJAX 처리용 JQUERY -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<!-- thumbnail image hover -->
 	<style type="text/css">
 		.thumbnail:hover {
@@ -33,6 +64,7 @@
 		}
 	</style>
 </head>
+
 <body>
 	<!--header -->
 	<jsp:include

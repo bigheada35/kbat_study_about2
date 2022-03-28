@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <sec:authorize access="isAuthenticated()">
 <sec:authentication property="principal" var="principal" />
 </sec:authorize>
@@ -53,18 +54,20 @@
 </head>
 
 <body>
-	<div style="overflow: hidden;" class="container">
+				
 		<!--header -->
 		<jsp:include
 			page="${pageContext.request.contextPath }/WEB-INF/views/common/header.jsp"></jsp:include>
-		<div class="container">
-			<div class="row">
+			
 
-				<!-- 왼쪽 사이드 메뉴 -->
+			<div class="container">
+		<div class="row">
+			<!-- 왼쪽 사이드 메뉴 -->
+
+			<div class="content-area blog-page padding-top-40"
+				style="background-color: #FCFCFC; padding-bottom: 55px;">
 				<div class="container">
 					<div class="row">
-						<div class="content-area blog-page padding-top-40"
-							style="background-color: #FCFCFC; padding-bottom: 55px;">
 
 
 							<div class="blog-asside-right col-md-3">
@@ -108,13 +111,7 @@
 												</h5>
 											</li>
 
-											<li>
-												<h5>
-													<a
-														href="${pageContext.request.contextPath}/member/mypage/like">찜한
-														목록</a>
-												</h5>
-											</li>
+										
 											<li>
 												<h5>
 													<a
@@ -127,13 +124,8 @@
 														href="${pageContext.request.contextPath}/member/mypage/productq/list">상품문의</a>
 												</h5>
 											</li>
-											<li>
+										
 
-												<h5>
-													<a
-														href="${pageContext.request.contextPath}/member/mypage/myqna/list">고객Q&A</a>
-												</h5>
-											</li>
 
 										</ul>
 									</div>
@@ -161,7 +153,7 @@
 											<div class="col-md-6" align="right"
 												style="padding-right: 0px">
 												<button class="btn btn-primary btn"
-													onclick="location.href='${pageContext.request.contextPath}/order/cart'">장바구니</button>
+													onclick="location.href='${pageContext.request.contextPath}/main/cartorder'">장바구니</button>
 											</div>
 										</div>
 										<div class="row" style="padding-left: 15px">
@@ -185,7 +177,7 @@
 												<div class="col-md-4" align="right"
 													style="padding: 3% 0px 0px 0px">
 													<br>
-													<h2>${order.orders_price}원</h2>
+													<h5><fmt:formatNumber type="currency" value="${order.orders_price}" />원</h5>
 												</div>
 											</div>
 										</c:forEach>
