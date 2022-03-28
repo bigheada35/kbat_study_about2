@@ -50,17 +50,40 @@
 
                                     <div class="soscial"style="text-align:-webkit-center;">
                                         <p>소셜 로그인</p>
-                                        <button class="social_login"href="/oauth2/authorization/kakao"style="font-size: x-large;">
-                                            <img src="${pageContext.request.contextPath}/resources/assets/img/social_big/kakao.png" alt="">&nbsp;kakao</button>
+                                        	
 
-                                        <button class="social_login"href="/oauth2/authorization/naver"style="font-size: x-large;">
-                                            <img src="${pageContext.request.contextPath}/resources/assets/img/social_big/naver.png" alt="">&nbsp;naver</button>
-
-                                        <button class="social_login"href="/oauth2/authorization/google"style="font-size: x-large;">
-                                            <img src="${pageContext.request.contextPath}/resources/assets/img/social_big/google.jpg" alt="">&nbsp;google</button>
                                     </div>
 
                                 </form>
+
+
+
+                                 <button class="social_login" style="font-size: x-large;">
+                                 		<a href="/oauth2/authorization/kakao" style="text-decoration: none;">
+                                     		<img src="${pageContext.request.contextPath}/resources/assets/img/social_big/kakao.png" alt="">
+                                     			&nbsp;kakao
+                                     		</img>
+                                     	</a>
+                                 </button>
+                                        
+											
+                                 <button class="social_login" style="font-size: x-large;">
+                                 		<a href="/oauth2/authorization/naver" style="text-decoration: none;">
+                                            <img src="${pageContext.request.contextPath}/resources/assets/img/social_big/naver.png" alt="">
+                                             &nbsp;naver
+                                             </img>
+                                        </a>      
+                                 </button>
+
+                                 <button class="social_login" style="font-size: x-large;">
+                                 		<a href="/oauth2/authorization/google" style="text-decoration: none;">
+                                        	<img src="${pageContext.request.contextPath}/resources/assets/img/social_big/google.jpg" alt="">
+                                            &nbsp;google
+                                            </img>
+                                        </a>    
+                                 </button>
+                                        
+
 
                             </div>
                         </div>
