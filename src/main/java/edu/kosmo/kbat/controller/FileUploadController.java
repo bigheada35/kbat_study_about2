@@ -177,6 +177,7 @@ public class FileUploadController {
 	@GetMapping("/upload/delete")
 	public String delete(@ModelAttribute ProductVO productVO) throws IOException {
 		
+		System.out.println("-------upload/delete:" + productVO.getProduct_id() );
 		productService.delete(productVO.getProduct_id());
 		
 		return "redirect:/upload/list2";
