@@ -290,7 +290,8 @@ public class MainController {
     		List <ProductOrderVO> productOrderVO = productOrderService.getOrderList(uservo.getMember_id());
     		model.addAttribute("products_order", productOrderVO);    		
         }
-        return "/pay/import";
+        //return "/pay/import";
+        return "/pay/checkout";
 	}	
 	@GetMapping("/pay/checkout_import")
 	public String checkout_import(HttpServletRequest request,  Model model) {

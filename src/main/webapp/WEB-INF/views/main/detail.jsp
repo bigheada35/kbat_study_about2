@@ -21,8 +21,7 @@
     
     .paging{
 		text-align : center;
-	}
-	
+	}	
 </style>
 <body>
 <div class="container">

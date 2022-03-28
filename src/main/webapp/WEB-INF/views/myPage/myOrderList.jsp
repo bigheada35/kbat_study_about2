@@ -13,7 +13,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>마이 페이지</title>
+<title>주문 내역</title>
 
 <!-- Required CSS files -->
 <link
@@ -228,219 +228,261 @@
 </head>
 
 <body>
-	<div style="overflow: hidden;" class="container">
-		<!-- header -->
-		<hr style="margin: 15px 15px 40px 15px;">
-		<!-- 상단 회원 정보 요약 -->
+<div style="overflow: hidden;" class="container">
+	<!--header -->
+		<jsp:include page="${pageContext.request.contextPath }/WEB-INF/views/common/header.jsp"></jsp:include>
 		<div class="container">
-			<div class="row" style="height: 50px;">
-				<div class="col-md-3 contact-info" align="left"
-					style="padding-left: 15px; margin-top: 10px; text-align: center;">
-					<h2>
-						<sec:authentication property="principal.user.member_name" />
-					</h2>
-				</div>
-				<div class="col-md-1 contact-info" style="padding-top: 20px;">
-					<a href="${pageContext.request.contextPath}/myPage/updateMember">정보수정</a>
-				</div>
-				<div class="col-md-6 contact-info"></div>
-				<button id="point-btn" type="submit" class="float-right"
-					style="font-size: 10pt;" onclick="deleteMember()">회원탈퇴</button>
-			</div>
-		</div>
-		<span style="margin-left: 14px;"> </span> <span
-			style="margin-left: 400px;" align="center"> </span>
-	</div>
+			<div class="row">
 
-	<hr style="margin: 15px 15px 40px 15px;">
-
-	<div class="container">
-		<div class="row">
-			<!-- 왼쪽 사이드 메뉴  -->
-			<div class="col-md-3 contact-info" align="center">
-				<div class="single-info" style="margin-bottom: 40px">
-					<h3>나의 쇼핑활동</h3>
-					<hr>
-					<h5>
-						<a href="${pageContext.request.contextPath}/myPage/myOrderList">주문내역
-							조회</a>
-					</h5>
-					<h5>
-						<a
-							href="${pageContext.request.contextPath}/member/mypage/recently">최근
-							본 상품</a>
-					</h5>
-					<h5>
-						<a href="${pageContext.request.contextPath}/member/mypage/like">찜한
-							목록</a>
-					</h5>
-				</div>
-			
-				<div class="single-info" style="margin-bottom: 40px">
-					<h3>내가 쓴 글보기</h3>
-					<hr>
-					<h5>
-						<a href="${pageContext.request.contextPath}/myPage/myReview">구매후기</a>
-					</h5>
-					<h5>
-						<a
-							href="${pageContext.request.contextPath}/member/mypage/prdctq/list">상품문의</a>
-					</h5>
-					<h5>
-						<a
-							href="${pageContext.request.contextPath}/member/mypage/myqna/list">고객Q&A</a>
-					</h5>
-				</div>
-			</div>
-
-			<!-- 컨텐츠 본문 내용 -->
-			<div class="col-md-9 contact-info"
-				style="border-left: 1px solid rgba(0, 0, 0, .1);">
+				<!-- 왼쪽 사이드 메뉴 -->
 				<div class="container">
-					<div class="row" style="padding-left: 10px">
+					<div class="row">
+						<div class="content-area blog-page padding-top-40"
+							style="background-color: #FCFCFC; padding-bottom: 55px;">
+
+
+							<div class="blog-asside-right col-md-3">
+								<div
+									class="panel panel-default sidebar-menu wow fadeInRight animated">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<sec:authentication property="principal.user.member_name" />
+										</h3>
+									</div>
+
+								</div>
+
+								<div
+									class="panel panel-default sidebar-menu wow fadeInRight animated">
+									<div class="panel-heading">
+										<h3 class="panel-title">내 정보</h3>
+									</div>
+										<div class="panel-body recent-property-widget">
+									<ul>
+										<li>
+
+											<h6>
+												<a
+													href="${pageContext.request.contextPath}/myPage/updateMember">정보수정</a>
+											</h6>
+
+										</li>
+										<li>
+											<h5>
+												<a
+													href="${pageContext.request.contextPath}/myPage/myOrderList">주문내역
+													조회</a>
+											</h5>
+										</li>
+										<li>
+											<h5>
+												<a
+													href="${pageContext.request.contextPath}/myPage/recentlyProduct">최근
+													본 상품</a>
+											</h5>
+										</li>
+
+										<%-- <li>
+											<h5>
+												<a
+													href="${pageContext.request.contextPath}/member/mypage/like">찜한
+													목록</a>
+											</h5>
+										</li> --%>
+										<li>
+											<h5>
+												<a href="${pageContext.request.contextPath}/myPage/myReview">구매후기</a>
+											</h5>
+										</li>
+										<li>
+											<h5>
+												<a
+													href="${pageContext.request.contextPath}/member/mypage/prdctq/list">상품문의</a>
+											</h5>
+										</li>
+										<%-- <li>
+
+											<h5>
+												<a
+													href="${pageContext.request.contextPath}/member/mypage/myqna/list">고객Q&A</a>
+											</h5>
+										</li> --%>
+
+									</ul>
+								</div>
+							</div>
+							<div class="panel-heading">
+								<button id="point-btn" type="submit" class="float-align"
+									style="font-size: 10pt;" onclick="deleteMember()">회원탈퇴</button>
+
+							</div>
+
+						</div>
+					
+
+					
+
+<!-- 컨텐츠 본문 내용 -->
+			 <div class="blog-lst col-md-9">
+                        <section class="post">
+                            <div class="text-center padding-b-50">
+				<div class="title-line wow fadeInRight animated"></div>
 						<h3>주문내역 조회</h3>
 					</div>
 
-					<hr style="padding: 15px 0px 0px 0px">
+					
+								<div class="row">
+									<table id="product" class="table">
+									<input type="hidden" name="order_detail_id" value="${product.order_detail_id}">
+										<thead>
+											<tr class="table-secondary">
+												<th colspan="2" scope="row"
+													style="text-align: center; padding-left: 0px; padding-right: 15px;">
+													<h4>상품정보</h4> <br>
+												</th>
+												<th
+													style="text-align: center; padding-left: 0px; padding-right: 25px;">
+													<h4>주문일</h4>
+													<button class="btn btn-secondary btn-sm"
+														onclick="sortTD ( 1 )"
+														style="padding: 0px 5px 0px 5px; margin: 0px;">▲</button>
+													<button class="btn btn-secondary btn-sm"
+														onclick="reverseTD ( 1 )"
+														style="padding: 0px 5px 0px 5px; margin: 0px;">▼</button>
+												</th>
+												<th
+													style="overflow: auto; text-align: center; padding-left: 0px; padding-right: 0px;">
+													<h4>주문번호</h4>
+													<button class="btn btn-secondary btn-sm"
+														onclick="sortTD ( 2 )"
+														style="padding: 0px 5px 0px 5px; margin: 0px;">▲</button>
+													<button class="btn btn-secondary btn-sm"
+														onclick="reverseTD ( 2 )"
+														style="padding: 0px 5px 0px 5px; margin: 0px;">▼</button>
+												</th>
+												<th
+													style="text-align: center; padding-left: 15px; padding-right: 15px;">
+													<h4>금액</h4>
+													<button class="btn btn-secondary btn-sm"
+														onclick="sortTD ( 3 )"
+														style="padding: 0px 5px 0px 5px; margin: 0px;">▲</button>
+													<button class="btn btn-secondary btn-sm"
+														onclick="reverseTD ( 3 )"
+														style="padding: 0px 5px 0px 5px; margin: 0px;">▼</button>
+												</th>
 
-					<div class="row">
-						<table id="product" class="table">
-							<thead>
-								<tr class="table-secondary">
-									<th colspan="2" scope="row"
-										style="text-align: center; padding-left: 0px; padding-right: 15px;">
-										<h4>상품정보</h4> <br>
-									</th>
-									<th
-										style="text-align: center; padding-left: 0px; padding-right: 25px;">
-										<h4>주문일</h4>
-										<button class="btn btn-secondary btn-sm"
-											onclick="sortTD ( 0 )"
-											style="padding: 0px 5px 0px 5px; margin: 0px;">▲</button>
-										<button class="btn btn-secondary btn-sm"
-											onclick="reverseTD ( 0 )"
-											style="padding: 0px 5px 0px 5px; margin: 0px;">▼</button>
-									</th>
-									<th
-										style="overflow: auto; text-align: center; padding-left: 0px; padding-right: 0px;">
-										<h4>주문번호</h4>
-										<button class="btn btn-secondary btn-sm"
-											onclick="sortTD ( 1 )"
-											style="padding: 0px 5px 0px 5px; margin: 0px;">▲</button>
-										<button class="btn btn-secondary btn-sm"
-											onclick="reverseTD ( 1 )"
-											style="padding: 0px 5px 0px 5px; margin: 0px;">▼</button>
-									</th>
-									<th
-										style="text-align: center; padding-left: 15px; padding-right: 15px;">
-										<h4>금액</h4>
-										<button class="btn btn-secondary btn-sm"
-											onclick="sortTD ( 2 )"
-											style="padding: 0px 5px 0px 5px; margin: 0px;">▲</button>
-										<button class="btn btn-secondary btn-sm"
-											onclick="reverseTD ( 2 )"
-											style="padding: 0px 5px 0px 5px; margin: 0px;">▼</button>
-									</th>
-									
-									<th
-										style="text-align: center; padding-left: 15px; padding-right: 15px;">
-									<th
-										style="text-align: center; padding-left: 15px; padding-right: 15px;">
-										<h4>상태</h4>
-										<br>
-							   			</th>
-							   		</tr>
-							   	</thead>
+												<th
+													style="text-align: center; padding-left: 15px; padding-right: 15px;">
 										
-							<tbody>
-								<c:forEach items="${order_list}" var="order" varStatus="status">
-									<tr class="table-secondary">
-									<td	style="text-align: left; padding-left: 0px; padding-right: 0px;">
-									
-						<a href="/main/playVideo?product_id=${order.product_id}" class="btn btn-primary my-2"><img src="<c:url value="${order.image_name}"/>" style="max-width:100px;"/>
-					 </td>
-											   		<td style="text-align: left; padding-left: 0px; padding-right: 0px;">
-								   			<h4 style="padding-bottom: 5px;">${order.orders_id}</h4>
-											<h6 style="max-width: 180px; padding-bottom: 5px;">${order.product_description}</h6>
-											<h6>
-												${order.product_description}
-											
-											</h6>
-										<%-- 주문일(정렬대상) --%>
-										<td style="text-align: left; padding: 60px 0px 0px 0px;">
-											<h6>${order.orders_date}</h6>
-										</td>
-										<%-- 주문번호(정렬대상) --%>
-										<td style="text-align: center; padding: 60px 0px 0px 0px;">
-											<h6>${order.orders_id}</h6>
-										</td>
-										<%-- 주문금액(정렬대상) --%>
-										<td style="text-align: center; padding: 60px 0px 0px 0px;">
-											<h6>${order.orders_price}원</h6>
-										</td>
-										<%-- 상태 --%>
-										<td
-											style="text-align: center; padding-left: 0px; padding-right: 0px;">
-										
-										</td>
-										<td>
-											<a href="/main/rwrite_view?product_id=${order.product_id}&order_detail_id=${order.order_detail_id}">구매후기</a>
-										</td>
-									</tr>
+											</tr>
+										</thead>
+
+										<tbody>
+											<c:forEach items="${order_list}" var="order"
+												varStatus="status">
+												<tr class="table-secondary">
+													<td
+														style="text-align: left; padding-left: 0px; padding-right: 0px;">
+
+														<a href="/main/playVideo?product_id=${order.product_id}"
+														><img
+															src="<c:url value="${order.image_name}"/>"
+															style="max-width: 100px;" /></a>
+													</td>
+													<td
+														style="text-align: left; padding-left: 0px; padding-right: 0px;">
+														<h4 style="padding-bottom: 5px;">${order.product_name}</h4>
+														
+														 <%-- 주문일(정렬대상) --%>
+													<td style="text-align: left; padding: 60px 0px 0px 0px;">
+														<h6>${order.orders_date}</h6>
+													</td>
+													<%-- 주문번호(정렬대상) --%>
+													<td style="text-align: center; padding: 60px 0px 0px 0px;">
+														<h6>${order.orders_id}</h6>
+													</td>
+													<%-- 주문금액(정렬대상) --%>
+													<td style="text-align: center; padding: 60px 0px 0px 0px;">
+														<h6>${order.orders_price}원</h6>
+													</td>
+													<td>
+														<a href="/main/rwrite_view?product_id=${order.product_id}&order_detail_id=${order.order_detail_id}">구매후기</a>
+													</td>
+												
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+						
+						<!-- 페이징 -->
+						<div class="container">
+							<ul class="pagination justify-content-center">
+								<c:choose>
+									<c:when test="${pageMaker.pre}">
+										<li class="page-item"><a class="page-link"
+											href="${pageMaker.makeQuery(pageMaker.startPage - 1) }">&laquo;</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item disabled"><a class="page-link"
+											href="${pageMaker.makeQuery(pageMaker.startPage - 1) }">&laquo;</a></li>
+									</c:otherwise>
+								</c:choose>
+
+								<c:forEach begin="${pageMaker.startPage }"
+									end="${pageMaker.endPage }" var="idx">
+									<c:out value="${pageMaker.cri.pageNum == idx?'':''}" />
+									<li
+										class="page-item ${pageMaker.cri.pageNum == idx ? 'active' : '' }"><a
+										class="page-link" href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
 								</c:forEach>
-							</tbody>
-						</table>
-					</div>
+
+								<c:choose>
+									<c:when test="${pageMaker.next && pageMaker.endPage > 0}">
+										<li class="page-item disabled"><a class="page-link"
+											href="${pageMaker.makeQuery(pageMaker.endPage +1) }">&raquo;</a></li>
+									</c:when>
+									<c:otherwise>
+										<li class="page-item"><a class="page-link"
+											href="${pageMaker.makeQuery(pageMaker.endPage +1) }">&raquo;</a></li>
+									</c:otherwise>
+								</c:choose>
+							</ul>
+						</div>
+						</section>
+					
 				</div>
 			</div>
-			<!-- 페이징 -->
-			<div class="container">
-				<ul class="pagination justify-content-center">
-					<c:choose>
-						<c:when test="${pageMaker.pre}">
-							<li class="page-item"><a class="page-link"
-								href="${pageMaker.makeQuery(pageMaker.startPage - 1) }">&laquo;</a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="page-item disabled"><a class="page-link"
-								href="${pageMaker.makeQuery(pageMaker.startPage - 1) }">&laquo;</a></li>
-						</c:otherwise>
-					</c:choose>
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+		
+		<!-- footer -->
+		<jsp:include
+			page="${pageContext.request.contextPath }/WEB-INF/views/common/footer.jsp"></jsp:include>
 
-					<c:forEach begin="${pageMaker.startPage }"
-						end="${pageMaker.endPage }" var="idx">
-						<c:out value="${pageMaker.cri.pageNum == idx?'':''}" />
-						<li
-							class="page-item ${pageMaker.cri.pageNum == idx ? 'active' : '' }"><a
-							class="page-link" href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
-					</c:forEach>
 
-					<c:choose>
-						<c:when test="${pageMaker.next && pageMaker.endPage > 0}">
-							<li class="page-item disabled"><a class="page-link"
-								href="${pageMaker.makeQuery(pageMaker.endPage +1) }">&raquo;</a></li>
-						</c:when>
-						<c:otherwise>
-							<li class="page-item"><a class="page-link"
-								href="${pageMaker.makeQuery(pageMaker.endPage +1) }">&raquo;</a></li>
-						</c:otherwise>
-					</c:choose>
-				</ul>
-			</div>
+		<!--Required JS files-->
+		<script src="/resources/assets/js/modernizr-2.6.2.min.js"></script>
 
-			<hr>
-			<!--Required JS files-->
-			<script src="/resources/assets/js/jquery-2.2.4.min.js"></script>
-			<script src="/resources/assets/js/vendor/popper.min.js"></script>
-			<script src="/resources/assets/js/vendor/bootstrap.min.js"></script>
-			<script src="/resources/assets/js/vendor/owl.carousel.min.js"></script>
-			<script src="/resources/assets/js/vendor/isotope.pkgd.min.js"></script>
-			<script src="/resources/assets/js/vendor/jquery.barfiller.js"></script>
-			<script src="/resources/assets/js/vendor/loopcounter.js"></script>
-			<script src="/resources/assets/js/vendor/slicknav.min.js"></script>
-			<script src="/resources/assets/js/active.js"></script>
+		<script src="/resources/assets/js/jquery-1.10.2.min.js"></script>
+		<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+		<script src="/resources/assets/js/bootstrap-select.min.js"></script>
+		<script src="/resources/assets/js/bootstrap-hover-dropdown.js"></script>
 
-			<script type="text/javascript">
+		<script src="/resources/assets/js/easypiechart.min.js"></script>
+		<script src="/resources/assets/js/jquery.easypiechart.min.js"></script>
+
+		<script src="/resources/assets/js/owl.carousel.min.js"></script>
+		<script src="/resources/assets/js/wow.js"></script>
+
+		<script src="/resources/assets/js/icheck.min.js"></script>
+		<script src="/resources/assets/js/price-range.js"></script>
+
+		<script src="/resources/assets/js/main.js"></script>
+</body>
+<script type="text/javascript">
 				var myTable = document.getElementById("product");
 				var replace = replacement(myTable);
 				function sortTD(index) {
@@ -449,7 +491,23 @@
 				function reverseTD(index) {
 					replace.descending(index);
 				}
+				
+				function deleteMember() {
+					event.preventDefault();
+					if (confirm("회원이 작성한 게시물과 회원의 모든 정보가 삭제됩니다. 정말 탈퇴하시겠습니까? ") == true) {
+						alert("탈퇴 실행")
+						$.ajax({
+							method : "get",
+							url : "/myPage/updateMember/delete",
+							success : function(data) {
+								alert("회원탈퇴가 정상적으로 완료되었습니다. 로그인 창으로 이동합니다.");
+								window.location.href = '/logout';
+							}
+						});
+					}
+
+				}
 			</script>
-		</div>
+
 </body>
 </html>

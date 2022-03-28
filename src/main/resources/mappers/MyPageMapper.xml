@@ -31,14 +31,18 @@
 		<result property="orders_date" column="orders_date" />
 		<result property="member_number" column="member_number" />
 		<result property="member_id" column="member_id" />
-		<collection property="orderDetailVO" resultMap="orderDetail"></collection>
+		<collection property="orderDetailVO"
+			resultMap="orderDetail"></collection>
 		<collection property="rboardVO" resultMap="orderReview"></collection>
 	</resultMap>
 
-	<resultMap id="orderDetail" type="edu.kosmo.kbat.vo.OrderDetailVO">
+	<resultMap id="orderDetail"
+		type="edu.kosmo.kbat.vo.OrderDetailVO">
 
 		<result property="order_detail_id" column="order_detail_id" />
-		<result property="order_detail_count" column="order_detail_count" />
+		<result property="order_detail_count"
+			column="order_detail_count" />
+
 		<result property="orders_id" column="orders_id" />
 		<result property="product_id" column="product_id" />
 
@@ -83,7 +87,8 @@
 
 
 	<!-- 주문내역 리스트 가져오기 -->
-	<select id="getOrderMyList" resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO">
+	<select id="getOrderMyList"
+		resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO">
 	<![CDATA[
 	   SELECT 
 	   		o.orders_id,
@@ -110,7 +115,8 @@
 			o.orders_date DESC
 	]]>
 	</select>
-	<select id="getOrderMyListPaging" resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO">
+	<select id="getOrderMyListPaging"
+		resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO">
 	<![CDATA[
 	
   SELECT * FROM (
@@ -164,7 +170,9 @@
 		SELECT * FROM ( 
 		
 			SELECT	
+				rt.rating_check,
 				b.board_id,
+				b.board_title,
 				b.board_content,
 				b.boardtype_id,
 				b.board_date,
@@ -172,18 +180,22 @@
 				p.product_id,
 				p.product_name
 			FROM
+				rating rt,
 				board b,
 				member m,
 				product p,
 				review r,
 				order_detail d,
 				orders o
-			WHERE 
+			WHERE
+				r.review_id = rt.review_id and 
           		b.boardtype_id = 2 AND
           		r.order_detail_id = d.order_detail_id AND
-          		p.product_id = d.product_id AND
-          		o.member_number = m.member_number AND
-          		m.member_id = #{member_id} 
+                r.board_id = b.board_id and
+          		d.product_id = p.product_id  AND
+                d.orders_id = o.orders_id and
+          		m.member_number = o.member_number AND
+          		m.member_id = #{member_id}
             ORDER BY 
             	b.board_date desc
             	
@@ -197,26 +209,33 @@
 		resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO">
 
 <![CDATA[
-		SELECT	
+			SELECT	
+				rt.rating_check,
 				b.board_id,
+				b.board_title,
 				b.board_content,
 				b.boardtype_id,
 				b.board_date,
 				m.member_id,
 				p.product_id,
-				p.product_name
+				p.product_name,
+				d.order_detail_id
 			FROM
+				rating rt,
 				board b,
 				member m,
 				product p,
 				review r,
 				order_detail d,
 				orders o
-			WHERE 
+			WHERE
+				r.review_id = rt.review_id and 
           		b.boardtype_id = 2 AND
           		r.order_detail_id = d.order_detail_id AND
-          		p.product_id = d.product_id AND
-          		o.member_number = m.member_number AND
+                r.board_id = b.board_id and
+          		d.product_id = p.product_id  AND
+                d.orders_id = o.orders_id and
+          		m.member_number = o.member_number AND
           		m.member_id = #{member_id}
             ORDER BY 
             	b.board_date desc
@@ -231,4 +250,144 @@
 
 
 
+	<!-- 최근 본 상품 리스트 가져오기 -->
+	<select id="getProductViewList" resultType="edu.kosmo.kbat.joinvo.ProductProductViewVO">
+	<![CDATA[
+		SELECT
+		 i.image_name,
+		 p.product_name,
+		 p.product_price,
+		 p.product_id,
+		 m.member_id 
+		FROM
+		 product p,
+		 product_view v,
+		 member m,
+		 image i
+		WHERE
+		 p.product_id = v.product_id AND
+         p.product_id = i.product_id AND
+		 m.member_number = v.member_number  AND
+         m.member_id = #{member_id}
+		ORDER BY
+		 v.view_date DESC
+	]]>
+	</select>
+	
+	<select id="getProductViewListPaging" resultType="edu.kosmo.kbat.joinvo.ProductProductViewVO">
+	<![CDATA[
+		SELECT * FROM (
+		
+			SELECT ROWNUM AS RNUM, A.* FROM ( 
+			
+			SELECT 
+				i.image_name,
+				p.product_name,
+				p.product_price,
+				p.product_id,
+				m.member_id 
+			FROM 
+				product p,
+				product_view v,
+				member m,
+				image i
+			WHERE
+				p.product_id = v.product_id AND
+            	p.product_id = i.product_id AND
+		    	m.member_number = v.member_number  AND
+            	m.member_id = #{member_id}
+		ORDER BY 
+				v.view_date DESC		    
+			
+			) A WHERE ROWNUM <= #{cri.pageNum} * #{cri.amount} 
+		) WHERE RNUM > (#{cri.pageNum}-1) * #{cri.amount}
+	]]>
+	</select>
+	
+	<!-- 최근 본 상품 페이징 최대 단위 -->
+	<select id="getProductViewTotalCount" resultType="int">
+		<![CDATA[
+			SELECT COUNT(*) 
+			FROM product_view
+		]]>	
+	</select>
+	
+<!-- 상품 조회 내역 중복 여부 -->
+	<select id="getProductView" resultType="edu.kosmo.kbat.joinvo.ProductProductViewVO">
+		<![CDATA[			
+		    SELECT * 
+			FROM product_view v, member m
+			WHERE
+         	 v.member_number = #{member_number}
+            and v.product_id = #{product_id}
+		]]>
+	</select>
+	
+	<!-- 상품 상세페이지 조회 기능 -->
+	<insert id="addProductView" >
+		<![CDATA[
+			INSERT INTO product_view (member_number, product_id) 
+			VALUES (#{member_number}, #{product_id}) 
+		]]>
+	</insert>
+
+
+<!-- 작성한 고객 Q&A 리스트 받아오기 -->
+	<select id="getMyqListWithPaging" resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO">
+		<![CDATA[
+			SELECT * FROM ( 
+			     SELECT ROWNUM AS RNUM, A.* FROM (
+			      
+			        SELECT 
+			        	m.member_id,
+			        	b.board_id,
+			        	b.board_title,
+			        	b.board_date,
+			        	t.boardtype_id,
+			        	p.product_name
+					FROM 
+						board b,
+						member m,
+						boardtype t,
+						product p
+					WHERE 
+                        b.boardtype_id = t.boardtype_id and
+                        b.boardtype_id = 1 and 
+                        m.member_id = #{member_id} AND
+                        b.member_number = m.member_number
+					ORDER BY 
+						board_id DESC, board_date DESC
+						
+			    ) A WHERE ROWNUM <= #{cri.pageNum} * #{cri.amount} 
+			) WHERE RNUM > (#{cri.pageNum}-1) * #{cri.amount}
+		]]>
+	</select>
+	
+	<!-- 페이징 단위에 적용되는 최대 고객 Q&A 게시글 단위 -->
+	<select id="getMyqnaTotalCount" resultType="int">
+	<![CDATA[
+		SELECT COUNT(*) FROM board WHERE boardtype_id = 1
+	]]>	
+	</select>
+	
+	<!-- 작성한 고객 Q&A 응답여부 받아오기 -->
+	<select id="getMyqCmntStat" resultType="edu.kosmo.kbat.vo.QBoardAndMemberVO">
+	<![CDATA[
+		SELECT 
+			rp.reply_id,
+			b.board_id 
+		FROM
+			reply rp,
+			board b 
+		WHERE
+			rp.board_id = b.board_id AND 
+		    rp.reply_id IN (SELECT MIN(reply_id) 
+		                     FROM reply 
+		                     GROUP BY board_id) 
+		ORDER BY
+			 b.board_id DESC
+	]]>
+	</select>
+	
+	
 </mapper>

@@ -212,6 +212,7 @@ public class BoardController {
 	public String rwrite_view(Model model, ProductOrderDetailOrderVO productOrderDetailOrderVO) {		
 		log.info("write_view()...");		
 		model.addAttribute("rwrite_view",productOrderDetailOrderVO);		
+		System.out.println("===========productOrderDetailOrderVO========== " + productOrderDetailOrderVO);
 		return "rboard/write_view";
 
 	}

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO;
 import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
+import edu.kosmo.kbat.joinvo.ProductProductViewVO;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.MemberVO;
 
@@ -38,5 +39,19 @@ public interface MyPageMapper {
 	public List<ProductOrderDetailBoardVO> reviewMyList(String member_id);
 
 	public List<ProductOrderDetailBoardVO> getMyReviewList(Criteria cri, String member_id);
+
+	// 최근 본 상품 내역
+	public List<ProductProductViewVO> getProductView(String member_id, int product_id);
+
+	public void addProductView(String member_id, int product_id);
+
+	// 최근 본 상품 리스트
+	public List<ProductProductViewVO> getProductViewList(String member_id);
+
+	// 페이징 처리를 위한 최근 본 상품
+	public List<ProductProductViewVO> getProductViewListPaging(String member_id, Criteria cri);
+
+	// 페이징 처리를 위한 최근 본 상품 단위 최대
+	public int getProductViewTotalCount(Criteria cri);
 
 }
