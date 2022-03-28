@@ -143,7 +143,7 @@
 		</sec:authorize>
       
       	<sec:authorize access="isAnonymous()">
-			<li style="list-style: none;"><a href="/add" style="color:gray;" class="login-panel">&nbsp;&nbsp;&nbsp;Sign Up</a></li>
+			<li style="list-style: none;"><a href="/add/add" style="color:gray;" class="login-panel">&nbsp;&nbsp;&nbsp;Sign Up</a></li>
 		</sec:authorize>
 		
     </div>

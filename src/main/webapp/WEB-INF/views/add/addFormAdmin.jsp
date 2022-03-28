@@ -43,7 +43,7 @@
                     <h4 class="mb-4">크리에이터 회원가입</h4>
                     <br>
                     <c:url value="/add/addAdmin" var="addAdminUrl" />
-                    <form name="frmMember" id="frmMember" action="${addAdminUrl}" method="POST" class="validation-form" novalidate="novalidate">
+                    <form name="frmMember" id="frmMember" action="${addAdminUrl}" method="POST">
 
                         <div class="mb-3">
                             <label for="member_company">업체명</label>

@@ -43,7 +43,7 @@
                         <h4 class="mb-4">회원가입</h4>
                         <br>
                         <c:url value="/add/addUser" var="addUserUrl"/>
-                        <form class="validation-form" name="frmMember" action="${addUserUrl}" method="POST" id="frmMember" novalidate="novalidate">
+                        <form class="member_form" name="frmMember" action="${addUserUrl}" method="POST" id="frmMember">
 
                             <label for="member_id">아이디</label>
                             <div class="row">
@@ -323,7 +323,7 @@ $(document).ready(function(){
 $("#member_id").keyup(function(){
     var id=$(this).val();
     // 아이디 검증할 정규 표현식
-    var reg=/^[a-z]+[a-z0-9]{5,19}$/;
+    var reg=/^(?=.*\d{1,50})[a-z]+[a-z0-9]{5,13}$/; 
     if(reg.test(id)){//정규표현식을 통과 한다면
                 $("#idRegErr").hide();
                 successState("#member_id");
