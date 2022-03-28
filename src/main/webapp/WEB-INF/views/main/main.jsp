@@ -46,21 +46,36 @@
                 	</div>
  -->               	
               	
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1>공부어때 동영상 강의 쇼핑몰</h1>
-			<div class="col-lg-12 ftco-animate">
+  <%-- <section class="jumbotron text-center"> --%>
+  <iframe width="100%" height="700px" src="https://www.youtube.com/embed/-wW-o_7Je9I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>			
+   <!--  <div class="container"> -->
+      <!-- <h1>공부어때 동영상 강의 쇼핑몰</h1> -->
+			<!-- <div class="col-lg-12 ftco-animate" style="border: 1px solid gray"> -->
+				<!-- 
 				<video autoplay controls style="width:100%; height: 80%;"/>
 					<source src="<c:url value="http://localhost:8282/files/What_is_Spring.mp4"/>" type="video/mp4" >
 				</video>
-			</div>
+				-->
+				<!-- 
+				<iframe width="420" height="315"
+					src="https://www.youtube.com/watch?v=-wW-o_7Je9I">
+				</iframe>
+				-->
+				<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/_881oO2R0ac" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+				<!-- <iframe width="100%" height="100%" src="https://www.youtube.com/embed/_881oO2R0ac" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				 -->
+				
+				
+				
+				
+			<!-- </div> -->
 <!--       <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p> -->
       <p>
 <!--         <a href="#" class="btn btn-primary my-2">Main call to action</a>
         <a href="#" class="btn btn-secondary my-2">Secondary action</a> -->
       </p>
-    </div>
-  </section>
+   <!--  </div> -->
+<%--   </section> --%>
 
 
   <div class="album py-5 bg-light">
