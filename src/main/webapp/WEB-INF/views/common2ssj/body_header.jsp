@@ -61,9 +61,16 @@
 
 
 			<sec:authorize access="isAnonymous()">
+				
 				<a href="/login" style="color: gray; position: relative; left: 2%;"
 					class="login-panel">Login</a>
-				</li>
+									
+            
+            		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            	  <a href="/add/add" style="color:gray;" class="login-panel">Sign Up</a>
+            									
+					
+				
 			</sec:authorize>
 			<sec:authorize access="isAuthenticated()">
 				<c:choose>

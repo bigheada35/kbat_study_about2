@@ -53,6 +53,10 @@ public class UserService {
 	   
 	  //System.out.println("==========addUser:"+userVO.getUsername() +","+userVO.getPassword());
 	   System.out.println("==========addUser:"+userVO.getMember_id() +","+userVO.getPassword());
+	   System.out.println("==========userVO.toString:"+userVO.getMember_id() +","+userVO.toString());
+
+	   //fix issue company_name, 
+	   userVO.setMember_company(userVO.getMember_name());
 	   
       String password = userVO.getPassword();
       String encode = passEncoder.encode(password);

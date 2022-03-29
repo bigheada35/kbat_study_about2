@@ -46,17 +46,16 @@
                     <form name="frmMember" id="frmMember" action="${addAdminUrl}" method="POST">
 
                         <div class="mb-3">
-                            <label for="member_company">업체명</label>
+                            <label for="member_name">업체명</label>
                             <input
                                 type="text"
                                 class="form-control"
-                                id="member_company"
-                                name="member_company"
+                                id="member_name"
+                                name="member_name"
                                 placeholder=""
                                 value=""
                                 required="required">
                         </div>
-
                         <label for="member_id">아이디</label>
                             <div class="row">
                                 <div class="col-md-8 mb-3">
@@ -303,6 +302,20 @@ $(document).ready(function(){
 	
 	
 }); //end ready()
+
+//업체명 정규식
+$("#member_name").keyup(function(){
+    var name=$(this).val();
+    //  이름 검증할 정규 표현식
+    var reg=/[ㄱ-힣]{2,5}/;
+    if(reg.test(name)){//정규표현식을 통과 한다면
+                $("#nameRegErr").hide();
+                successState("#member_name");
+    }else{//정규표현식을 통과하지 못하면
+                $("#nameRegErr").show();
+                errorState("#member_name");
+    }
+});
 
 // 아이디 정규식 
 $("#member_id").keyup(function(){
