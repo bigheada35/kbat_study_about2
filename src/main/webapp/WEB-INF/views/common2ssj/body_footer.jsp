@@ -29,7 +29,7 @@
       </ul>
     </div>
     <div class="col-6 col-md">
-      <h5>Last News</h5>
+      <h5>Last News1</h5>
       <ul class="list-unstyled text-small">
          <li>
             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
@@ -44,6 +44,29 @@
                 <!-- <p style="line-height: 17px; padding: 8px 2px;">DB 설계도 앞에서 한컷 송승준, 김대민, 엄선화, 정진광 </p> -->
             </div>
         </li> 
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Last News2</h5>
+      <ul class="list-unstyled text-small">
+         <li>
+            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
+                <a href="#">
+                    <img src="/resources/jjk/assets\img\그림3.jpg" style="width:150px;height:100px;" >
+                </a>
+                <span class="blg-date">2022.03.27</span>
+
+            </div>
+            <div class="col-md-12  col-sm-12 col-xs-12  blg-entry">
+                <h6> <a href="#">장바구니 만드는 이소영 </a></h6> 
+                <!-- <p style="line-height: 17px; padding: 8px 2px;">장바구니 만드는 이소영</p> -->
+            </div>
+        </li> 
+      </ul>
+    </div>
+    <div class="col-6 col-md">
+      <h5>Last News3</h5>
+      <ul class="list-unstyled text-small">
         <li>
             <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
                 <a href="#">
@@ -57,21 +80,7 @@
                 <!-- <p style="line-height: 17px; padding: 8px 2px;">DB 설계 발표 한수현 </p> -->
             </div>
         </li> 
-        <li>
-            <div class="col-md-3 col-sm-4 col-xs-4 blg-thumb p0">
-                <a href="#">
-                    <img src="/resources/jjk/assets\img\그림3.jpg" style="width:150px;height:100px;" >
-                </a>
-                <span class="blg-date">2022.03.27</span>
-
-            </div>
-            <div class="col-md-12  col-sm-12 col-xs-12  blg-entry">
-                <h6> <a href="#">장바구니 만드는 이소영 </a></h6> 
-                <!-- <p style="line-height: 17px; padding: 8px 2px;">장바구니 만드는 이소영</p> -->
-            </div>
-        </li> 
-
       </ul>
-    </div>
+    </div>	
   </div>
 </footer>
