@@ -12,6 +12,7 @@ import edu.kosmo.kbat.joinvo.ProductProductViewVO;
 import edu.kosmo.kbat.mapper.MyPageMapper;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.MemberVO;
+import edu.kosmo.kbat.vo.QBoardAndMemberVO;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -134,6 +135,25 @@ public class MyPageServiceImpl implements MyPageService {
 	public int getProductViewTotal(Criteria cri) {
 		log.info("getProductViewList: ~~~~~~~~~~~ " + cri);
 		return myPageMapper.getProductViewTotalCount(cri);
+	}
+
+	
+	@Override
+	public List<ProductOrderDetailBoardVO> getMyqList(String member_id) {
+		log.info("getMyqList()......");
+		return myPageMapper.getMyqList( member_id);
+	}
+	
+	@Override
+	public List<ProductOrderDetailBoardVO> getMyqList(String member_id, Criteria cri ) {
+		log.info("getMyqList()......");
+		return myPageMapper.getMyqListWithPaging( member_id, cri);
+	}
+
+	@Override
+	public int getMyqnaTotal(Criteria cri) {
+		log.info("getMyqnaTotal WITH criteria: " + cri);
+		return myPageMapper.getMyqnaTotalCount(cri);
 	}
 
 	

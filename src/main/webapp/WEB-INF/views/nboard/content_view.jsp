@@ -69,7 +69,7 @@
 			    </tr>
 			    <tr style="border-bottom:2px solid">   
 			      <th scope="col" class="content" style="vertical-align:top">내용</th>
-			      <td><textarea class="content1">${content_view.board_content}</textarea></td>
+			      <td><textarea class="content1" style="height: 300px;">${content_view.board_content}</textarea></td>
 			    </tr>   
 			</thead>
 		</table>

@@ -9,6 +9,7 @@ import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
 import edu.kosmo.kbat.joinvo.ProductProductViewVO;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.MemberVO;
+import edu.kosmo.kbat.vo.QBoardAndMemberVO;
 
 @Mapper
 public interface MyPageMapper {
@@ -53,5 +54,14 @@ public interface MyPageMapper {
 
 	// 페이징 처리를 위한 최근 본 상품 단위 최대
 	public int getProductViewTotalCount(Criteria cri);
+	
+	
+	public List<ProductOrderDetailBoardVO> getMyqList(String member_id);
+	
+	// 작성한 고객 Q&A 리스트 받아오기
+	public List<ProductOrderDetailBoardVO> getMyqListWithPaging( String member_id, Criteria cri);
+
+	// 페이징 단위에 적용되는 최대 고객 Q&A 게시글 단위
+	public int getMyqnaTotalCount(Criteria cri);
 
 }

@@ -7,6 +7,7 @@ import edu.kosmo.kbat.joinvo.ProductOrderDetailOrderVO;
 import edu.kosmo.kbat.joinvo.ProductProductViewVO;
 import edu.kosmo.kbat.page.Criteria;
 import edu.kosmo.kbat.vo.MemberVO;
+import edu.kosmo.kbat.vo.QBoardAndMemberVO;
 
 public interface MyPageService {
 	// 회원 정보 조회
@@ -46,5 +47,14 @@ public interface MyPageService {
 
 	// 페이징 단위에 적용되는 최대 최근 본 상품 단위
 	public int getProductViewTotal(Criteria cri);
+	
+	
+	public List<ProductOrderDetailBoardVO> getMyqList(String member_id);
+	
+	// 페이징을 적용한 작성한 고객 Q&A 리스트 받아오기
+	public List<ProductOrderDetailBoardVO> getMyqList(String member_id, Criteria cri);
+
+	// 페이징 단위에 적용되는 최대 고객 Q&A 게시글 단위
+	public int getMyqnaTotal(Criteria cri);
 
 }

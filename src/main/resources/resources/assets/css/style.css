@@ -2086,10 +2086,11 @@ single property page
 }
 
 .sidebar-property{
+    background-color:#EEE;
     padding: 15px 25px 25px;
 }
 .dealer-widget {
-    background-color: black;
+    background-color: #838383;
     padding: 15px;
     color:#FFF;
     padding-bottom: 20px;

@@ -121,7 +121,7 @@
 											<li>
 												<h5>
 													<a
-														href="${pageContext.request.contextPath}/member/mypage/productq/list">상품문의</a>
+														href="${pageContext.request.contextPath}/myPage/myQ">상품문의</a>
 												</h5>
 											</li>
 										

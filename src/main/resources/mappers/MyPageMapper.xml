@@ -329,29 +329,64 @@
 	</insert>
 
 
+
+<!-- 주문내역 리스트 가져오기 -->
+	<select id="getMyqList"
+		resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO">
+	<![CDATA[
+	   SELECT 
+			        	m.member_id,
+			        	b.board_id,
+			        	b.board_title,
+			        	b.board_date,
+			        	t.boardtype_id,
+			       
+                        b.product_id
+                      
+					FROM 
+						board b,
+						member m,
+						boardtype t
+						
+                   
+					WHERE 
+                        t.boardtype_id = 1 and
+                        b.boardtype_id = t.boardtype_id and 
+                        m.member_number = b.member_number and
+                        m.member_id = #{memeber_id}
+                        
+					ORDER BY 
+						board_id DESC, board_date DESC
+	]]>
+	</select>
+
 <!-- 작성한 고객 Q&A 리스트 받아오기 -->
 	<select id="getMyqListWithPaging" resultType="edu.kosmo.kbat.joinvo.ProductOrderDetailBoardVO">
 		<![CDATA[
 			SELECT * FROM ( 
 			     SELECT ROWNUM AS RNUM, A.* FROM (
 			      
-			        SELECT 
+			       SELECT 
 			        	m.member_id,
 			        	b.board_id,
 			        	b.board_title,
 			        	b.board_date,
 			        	t.boardtype_id,
-			        	p.product_name
+			       	
+                        b.product_id
+                      
 					FROM 
 						board b,
 						member m,
 						boardtype t,
-						product p
+						
+                   
 					WHERE 
-                        b.boardtype_id = t.boardtype_id and
-                        b.boardtype_id = 1 and 
-                        m.member_id = #{member_id} AND
-                        b.member_number = m.member_number
+                        t.boardtype_id = 1 and
+                        b.boardtype_id = t.boardtype_id and 
+                        m.member_number = b.member_number and
+                        m.member_id = #{memeber_id}
+                        
 					ORDER BY 
 						board_id DESC, board_date DESC
 						

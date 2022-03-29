@@ -148,7 +148,8 @@
 													board.board_hit,
 													rating.rating_check,
 													review.review_id,	
-													product.product_id					
+													product.product_id,				
+													order_detail.order_detail_id	
 												from boardtype, board, member, rating, review, order_detail, product, orders
 												where 
 													board.boardtype_id = boardtype.boardtype_id 
@@ -160,6 +161,7 @@
 													and product.product_id = order_detail.product_id
                                                     and orders.orders_id = order_detail.orders_id
                                                     and board.product_id = product.product_id
+                                                    and order_detail.order_detail_id = review.order_detail_id
                                     				and product.product_id = #{product_id}
 												order by board_id
 												

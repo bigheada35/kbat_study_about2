@@ -36,7 +36,7 @@
 	<select id="getProductList" resultType="edu.kosmo.kbat.vo.ProductVO">
 		<![CDATA[
 			SELECT * FROM (
-		 	select rownum rn, c.category_id, c.category_name, p.product_id, p.product_name, p.product_description 
+		 	select rownum rn, c.category_id, c.category_name, p.product_id, p.product_name, p.product_description, p.product_price
 		 	from category c, product p
 			where (c.category_id = p.category_id) and
 		]]>
