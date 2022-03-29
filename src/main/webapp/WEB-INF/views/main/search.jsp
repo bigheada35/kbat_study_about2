@@ -29,10 +29,6 @@
 
 
 
-  <iframe width="100%" height="700px" src="https://www.youtube.com/embed/-wW-o_7Je9I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>         
-   
-
-
   <div class="album py-5 bg-light">
     <div class="container">
     

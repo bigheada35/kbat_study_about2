@@ -10,18 +10,36 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>판매자 마이페이지</title>
 
-<!-- Required CSS files -->
+
 <link
-	href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i"
-	rel="stylesheet">
-<link rel="stylesheet" href="/resources/assets/css/owl.carousel.css">
-<link rel="stylesheet" href="/resources/assets/css/barfiller.css">
-<link rel="stylesheet" href="/resources/assets/css/animate.css">
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800'
+	rel='stylesheet' type='text/css'>
+
+<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<link rel="shortcut icon" href="favicon.ico"
+	type="/resources/images/x-icon">
+<link rel="icon" href="favicon.ico" type="/resources/images/x-icon">
+
+<link rel="stylesheet" href="/resources/assets/css/normalize.css">
 <link rel="stylesheet" href="/resources/assets/css/font-awesome.min.css">
-<link rel="stylesheet" href="/resources/assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="/resources/assets/css/slicknav.css">
-<link rel="stylesheet" href="/resources/assets/css/main.css">
-<link rel="stylesheet" href="/resources/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/assets/css/fontello.css">
+<link
+	href="/resources/assets/fonts/icon-7-stroke/css/pe-icon-7-stroke.css"
+	rel="stylesheet">
+<link href="/resources/assets/fonts/icon-7-stroke/css/helper.css"
+	rel="stylesheet">
+<link href="/resources/assets/css/animate.css" rel="stylesheet"
+	media="screen">
+<link rel="stylesheet"
+	href="/resources/assets/css/bootstrap-select.min.css">
+<link rel="stylesheet" href="/resources/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="/resources/assets/css/icheck.min_all.css">
+<link rel="stylesheet" href="/resources/assets/css/price-range.css">
+<link rel="stylesheet" href="/resources/assets/css/owl.carousel.css">
+<link rel="stylesheet" href="/resources/assets/css/owl.theme.css">
+<link rel="stylesheet" href="/resources/assets/css/owl.transitions.css">
+<link rel="stylesheet" href="/resources/assets/css/style.css">
+<link rel="stylesheet" href="/resources/assets/css/responsive.css">
 
 <!-- google charts -->
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -66,90 +84,91 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-	<div style="overflow: hidden;" class="container">
+			<!--header -->
+		<jsp:include
+			page="${pageContext.request.contextPath }/WEB-INF/views/common/header.jsp"></jsp:include>
+			
 
-		<div class="container">
-			<span
-				style="margin-left: 24px; line-height: 100px; margin-top: 20px; margin-bottom: 20px;">
-				<h3>${member.member_name }</h3>
-				<h3 style="position: relative; top: 15px;">${member.member_id }</h3>
-			</span> <span style="margin-left: 22px; position: relative; bottom: 10px;">
-				<a href="/seller/mypage/myinfo/${member.member_id }">정보수정</a>
-			</span> <span style="margin-left: 300px;" align="center">
-				<h2 style="position: relative; top: 5px;">새 주문</h2>
-				<h4 style="position: relative; top: 15px;">${orderCount }건</h4>
-			</span> <span style="margin-left: 80px;" align="center">
-				<h2 style="position: relative; top: 5px;">취소</h2>
-				<h4 style="position: relative; top: 15px;">${cancelCount }건</h4>
-			</span> <span style="margin-left: 80px;" align="center">
-				<h2 style="position: relative; top: 5px;">교환</h2>
-				<h4 style="position: relative; top: 15px;">${exchangeCount }건</h4>
-			</span> <span style="margin-left: 80px;" align="center">
-				<h2 style="position: relative; top: 5px;">환불</h2>
-				<h4 style="position: relative; top: 15px;">${refundCount }건</h4>
-			</span>
-		</div>
+			<div class="container">
+		<div class="row">
+			<!-- 왼쪽 사이드 메뉴 -->
 
-		<hr>
+			<div class="content-area blog-page padding-top-40"
+				style="background-color: #FCFCFC; padding-bottom: 55px;">
+				<div class="container">
+					<div class="row">
 
-		<div class="container">
-			<div class="row">
-				<div class="col-md-2 contact-info" align="center">
-					<div class="single-info" style="margin-bottom: 40px">
-						<h3>마이페이지</h3>
-						<hr>
-						<h5>
-							<a href="/seller/mypage">홈 바로가기</a>
-						</h5>
-					</div>
-					<div class="single-info" style="margin-bottom: 40px">
-						<h3>주문 관리</h3>
-						<hr>
-						<h5>
-							<a href="/seller/mypage/order">주문확인</a>
-						</h5>
-						<h5>
-							<a href="/seller/mypage/release">발송확인</a>
-						</h5>
-						<h5>
-							<a href="/seller/mypage/cancel">취소</a>
-						</h5>
-						<h5>
-							<a href="/seller/mypage/exchange">교환</a>
-						</h5>
-						<h5>
-							<a href="/seller/mypage/refund">환불</a>
-						</h5>
-					</div>
-					<div class="single-info" style="margin-bottom: 40px">
-						<h3>상품 관리</h3>
-						<hr>
-						<h5>
-							<a href="/seller/mypage/${member.member_id}/prdct_register">등록</a>
-						</h5>
-						<h5>
-							<a href="/seller/mypage/prdct">조회</a>
-						</h5>
-					</div>
-					<div class="single-info" style="margin-bottom: 40px">
-						<h3>회원 관리</h3>
-						<hr>
-						<h5>
-							<a href="/seller/mypage/prdctqna">Q&A</a>
-						</h5>
-						<h5>
-							<a href="/seller/mypage/review">리뷰</a>
-						</h5>
-					</div>
-					<div class="single-info" style="margin-bottom: 40px">
-						<h3>매출 관리</h3>
-						<hr>
-						<h5>
-							<a href="/seller/mypage/sales">매출</a>
-						</h5>
-					</div>
-				</div>
 
+							<div class="blog-asside-right col-md-3">
+								<div
+									class="panel panel-default sidebar-menu wow fadeInRight animated">
+									<div class="panel-heading">
+										<h3 class="panel-title">
+											<sec:authentication property="principal.user.member_name" />
+										</h3>
+									</div>
+
+								</div>
+
+								<div
+									class="panel panel-default sidebar-menu wow fadeInRight animated">
+									<div class="panel-heading">
+										<h3 class="panel-title">내 정보</h3>
+									</div>
+									<div class="panel-body recent-property-widget">
+										<ul>
+											<li>
+
+												<h6>
+													<a
+														href="${pageContext.request.contextPath}/myPage/updateMember">정보수정</a>
+												</h6>
+
+											</li>
+											<li>
+												<h5>
+													<a
+														href="${pageContext.request.contextPath}/myPage/myOrderList">주문내역
+														조회</a>
+												</h5>
+											</li>
+											<li>
+												<h5>
+													<a
+														href="${pageContext.request.contextPath}/myPage/recentlyProduct">최근
+														본 상품</a>
+												</h5>
+											</li>
+
+										
+											<li>
+												<h5>
+													<a
+														href="${pageContext.request.contextPath}/myPage/myReview">구매후기</a>
+												</h5>
+											</li>
+											<li>
+												<h5>
+													<a
+														href="${pageContext.request.contextPath}/myPage/myQ">상품문의</a>
+												</h5>
+											</li>
+										
+
+
+										</ul>
+									</div>
+								</div>
+								<div class="panel-heading">
+									<button id="point-btn" type="submit" class="float-right"
+										style="font-size: 10pt;" onclick="deleteMember()">회원탈퇴</button>
+
+								</div>
+
+							</div>
+	<div class="blog-lst col-md-9 p0">
+								<section id="id-100" class="post single">
+								
 				<span
 					style="border-left: 1px solid rgba(0, 0, 0, .1); width: 922px;">
 					<h3
@@ -171,21 +190,38 @@ $(document).ready(function() {
 					<hr />
 
 				</span>
+				</section>
 			</div>
+			
 		</div>
-
+	</div>
+	</div>
+	</div>
+	</div>
+	
+<!-- footer -->
+	<jsp:include
+		page="${pageContext.request.contextPath }/WEB-INF/views/common/footer.jsp"></jsp:include>
 
 		<!--Required JS files-->
-		<script src="/resources/assets/js/jquery-2.2.4.min.js"></script>
-		<script src="/resources/assets/js/vendor/popper.min.js"></script>
-		<script src="/resources/assets/js/vendor/bootstrap.min.js"></script>
-		<script src="/resources/assets/js/vendor/owl.carousel.min.js"></script>
-		<script src="/resources/assets/js/vendor/isotope.pkgd.min.js"></script>
-		<script src="/resources/assets/js/vendor/jquery.barfiller.js"></script>
-		<script src="/resources/assets/js/vendor/loopcounter.js"></script>
-		<script src="/resources/assets/js/vendor/slicknav.min.js"></script>
-		<script src="/resources/assets/js/active.js"></script>
+	<script src="/resources/assets/js/modernizr-2.6.2.min.js"></script>
 
-	</div>
+	<script src="/resources/assets/js/jquery-1.10.2.min.js"></script>
+	<script src="/resources/bootstrap/js/bootstrap.min.js"></script>
+	<script src="/resources/assets/js/bootstrap-select.min.js"></script>
+	<script src="/resources/assets/js/bootstrap-hover-dropdown.js"></script>
+
+	<script src="/resources/assets/js/easypiechart.min.js"></script>
+	<script src="/resources/assets/js/jquery.easypiechart.min.js"></script>
+
+	<script src="/resources/assets/js/owl.carousel.min.js"></script>
+	<script src="/resources/assets/js/wow.js"></script>
+
+	<script src="/resources/assets/js/icheck.min.js"></script>
+	<script src="/resources/assets/js/price-range.js"></script>
+
+	<script src="/resources/assets/js/main.js"></script>
+
+	
 </body>
 </html>

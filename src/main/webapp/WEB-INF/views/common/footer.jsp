@@ -47,9 +47,7 @@
     </head>
     <body>
 
-        <div id="preloader">
-            <div id="status">&nbsp;</div>
-        </div>
+       
       
         <!-- Footer area-->
         <div class="footer-area">

@@ -21,8 +21,8 @@
       <h5>Quick links</h5>
       <ul class="list-unstyled text-small">
         <li><a class="text-muted" href="#">카테고리</a></li>
-        <li><a class="text-muted" href="#">공지사항</a></li>
-        <li><a class="text-muted" href="#">로그인</a></li>
+        <li><a class="text-muted" href="/nlist">공지사항</a></li>
+        <li><a class="text-muted" href="/login">로그인</a></li>
         <li><a class="text-muted" href="#">content</a></li>
         <li><a class="text-muted" href="#">E-mail</a></li>
         <li><a class="text-muted" href="#">Team</a></li>
