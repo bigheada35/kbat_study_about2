@@ -97,7 +97,8 @@
 	   		p.product_name,
 	   		o.orders_date,
 	   		o.orders_price,
-	   		i.image_name
+	   		i.image_name,
+	   		d.order_detail_id
 		FROM
 			product p,
 			order_detail d,
@@ -128,7 +129,8 @@
 	   		p.product_name,
 	   		o.orders_date,
 	   		o.orders_price,
-	   		i.image_name
+	   		i.image_name,
+	   		d.order_detail_id
 		FROM
 			product p,
 			order_detail d,
