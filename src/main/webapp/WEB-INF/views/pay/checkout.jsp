@@ -182,7 +182,18 @@
 								</h4>
 							</div>
 						</div>
-				
+						<div class="row" style="position: relative;left: 29%;" >
+							<div class="col-sm-2" ></div>
+							<div class="col-sm-2" >
+								<h6>주문이름</h6>
+							</div>
+							<div class="col-sm-3" >
+								<h6 id="imp_product_name">
+									<c:out value="${cartProductNameTotal}"/>
+									<fmt:formatDate type="both" dateStyle="long" timeStyle="short" value="${today}" />
+								</h6>
+							</div>
+						</div>
 		<br><br>
 						<div class="row" style="padding-left: 14%;">
 
